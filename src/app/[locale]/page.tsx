@@ -26,11 +26,8 @@ export default async function HomePage({
   try {
     const supabase = createServerClient()
     const [eventsRes, acilRes, tentsRes] = await Promise.all([
-      supabase
-        .from('announcements')
-        .select('*')
-        .eq('category', 'etkinlik')
-        .order('title_tr'),
+      // Sıralama TimelineFeed'de saat bilgisine göre yapılır (saat content'e gömülü).
+      supabase.from('announcements').select('*').eq('category', 'etkinlik'),
       supabase.from('announcements').select('*').eq('category', 'acil'),
       supabase.from('tents').select('*').order('order_num'),
     ])

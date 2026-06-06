@@ -121,6 +121,13 @@ function extractTime(event: Announcement, locale: string): string | null {
   return match ? match[1] : null
 }
 
+// Saat ("HH:MM") → dakika. Saat yoksa en sona düşsün.
+function timeToMinutes(time: string | null): number {
+  if (!time) return Number.MAX_SAFE_INTEGER
+  const [h, m] = time.split(':').map(Number)
+  return h * 60 + m
+}
+
 function cleanContent(event: Announcement, locale: string): string {
   // "Saat 10:00 – …" gibi baştaki saat ön ekini kaldır, gövde metnini bırak.
   const content = localized(event, 'content', locale)
@@ -133,7 +140,15 @@ export default function TimelineFeed({ events, locale }: TimelineFeedProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const [openId, setOpenId] = useState<string | null>(null)
 
-  const displayEvents = events && events.length > 0 ? events : MOCK_EVENTS
+  // Saat veritabanında ayrı bir sütun değil, content metnine gömülü. O yüzden
+  // sıralama burada, ayıklanan saate göre kronolojik yapılır (gerçek veri + mock).
+  const displayEvents = (events && events.length > 0 ? events : MOCK_EVENTS)
+    .slice()
+    .sort(
+      (a, b) =>
+        timeToMinutes(extractTime(a, locale)) -
+        timeToMinutes(extractTime(b, locale)),
+    )
 
   // Eksen dolgusu — scroll ilerlemesine bağlı (kırmızı→yeşil).
   const { scrollYProgress } = useScroll({
