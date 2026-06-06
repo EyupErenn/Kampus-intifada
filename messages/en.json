@@ -2,41 +2,163 @@
   "nav": {
     "home": "Home",
     "tents": "Tents",
-    "about": "About"
+    "about": "About",
+    "interactions": "interactions"
   },
   "hero": {
     "title": "Campus Intifada",
     "subtitle": "The Digital Twin of the Event – BTU Campus",
-    "description": "The conscience of a campus echoes in the digital realm. We gather solidarity, memory and resistance under one roof."
+    "description": "The conscience of a campus echoes in the digital realm. We gather solidarity, memory and resistance under one roof.",
+    "tagline": "conscience · memory · resistance",
+    "words": ["solidarity", "memory", "resistance", "conscience"],
+    "scroll": "Skip to programme"
+  },
+  "ticker": {
+    "label": "Urgent",
+    "default": "Campus Intifada – An Awareness Movement at BTU Campus"
+  },
+  "timeline": {
+    "kicker": "Programme",
+    "title": "Throughout the Day",
+    "lead": "From opening to closing, the flow of the day of resistance on campus.",
+    "expand": "View details",
+    "collapse": "Close",
+    "empty": "The programme will be announced soon."
+  },
+  "home": {
+    "tentsKicker": "Atlas of Resistance",
+    "tentsTitle": "The Tents",
+    "tentsLead": "Six tents, six fronts — each a face of memory and solidarity."
   },
   "chat": {
     "placeholder": "Ask something...",
     "title": "Digital Guide"
   },
+  "pool": {
+    "heading": "Resource Pool",
+    "communityHeading": "Community Resources",
+    "suggest": "Suggest a Resource",
+    "search": "Search title or description...",
+    "clear": "Clear",
+    "vote": "Vote",
+    "goto": "Go to resource",
+    "empty": "No resources in this category yet. Be the first to suggest one.",
+    "toast": "Your suggestion was received. It will be published once approved.",
+    "formTitle": "Title *",
+    "formUrl": "Link (URL)",
+    "formName": "Your name (optional)",
+    "submit": "Submit",
+    "tabs": {
+      "all": "All",
+      "video": "Video",
+      "makale": "Article",
+      "kitap": "Book",
+      "infografik": "Infographic"
+    }
+  },
+  "wall": {
+    "empty": "Be the first to leave a message.",
+    "name": "Your name (max 30)",
+    "send": "Send",
+    "anon": "Anonymous",
+    "message": "Your message..."
+  },
   "tents": {
+    "sumud": { "name": "Sumud Tent", "desc": "Resistance memory and solidarity wall" },
+    "boykot": { "name": "Boycott Tent", "desc": "Awareness, alternatives and consciousness" },
+    "dar-agaci": { "name": "Gallows Tent", "desc": "The story of 12 thousand prisoners" },
+    "sayilarla": { "name": "Gaza in Numbers", "desc": "The language of statistics" },
+    "cocuk": { "name": "Children's Tent", "desc": "The voice of tomorrow" },
+    "kutuphane": { "name": "Library Tent", "desc": "Education and resources" }
+  },
+  "tent": {
     "sumud": {
-      "name": "Sumud Tent",
-      "desc": "Resistance memory and solidarity wall"
+      "kicker": "Sumud",
+      "memoryTitle": "Memory Wall",
+      "wallTitle": "Sumud Wall",
+      "wallDesc": "Leave a message of solidarity; the wall updates live.",
+      "wallPlaceholder": "Your message of solidarity...",
+      "memory": [
+        { "title": "Mavi Marmara", "desc": "The attack on the Freedom Flotilla, which set sail to break the siege of Gaza, left a deep mark on the world's conscience. The price of solidarity was heavy, but the memory endured." },
+        { "title": "Freedom Flotilla", "desc": "Over the years, ships from different countries set sail against the blockade. Each voyage was a quiet declaration of not forgetting and not giving up." },
+        { "title": "Global Intifada", "desc": "Millions took to the streets in cities around the world. Universities, squares and campuses became the new centres of solidarity." },
+        { "title": "International Sumud Flotilla", "desc": "Setting sail again in the spirit of sumud (steadfastness), the flotilla showed that civilian will against the blockade persists with determination." }
+      ],
+      "quotes": [
+        { "text": "Climate justice cannot be separated from the struggle against colonialism, occupation and injustice. We stand in solidarity with the Palestinian people.", "author": "Greta Thunberg" },
+        { "text": "Civilians always pay the price of war. For peace and justice we must not be silent, but raise our voices.", "author": "Nina Potarska" },
+        { "text": "On the Mavi Marmara we learned: conscience travels beyond the seas. Solidarity is not a choice, it is a debt.", "author": "Erdinç Tekir" },
+        { "text": "The question of Palestine is, above all, a question of human rights. Law loses its meaning unless it stands with the oppressed.", "author": "Noura Erakat" }
+      ]
     },
     "boykot": {
-      "name": "Boycott Tent",
-      "desc": "Awareness, alternatives and consciousness"
+      "kicker": "Boycott",
+      "productsTitle": "Boycott & Local Alternative",
+      "boycottLabel": "Boycott",
+      "altLabel": "Local Alternative",
+      "kcal": "kcal",
+      "caloriesTitle": "Calorie Comparison",
+      "caloriesDesc": "The average daily calories a person receives under blockade, compared with the minimum and normal requirements.",
+      "cyberTitle": "Technology & Cyber Awareness",
+      "cyberDesc": "Be conscious in the digital realm too; your data and choices are a stance.",
+      "products": [
+        { "category": "Soft Drinks", "alternative": "Local sodas, ayran" },
+        { "category": "Coffee Chains", "alternative": "Local coffeehouses, Turkish coffee" },
+        { "category": "Technology & Phones", "alternative": "Renew your device, extend its life" },
+        { "category": "Fast Food", "alternative": "Neighbourhood eateries, home cooking" },
+        { "category": "Cards & Payment", "alternative": "Participation / local banks" }
+      ],
+      "calories": ["Gaza (daily avg.)", "WHO minimum", "Normal need"],
+      "cyber": [
+        { "title": "Digital Footprint", "body": "Every click leaves data. Know which platforms fund whom." },
+        { "title": "VPN & Security", "body": "A secure connection is the first step to bypassing censorship and protecting privacy." },
+        { "title": "Data Privacy", "body": "Restrict permissions, block trackers; keep your data in your own hands." },
+        { "title": "Conscious Consumption", "body": "When installing an app, research its owner and its funders." }
+      ]
     },
     "dar-agaci": {
-      "name": "Gallows Tent",
-      "desc": "The story of 12 thousand prisoners"
+      "kicker": "Gallows",
+      "keyTitle": "The Key Is Yours",
+      "keyDesc": "Bars imprison the body; awareness and solidarity climb over walls.",
+      "quoteFr": "«Condamné à mort ! Voilà cinq semaines que j'habite avec cette pensée, toujours seul avec elle, toujours glacé par sa présence, toujours courbé sous son poids !»",
+      "quoteLocal": "\"Condemned to death! For five weeks I have lived with this thought, always alone with it, always frozen by its presence, always bent beneath its weight.\"",
+      "quoteAuthor": "Victor Hugo, The Last Day of a Condemned Man",
+      "counterLabel": "Currently imprisoned",
+      "counterUnit": "prisoners",
+      "prisonersTitle": "Who Is Held Captive?",
+      "categories": ["Student", "Journalist", "Doctor & Medic", "Teacher", "Lawyer", "Child", "Engineer", "Farmer", "Artist", "Athlete", "Academic", "Documentarian"]
     },
     "sayilarla": {
-      "name": "Gaza in Numbers",
-      "desc": "The language of statistics"
+      "kicker": "Gaza in Numbers",
+      "ton": " tons",
+      "stats": ["Killed", "Wounded", "Buildings Destroyed", "Tonnage of Bombs"],
+      "aksaTitle": "Al-Aqsa Mosque",
+      "aksaP1": "The first qibla of Islam and the heart of Jerusalem, held sacred by the three Abrahamic faiths. Witness to many civilisations throughout history, Al-Aqsa remains a symbol of the struggle for freedom and dignity today.",
+      "aksaP2": "In the face of access restrictions, raids and attempts to alter the status quo, the protection of the sanctuary has become one of the shared calls of solidarity worldwide."
     },
     "cocuk": {
-      "name": "Children's Tent",
-      "desc": "The voice of tomorrow"
+      "kicker": "Children",
+      "stats": ["Children in need of aid", "Whose education was disrupted", "Unaccompanied / orphaned", "Daily trauma cases"],
+      "workshopTitle": "Children's Workshop",
+      "workshopBody": "In this workshop at the Children's Tent, children will freely express their feelings through drawing, poetry and storytelling. Creative activities on themes of peace and solidarity will be held alongside volunteer pedagogues and educators. Little hands are drawing the greatest hope.",
+      "wallTitle": "Your Message to the Children",
+      "wallDesc": "Leave a short message; let colourful notes take their place on the wall.",
+      "wallPlaceholder": "Your message to the children... (max 200)",
+      "wallButton": "Pin it"
     },
     "kutuphane": {
-      "name": "Library Tent",
-      "desc": "Education and resources"
+      "kicker": "Library",
+      "featuredTitle": "Featured",
+      "kindBook": "Book",
+      "kindDoc": "Documentary",
+      "ctaTitle": "We Grow the Resource Pool Together",
+      "ctaBody": "The library grows through community curation. Every resource you suggest (video, article, book, infographic) is first reviewed by a volunteer team, then published. Suggest your resource below and vote for the ones you find most useful.",
+      "steps": ["1. Suggest", "2. Review & approve", "3. Publish & vote"],
+      "featured": [
+        { "title": "The Question of Palestine", "author": "Edward Said", "kind": "book", "note": "A foundational reference that addresses the question of Palestine in its intellectual and historical context." },
+        { "title": "The Hundred Years' War on Palestine", "author": "Rashid Khalidi", "kind": "book", "note": "A comprehensive, document-based account of a century of colonialism and resistance." },
+        { "title": "Gaza: Lives on the Shore", "author": "Documentary", "kind": "doc", "note": "A cinematic testimony to everyday life and steadfastness (sumud) under blockade." }
+      ]
     }
   }
 }

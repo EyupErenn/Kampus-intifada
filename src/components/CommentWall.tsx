@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { Send } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 import { createBrowserClient } from '@/lib/supabase'
 import type { Comment } from '@/types/database'
 import { relativeTime } from '@/lib/format'
@@ -28,9 +29,10 @@ export default function CommentWall({
   locale,
   variant = 'wall',
   maxContent = 500,
-  placeholder = 'Mesajın...',
-  buttonLabel = 'Gönder',
+  placeholder,
+  buttonLabel,
 }: CommentWallProps) {
+  const t = useTranslations('wall')
   const [comments, setComments] = useState<Comment[]>([])
   const [author, setAuthor] = useState('')
   const [content, setContent] = useState('')
@@ -101,7 +103,7 @@ export default function CommentWall({
   const submit = async (e: React.FormEvent) => {
     e.preventDefault()
     const text = content.trim()
-    const who = author.trim() || 'Anonim'
+    const who = author.trim() || t('anon')
     if (text.length < 3 || text.length > maxContent || sending) return
 
     setSending(true)
@@ -128,7 +130,6 @@ export default function CommentWall({
         const saved = data as Comment
         setComments((prev) => {
           const replaced = prev.map((c) => (c.id === optimistic.id ? saved : c))
-          // olası realtime kopyasını ayıkla
           return replaced.filter(
             (c, i, arr) => arr.findIndex((x) => x.id === c.id) === i,
           )
@@ -148,25 +149,25 @@ export default function CommentWall({
       {variant === 'wall' ? (
         <div
           ref={listRef}
-          className="flex max-h-80 flex-col gap-2 overflow-y-auto pr-1"
+          className="flex max-h-80 flex-col gap-2 overflow-y-auto pe-1"
         >
           {comments.length === 0 ? (
-            <p className="py-8 text-center text-sm text-white/40">
-              İlk mesajı sen bırak.
-            </p>
+            <p className="py-8 text-center text-sm text-bone-dim">{t('empty')}</p>
           ) : (
             comments.map((c) => (
               <div
                 key={c.id}
-                className="glass-card rounded-xl rounded-tl-none px-3 py-2"
+                className="rounded-xl rounded-tl-none border border-ink-line bg-bone/[0.03] px-3 py-2"
               >
                 <div className="flex items-baseline justify-between gap-2">
-                  <span className="text-sm font-semibold text-white">{c.author}</span>
-                  <span className="shrink-0 text-[11px] text-white/40">
+                  <span className="text-sm font-semibold text-flag-white">
+                    {c.author}
+                  </span>
+                  <span className="shrink-0 text-[11px] text-bone-dim">
                     {relativeTime(c.created_at, locale)}
                   </span>
                 </div>
-                <p className="mt-0.5 break-words text-sm text-slate-200">{c.content}</p>
+                <p className="mt-0.5 break-words text-sm text-bone">{c.content}</p>
               </div>
             ))
           )}
@@ -174,8 +175,8 @@ export default function CommentWall({
       ) : (
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
           {comments.length === 0 ? (
-            <p className="col-span-full py-8 text-center text-sm text-white/40">
-              İlk mesajı sen bırak.
+            <p className="col-span-full py-8 text-center text-sm text-bone-dim">
+              {t('empty')}
             </p>
           ) : (
             comments.map((c, i) => (
@@ -183,7 +184,9 @@ export default function CommentWall({
                 key={c.id}
                 className={`rounded-lg p-3 shadow-md transition-transform hover:rotate-0 ${POSTIT_STYLES[i % POSTIT_STYLES.length]}`}
               >
-                <p className="break-words text-sm font-medium leading-snug">{c.content}</p>
+                <p className="break-words text-sm font-medium leading-snug">
+                  {c.content}
+                </p>
                 <p className="mt-2 text-xs font-semibold opacity-70">— {c.author}</p>
               </div>
             ))
@@ -196,30 +199,30 @@ export default function CommentWall({
         <input
           value={author}
           onChange={(e) => setAuthor(e.target.value.slice(0, 30))}
-          placeholder="Adın (max 30)"
+          placeholder={t('name')}
           maxLength={30}
-          className="rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white placeholder:text-white/40 focus:border-brand-green/50 focus:outline-none"
+          className="rounded-lg border border-ink-line bg-bone/[0.03] px-3 py-2 text-sm text-flag-white placeholder:text-bone-dim focus:border-flag-green/50 focus:outline-none"
         />
         <div className="relative">
           <textarea
             value={content}
             onChange={(e) => setContent(e.target.value.slice(0, maxContent))}
-            placeholder={placeholder}
+            placeholder={placeholder ?? t('message')}
             rows={2}
             maxLength={maxContent}
-            className="w-full resize-none rounded-lg border border-white/10 bg-white/5 px-3 py-2 pb-6 text-sm text-white placeholder:text-white/40 focus:border-brand-green/50 focus:outline-none"
+            className="w-full resize-none rounded-lg border border-ink-line bg-bone/[0.03] px-3 py-2 pb-6 text-sm text-flag-white placeholder:text-bone-dim focus:border-flag-green/50 focus:outline-none"
           />
-          <span className="pointer-events-none absolute bottom-2 right-3 text-[11px] text-white/40">
+          <span className="pointer-events-none absolute bottom-2 end-3 text-[11px] text-bone-dim tabular-nums">
             {remaining}
           </span>
         </div>
         <button
           type="submit"
           disabled={content.trim().length < 3 || sending}
-          className="inline-flex items-center justify-center gap-1.5 self-end rounded-full bg-brand-green px-4 py-2 text-sm font-semibold text-white transition hover:brightness-110 disabled:opacity-40"
+          className="inline-flex items-center justify-center gap-1.5 self-end rounded-full bg-flag-green px-4 py-2 text-sm font-bold text-ink transition hover:brightness-110 disabled:opacity-40"
         >
           <Send className="h-4 w-4" />
-          {buttonLabel}
+          {buttonLabel ?? t('send')}
         </button>
       </form>
     </div>

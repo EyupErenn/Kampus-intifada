@@ -1,9 +1,11 @@
 import { getTranslations } from 'next-intl/server'
 import Navbar from '@/components/Navbar'
 import AnnouncementTicker from '@/components/AnnouncementTicker'
+import Hero from '@/components/Hero'
 import TimelineFeed from '@/components/TimelineFeed'
 import TentGrid from '@/components/TentGrid'
 import ChatWidget from '@/components/ChatWidget'
+import { TatreezDivider } from '@/components/motifs/Tatreez'
 import { createServerClient } from '@/lib/supabase'
 import type { Announcement, Tent } from '@/types/database'
 
@@ -13,7 +15,7 @@ export default async function HomePage({
   params: Promise<{ locale: string }>
 }) {
   const { locale } = await params
-  const t = await getTranslations('hero')
+  const t = await getTranslations('home')
 
   // Dayanıklı fetch: env/Supabase yoksa bile sayfa fallback'lerle render olur.
   let events: Announcement[] = []
@@ -44,39 +46,28 @@ export default async function HomePage({
       <AnnouncementTicker announcements={acilDuyurular} locale={locale} />
 
       <main>
-        {/* Hero */}
-        <section className="grain relative flex min-h-[70vh] flex-col items-center justify-center overflow-hidden px-4 text-center">
-          {/* Atmosfer: kırmızı-yeşil radial glow */}
-          <div
-            className="pointer-events-none absolute inset-0"
-            style={{
-              background:
-                'radial-gradient(60% 50% at 50% 0%, rgba(220,38,38,0.18), transparent 70%), radial-gradient(50% 50% at 50% 100%, rgba(22,163,74,0.12), transparent 70%)',
-            }}
-          />
-
-          <div className="relative">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-brand-red/30 bg-brand-red/10 px-4 py-1 text-sm text-brand-red">
-              <span className="h-2 w-2 animate-pulse rounded-full bg-brand-red" />
-              {t('subtitle')}
-            </div>
-            <h1 className="mb-4 text-6xl font-black tracking-tight text-white md:text-8xl">
-              {t('title')}
-            </h1>
-            <p className="mx-auto max-w-lg text-xl text-slate-400">
-              {t('description')}
-            </p>
-          </div>
-        </section>
+        <Hero />
 
         {/* Zaman çizelgesi */}
-        <TimelineFeed events={events} locale={locale} />
+        <div id="program" className="scroll-mt-20">
+          <TimelineFeed events={events} locale={locale} />
+        </div>
+
+        <TatreezDivider count={14} className="mx-auto max-w-5xl px-6" />
 
         {/* Çadırlar */}
-        <section className="mx-auto max-w-6xl px-4 py-20">
-          <h2 className="mb-12 text-center text-3xl font-bold text-white">
-            Çadırlar
-          </h2>
+        <section className="mx-auto max-w-6xl px-5 py-24 sm:px-8">
+          <header className="mb-14 max-w-2xl">
+            <span className="text-xs font-bold uppercase tracking-[0.32em] text-flag-green">
+              {t('tentsKicker')}
+            </span>
+            <h2 className="mt-3 text-4xl font-black tracking-tight text-flag-white md:text-5xl">
+              {t('tentsTitle')}
+            </h2>
+            <p className="mt-4 text-lg leading-relaxed text-bone-dim">
+              {t('tentsLead')}
+            </p>
+          </header>
           <TentGrid tents={tents} locale={locale} />
         </section>
       </main>

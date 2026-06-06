@@ -36,7 +36,7 @@ function renderInline(text: string, keyPrefix: string): ReactNode[] {
     if (m.index > last) nodes.push(text.slice(last, m.index))
     if (m[1] !== undefined) {
       nodes.push(
-        <strong key={`${keyPrefix}-b-${i}`} className="font-semibold text-white">
+        <strong key={`${keyPrefix}-b-${i}`} className="font-semibold text-flag-white">
           {m[1]}
         </strong>,
       )
@@ -249,22 +249,22 @@ export default function ChatWidget() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.96 }}
             transition={{ duration: 0.22, ease: 'easeOut' }}
-            className="glass-card flex h-96 w-80 flex-col overflow-hidden rounded-2xl shadow-2xl"
+            className="dossier-card flex h-96 w-80 flex-col overflow-hidden rounded-2xl shadow-2xl"
           >
             {/* Başlık */}
-            <div className="flex items-center justify-between border-b border-white/10 bg-white/5 px-4 py-3">
+            <div className="flex items-center justify-between border-b border-ink-line bg-bone/[0.03] px-4 py-3">
               <div className="flex items-center gap-2">
                 <span className="relative flex h-2.5 w-2.5">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-green opacity-75" />
-                  <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-brand-green" />
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-flag-green opacity-75" />
+                  <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-flag-green" />
                 </span>
-                <span className="text-sm font-semibold text-white">{t('title')}</span>
+                <span className="text-sm font-semibold text-flag-white">{t('title')}</span>
               </div>
               <button
                 type="button"
                 onClick={() => setIsOpen(false)}
                 aria-label="Küçült"
-                className="text-white/60 transition-colors hover:text-white"
+                className="text-bone-dim transition-colors hover:text-flag-white"
               >
                 <ChevronDown className="h-5 w-5" />
               </button>
@@ -278,10 +278,10 @@ export default function ChatWidget() {
                   className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
                   <div
-                    className={`max-w-[85%] px-3 py-2 text-sm text-slate-100 ${
+                    className={`max-w-[85%] px-3 py-2 text-sm text-bone ${
                       msg.role === 'user'
-                        ? 'rounded-2xl rounded-tr-none bg-brand-red/20'
-                        : 'rounded-2xl rounded-tl-none bg-white/5'
+                        ? 'rounded-2xl rounded-tr-none bg-flag-red/15'
+                        : 'rounded-2xl rounded-tl-none bg-bone/[0.05]'
                     }`}
                   >
                     {msg.role === 'bot' ? renderMarkdown(msg.text) : msg.text}
@@ -305,7 +305,7 @@ export default function ChatWidget() {
             </div>
 
             {/* Girdi */}
-            <div className="flex items-center gap-2 border-t border-white/10 p-2.5">
+            <div className="flex items-center gap-2 border-t border-ink-line p-2.5">
               <input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
@@ -316,7 +316,7 @@ export default function ChatWidget() {
                   }
                 }}
                 placeholder={t('placeholder')}
-                className="min-w-0 flex-1 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm text-white placeholder:text-white/40 focus:border-brand-green/50 focus:outline-none"
+                className="min-w-0 flex-1 rounded-full border border-ink-line bg-bone/[0.04] px-3 py-2 text-sm text-flag-white placeholder:text-bone-dim focus:border-flag-green/50 focus:outline-none"
               />
               <button
                 type="button"

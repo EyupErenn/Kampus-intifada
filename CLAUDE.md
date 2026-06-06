@@ -1,7 +1,7 @@
 @AGENTS.md
 
-## Obsidian Bağlamı
-Proje CONTEXT.md: `/Users/seyit/Desktop/ObsidianTest/ObsidianTest/01_Projects/campus-intifada/CONTEXT.md`
+## Proje Hafızası
+Proje bağlamı Claude Code yerleşik memory'sinde tutulur (`MEMORY.md` her oturum otomatik yüklenir). Elle okunacak harici bir dosya yok.
 
 # Campus İntifada — CLAUDE.md
 
@@ -49,7 +49,6 @@ campus-intifada/
 ├── .env.local                         # Supabase credentials (commit etme)
 ├── .env.local.example                 # Örnek env (commit edilebilir)
 ├── next.config.ts                     # Turbopack + next-intl plugin
-├── tailwind.config.ts                 # Koyu tema + özel utilitiler
 ├── supabase/
 │   └── migrations/
 │       ├── 001_initial.sql            # Ana şema + RLS + seed
@@ -59,7 +58,7 @@ campus-intifada/
 │   ├── en.json                        # İngilizce çeviriler
 │   └── ar.json                        # Arapça çeviriler (RTL)
 └── src/
-    ├── middleware.ts                  # next-intl locale yönlendirme
+    ├── proxy.ts                       # next-intl locale yönlendirme (Next.js 16: eski middleware.ts)
     ├── i18n/
     │   └── routing.ts                 # Locale konfigürasyonu
     ├── lib/
@@ -168,7 +167,7 @@ const { locale } = await params
 
 ## Tailwind Özel Sınıflar
 
-`tailwind.config.ts` içinde tanımlı:
+Tailwind v4 — config dosyası yok; tümü `src/app/globals.css` içinde `@theme` / `@utility` direktifleriyle tanımlı:
 
 ```
 .glass-card       → backdrop-blur-12 + bg-white/5 + border-white/10

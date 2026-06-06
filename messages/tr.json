@@ -2,41 +2,163 @@
   "nav": {
     "home": "Ana Sayfa",
     "tents": "Çadırlar",
-    "about": "Hakkında"
+    "about": "Hakkında",
+    "interactions": "etkileşim"
   },
   "hero": {
     "title": "Campus İntifada",
     "subtitle": "Etkinliğin Dijital İkizi – BTU Kampüsü",
-    "description": "Bir kampüsün vicdanı dijitalde yankılanıyor. Dayanışmayı, hafızayı ve direnişi tek bir çatı altında topluyoruz."
+    "description": "Bir kampüsün vicdanı dijitalde yankılanıyor. Dayanışmayı, hafızayı ve direnişi tek bir çatı altında topluyoruz.",
+    "tagline": "vicdan · hafıza · direniş",
+    "words": ["dayanışma", "hafıza", "direniş", "vicdan"],
+    "scroll": "Programa in"
+  },
+  "ticker": {
+    "label": "Acil",
+    "default": "Campus İntifada – BTU Kampüsü'nde Farkındalık Hareketi"
+  },
+  "timeline": {
+    "kicker": "Program",
+    "title": "Gün Boyunca",
+    "lead": "Açılıştan kapanışa, kampüsteki direniş gününün akışı.",
+    "expand": "Detayı gör",
+    "collapse": "Kapat",
+    "empty": "Program yakında açıklanacak."
+  },
+  "home": {
+    "tentsKicker": "Direniş Atlası",
+    "tentsTitle": "Çadırlar",
+    "tentsLead": "Altı çadır, altı cephe — her biri hafızanın ve dayanışmanın bir yüzü."
   },
   "chat": {
     "placeholder": "Bir şey sor...",
     "title": "Dijital Rehber"
   },
+  "pool": {
+    "heading": "Kaynak Havuzu",
+    "communityHeading": "Topluluk Kaynakları",
+    "suggest": "Kaynak Öner",
+    "search": "Başlık veya açıklamada ara...",
+    "clear": "Temizle",
+    "vote": "Oyla",
+    "goto": "Kaynağa git",
+    "empty": "Bu kategoride henüz kaynak yok. İlk öneren sen ol.",
+    "toast": "Öneriniz alındı. Onaylandıktan sonra yayınlanacak.",
+    "formTitle": "Başlık *",
+    "formUrl": "Bağlantı (URL)",
+    "formName": "Adın (opsiyonel)",
+    "submit": "Gönder",
+    "tabs": {
+      "all": "Tümü",
+      "video": "Video",
+      "makale": "Makale",
+      "kitap": "Kitap",
+      "infografik": "İnfografik"
+    }
+  },
+  "wall": {
+    "empty": "İlk mesajı sen bırak.",
+    "name": "Adın (max 30)",
+    "send": "Gönder",
+    "anon": "Anonim",
+    "message": "Mesajın..."
+  },
   "tents": {
+    "sumud": { "name": "Sumud Çadırı", "desc": "Direniş hafızası ve dayanışma duvarı" },
+    "boykot": { "name": "Boykot Çadırı", "desc": "Farkındalık, alternatifler ve bilinç" },
+    "dar-agaci": { "name": "Dar Ağacı Çadırı", "desc": "12 bin esirin hikayesi" },
+    "sayilarla": { "name": "Sayılarla Gazze", "desc": "Rakamların dili" },
+    "cocuk": { "name": "Çocuk Çadırı", "desc": "Yarınların sesi" },
+    "kutuphane": { "name": "Kütüphane Çadırı", "desc": "Eğitim ve kaynaklar" }
+  },
+  "tent": {
     "sumud": {
-      "name": "Sumud Çadırı",
-      "desc": "Direniş hafızası ve dayanışma duvarı"
+      "kicker": "Sumud",
+      "memoryTitle": "Hafıza Duvarı",
+      "wallTitle": "Sumud Duvarı",
+      "wallDesc": "Dayanışma mesajını bırak; duvar canlı olarak güncellenir.",
+      "wallPlaceholder": "Dayanışma mesajın...",
+      "memory": [
+        { "title": "Mavi Marmara", "desc": "Gazze ablukasını delmek için yola çıkan Özgürlük Filosu'na yapılan saldırı dünya vicdanında derin iz bıraktı. Dayanışmanın bedeli ağırdı ama hafıza kalıcı oldu." },
+        { "title": "Özgürlük Filosu", "desc": "Yıllar boyunca farklı ülkelerden gemiler ablukaya karşı denize açıldı. Her sefer, unutmamanın ve vazgeçmemenin sessiz bir ilanıydı." },
+        { "title": "Küresel İntifada", "desc": "Dünya kentlerinde milyonlar sokağa indi. Üniversiteler, meydanlar ve kampüsler dayanışmanın yeni merkezleri hâline geldi." },
+        { "title": "Uluslararası Sumud Filosu", "desc": "Sumud (direngenlik) ruhuyla yeniden denize açılan filo, ablukaya karşı sivil iradenin kararlılıkla sürdüğünü gösterdi." }
+      ],
+      "quotes": [
+        { "text": "İklim adaleti; sömürgeciliğe, işgale ve adaletsizliğe karşı mücadeleden ayrı düşünülemez. Filistin halkıyla dayanışma içindeyiz.", "author": "Greta Thunberg" },
+        { "text": "Savaşın bedelini her zaman siviller öder. Barış ve adalet için susmak değil, sesimizi yükseltmek zorundayız.", "author": "Nina Potarska" },
+        { "text": "Mavi Marmara'da öğrendik: vicdan denizlerin ötesine geçer. Dayanışma bir seçim değil, bir borçtur.", "author": "Erdinç Tekir" },
+        { "text": "Filistin meselesi her şeyden önce bir insan hakları meselesidir. Hukuk, ezilenin yanında durmadıkça anlamını yitirir.", "author": "Noura Erakat" }
+      ]
     },
     "boykot": {
-      "name": "Boykot Çadırı",
-      "desc": "Farkındalık, alternatifler ve bilinç"
+      "kicker": "Boykot",
+      "productsTitle": "Boykot & Yerli Alternatif",
+      "boycottLabel": "Boykot",
+      "altLabel": "Yerli Alternatif",
+      "kcal": "kcal",
+      "caloriesTitle": "Kalori Karşılaştırması",
+      "caloriesDesc": "Ablukada bir insanın günlük aldığı ortalama kalori, asgari ve normal ihtiyaçla karşılaştırıldığında.",
+      "cyberTitle": "Teknoloji ve Siber Farkındalık",
+      "cyberDesc": "Dijital alanda da bilinçli ol; verin ve tercihlerin birer tutum.",
+      "products": [
+        { "category": "Gazlı İçecekler", "alternative": "Çamlıca, yerli gazozlar, ayran" },
+        { "category": "Kahve Zincirleri", "alternative": "Yerel kahveciler, Türk kahvesi" },
+        { "category": "Teknoloji & Telefon", "alternative": "Cihazını yenile, ömrünü uzat" },
+        { "category": "Fast Food", "alternative": "Mahalle esnafı, ev yemeği" },
+        { "category": "Kart & Ödeme", "alternative": "Katılım / yerli bankalar" }
+      ],
+      "calories": ["Gazze (günlük ort.)", "DSÖ asgari", "Normal ihtiyaç"],
+      "cyber": [
+        { "title": "Dijital Ayak İzi", "body": "Her tıklama veri bırakır. Hangi platformların kimi finanse ettiğini bil." },
+        { "title": "VPN & Güvenlik", "body": "Güvenli bağlantı, sansürü aşmanın ve gizliliği korumanın ilk adımıdır." },
+        { "title": "Veri Gizliliği", "body": "İzinleri kıs, takipçileri engelle; verin senin elinde kalsın." },
+        { "title": "Bilinçli Tüketim", "body": "Uygulama yüklerken sahibini ve fonlayıcısını araştır." }
+      ]
     },
     "dar-agaci": {
-      "name": "Dar Ağacı Çadırı",
-      "desc": "12 bin esirin hikayesi"
+      "kicker": "Dar Ağacı",
+      "keyTitle": "Anahtar Sende",
+      "keyDesc": "Parmaklıklar bedeni tutsak eder; bilinç ve dayanışma duvarları aşar.",
+      "quoteFr": "«Condamné à mort ! Voilà cinq semaines que j'habite avec cette pensée, toujours seul avec elle, toujours glacé par sa présence, toujours courbé sous son poids !»",
+      "quoteLocal": "\"Ölüme mahkûm! Beş haftadır bu düşünceyle yaşıyorum; daima onunla yalnız, daima varlığıyla donmuş, daima ağırlığı altında iki büklüm.\"",
+      "quoteAuthor": "Victor Hugo, Bir İdam Mahkûmunun Son Günü",
+      "counterLabel": "Şu an cezaevinde",
+      "counterUnit": "esir",
+      "prisonersTitle": "Kimler Tutsak?",
+      "categories": ["Öğrenci", "Gazeteci", "Doktor & Sağlıkçı", "Öğretmen", "Avukat", "Çocuk", "Mühendis", "Çiftçi", "Sanatçı", "Sporcu", "Akademisyen", "Belgeselci"]
     },
     "sayilarla": {
-      "name": "Sayılarla Gazze",
-      "desc": "Rakamların dili"
+      "kicker": "Sayılarla Gazze",
+      "ton": " ton",
+      "stats": ["Şehit", "Yaralı", "Yıkılan Bina", "Bomba Tonajı"],
+      "aksaTitle": "Mescid-i Aksa",
+      "aksaP1": "İslam'ın ilk kıblesi ve üç semavi din için kutsal sayılan Kudüs'ün kalbi. Tarih boyunca pek çok medeniyete tanıklık eden Mescid-i Aksa, bugün de özgürlük ve onur mücadelesinin sembolü olmayı sürdürüyor.",
+      "aksaP2": "Erişim kısıtlamaları, baskınlar ve statükoyu değiştirme girişimleri karşısında; mabedin korunması, dünya çapındaki dayanışmanın ortak çağrılarından biri hâline gelmiştir."
     },
     "cocuk": {
-      "name": "Çocuk Çadırı",
-      "desc": "Yarınların sesi"
+      "kicker": "Çocuk",
+      "stats": ["Yardıma muhtaç çocuk", "Eğitimi kesintiye uğrayan", "Refakatsiz / yetim kalan", "Günlük travma vakası"],
+      "workshopTitle": "Çocuk Atölyesi",
+      "workshopBody": "Çocuk Çadırı'nda düzenlenecek bu atölyede çocuklar resim, şiir ve hikâye anlatımı yoluyla duygularını özgürce ifade edebilecek. Gönüllü pedagog ve eğitmenler eşliğinde barış ve dayanışma temalı yaratıcı etkinlikler yer alacak. Küçük eller, en büyük umudu çiziyor.",
+      "wallTitle": "Çocuklara Mesajın",
+      "wallDesc": "Kısa bir mesaj bırak; renkli not kâğıtları duvarında yerini alsın.",
+      "wallPlaceholder": "Çocuklara mesajın... (max 200)",
+      "wallButton": "Astır"
     },
     "kutuphane": {
-      "name": "Kütüphane Çadırı",
-      "desc": "Eğitim ve kaynaklar"
+      "kicker": "Kütüphane",
+      "featuredTitle": "Öne Çıkanlar",
+      "kindBook": "Kitap",
+      "kindDoc": "Belgesel",
+      "ctaTitle": "Kaynak Havuzunu Birlikte Büyütüyoruz",
+      "ctaBody": "Kütüphane topluluk küratörlüğüyle gelişir. Önerdiğin her kaynak (video, makale, kitap, infografik) önce gönüllü ekip tarafından incelenir, ardından yayına alınır. Aşağıdan kaynağını öner, en faydalı bulduklarını oyla.",
+      "steps": ["1. Öner", "2. İncele & onayla", "3. Yayınla & oyla"],
+      "featured": [
+        { "title": "The Question of Palestine", "author": "Edward Said", "kind": "book", "note": "Filistin meselesini entelektüel ve tarihsel bağlamıyla ele alan temel başvuru eseri." },
+        { "title": "The Hundred Years' War on Palestine", "author": "Rashid Khalidi", "kind": "book", "note": "Bir asırlık sömürgecilik ve direnişin belgelere dayalı kapsamlı anlatısı." },
+        { "title": "Gazze: Kıyıdaki Hayatlar", "author": "Belgesel", "kind": "doc", "note": "Ablukada gündelik hayatın ve direngenliğin (sumud) sinematik tanıklığı." }
+      ]
     }
   }
 }

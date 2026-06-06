@@ -1,29 +1,34 @@
 'use client'
 
-import { GraduationCap, HeartPulse, Home, Users } from 'lucide-react'
+import { GraduationCap, HeartPulse, Home, Users, type LucideIcon } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 import type { Tent } from '@/types/database'
 import { localized } from '@/types/database'
 import CountUp from '@/components/CountUp'
 import CommentWall from '@/components/CommentWall'
+import { TatreezBand } from '@/components/motifs/Tatreez'
 
 interface TentCocukProps {
   tent: Tent
   locale: string
 }
 
-const STATS = [
-  { icon: Users, target: 1100000, suffix: '+', label: 'Yardıma muhtaç çocuk' },
-  { icon: GraduationCap, target: 625000, suffix: '+', label: 'Eğitimi kesintiye uğrayan' },
-  { icon: Home, target: 17000, suffix: '+', label: 'Refakatsiz / yetim kalan' },
-  { icon: HeartPulse, target: 1000, suffix: '+', label: 'Günlük travma vakası' },
+const STAT_META: Array<{ icon: LucideIcon; target: number; suffix: string }> = [
+  { icon: Users, target: 1100000, suffix: '+' },
+  { icon: GraduationCap, target: 625000, suffix: '+' },
+  { icon: Home, target: 17000, suffix: '+' },
+  { icon: HeartPulse, target: 1000, suffix: '+' },
 ]
 
 export default function TentCocuk({ tent, locale }: TentCocukProps) {
+  const t = useTranslations('tent.cocuk')
+  const stats = t.raw('stats') as string[]
+
   const name = localized(tent, 'name', locale)
   const desc = localized(tent, 'desc', locale)
 
   return (
-    <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+    <section className="mx-auto max-w-6xl px-5 py-14 sm:px-8">
       {/* Hero — yukarı uzanan çocuk elleri */}
       <div className="relative mb-12 overflow-hidden rounded-3xl border border-rose-300/20 bg-gradient-to-b from-rose-500/10 to-transparent p-8 text-center">
         <svg viewBox="0 0 300 120" className="mx-auto mb-4 h-28 w-full max-w-md" aria-hidden="true">
@@ -37,28 +42,36 @@ export default function TentCocuk({ tent, locale }: TentCocukProps) {
             </g>
           ))}
         </svg>
-        <span className="text-xs font-bold uppercase tracking-[0.3em] text-rose-400">Çocuk</span>
-        <h1 className="mt-1 text-3xl font-black text-white md:text-4xl">{name}</h1>
-        <p className="mx-auto mt-2 max-w-md text-rose-100/70">{desc}</p>
+        <span className="text-xs font-bold uppercase tracking-[0.3em] text-rose-400">
+          {t('kicker')}
+        </span>
+        <h1 className="riso-title mt-1 text-3xl font-black text-flag-white md:text-5xl">
+          {name}
+        </h1>
+        <div className="mt-4 flex justify-center">
+          <TatreezBand count={5} color="#fb7185" className="h-3.5 w-40" />
+        </div>
+        <p className="mx-auto mt-3 max-w-md text-rose-100/70">{desc}</p>
       </div>
 
       {/* İstatistik kartları */}
       <div className="mb-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {STATS.map((s) => {
-          const Icon = s.icon
+        {stats.map((label, i) => {
+          const meta = STAT_META[i]
+          const Icon = meta.icon
           return (
             <div
-              key={s.label}
+              key={i}
               className="rounded-2xl border border-rose-300/15 bg-rose-500/5 p-5 text-center"
             >
               <Icon className="mx-auto mb-2 h-7 w-7 text-rose-400" />
               <CountUp
-                target={s.target}
-                suffix={s.suffix}
+                target={meta.target}
+                suffix={meta.suffix}
                 locale={locale}
-                className="block text-3xl font-black text-white"
+                className="block text-3xl font-black tabular-nums text-flag-white"
               />
-              <p className="mt-1 text-xs text-rose-100/60">{s.label}</p>
+              <p className="mt-1 text-xs text-rose-100/60">{label}</p>
             </div>
           )
         })}
@@ -66,33 +79,28 @@ export default function TentCocuk({ tent, locale }: TentCocukProps) {
 
       {/* Atölye bölümü */}
       <div className="mb-12 grid gap-6 rounded-3xl border border-rose-300/15 bg-rose-500/5 p-8 md:grid-cols-[auto_1fr] md:items-center">
-        <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl bg-rose-500/20 text-2xl font-black text-rose-300">
+        <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl bg-rose-500/20 text-2xl font-black tabular-nums text-rose-300">
           16:00
         </div>
         <div>
-          <h2 className="text-xl font-bold text-white">Çocuk Atölyesi</h2>
+          <h2 className="text-xl font-bold text-flag-white">{t('workshopTitle')}</h2>
           <p className="mt-2 text-sm leading-relaxed text-rose-100/70">
-            Çocuk Çadırı’nda düzenlenecek bu atölyede çocuklar resim, şiir ve hikâye
-            anlatımı yoluyla duygularını özgürce ifade edebilecek. Gönüllü pedagog ve
-            eğitmenler eşliğinde barış ve dayanışma temalı yaratıcı etkinlikler yer alacak.
-            Küçük eller, en büyük umudu çiziyor.
+            {t('workshopBody')}
           </p>
         </div>
       </div>
 
       {/* Mesaj duvarı — post-it */}
-      <div className="rounded-3xl border border-rose-300/15 bg-slate-900/40 p-6">
-        <h2 className="mb-1 text-xl font-bold text-white">Çocuklara Mesajın</h2>
-        <p className="mb-5 text-sm text-rose-100/60">
-          Kısa bir mesaj bırak; renkli not kâğıtları duvarında yerini alsın.
-        </p>
+      <div className="dossier-card rounded-3xl p-6">
+        <h2 className="mb-1 text-xl font-bold text-flag-white">{t('wallTitle')}</h2>
+        <p className="mb-5 text-sm text-rose-100/60">{t('wallDesc')}</p>
         <CommentWall
           tentId={tent.id}
           locale={locale}
           variant="postit"
           maxContent={200}
-          placeholder="Çocuklara mesajın... (max 200)"
-          buttonLabel="Astır"
+          placeholder={t('wallPlaceholder')}
+          buttonLabel={t('wallButton')}
         />
       </div>
     </section>

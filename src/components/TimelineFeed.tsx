@@ -1,8 +1,19 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { useRef, useState } from 'react'
+import {
+  AnimatePresence,
+  motion,
+  useReducedMotion,
+  useScroll,
+  useSpring,
+} from 'framer-motion'
+import { useTranslations } from 'next-intl'
+import { ChevronDown } from 'lucide-react'
 import type { Announcement } from '@/types/database'
 import { localized } from '@/types/database'
+import { TatreezBand } from '@/components/motifs/Tatreez'
+import { riseSettle, staggerContainer } from '@/lib/motion'
 
 interface TimelineFeedProps {
   events: Announcement[]
@@ -117,87 +128,157 @@ function cleanContent(event: Announcement, locale: string): string {
 }
 
 export default function TimelineFeed({ events, locale }: TimelineFeedProps) {
+  const t = useTranslations('timeline')
+  const reduce = useReducedMotion()
+  const containerRef = useRef<HTMLDivElement>(null)
+  const [openId, setOpenId] = useState<string | null>(null)
+
   const displayEvents = events && events.length > 0 ? events : MOCK_EVENTS
 
+  // Eksen dolgusu — scroll ilerlemesine bağlı (kırmızı→yeşil).
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start 0.35', 'end 0.65'],
+  })
+  const fill = useSpring(scrollYProgress, { stiffness: 80, damping: 22 })
+
   return (
-    <section className="relative mx-auto max-w-5xl px-4 py-20 sm:px-6">
-      <div className="mb-16 text-center">
-        <span className="text-xs font-bold uppercase tracking-[0.3em] text-brand-green">
-          Program
+    <section className="relative mx-auto max-w-4xl px-5 py-24 sm:px-8">
+      {/* Başlık */}
+      <header className="mb-16">
+        <span className="text-xs font-bold uppercase tracking-[0.32em] text-flag-red">
+          {t('kicker')}
         </span>
-        <h2 className="mt-3 text-3xl font-bold text-white md:text-4xl">
-          Gün Boyunca
+        <h2 className="mt-3 text-4xl font-black tracking-tight text-flag-white md:text-5xl">
+          {t('title')}
         </h2>
-      </div>
+        <div className="mt-5 flex items-center gap-4">
+          <TatreezBand count={5} className="h-3.5 w-36 shrink-0" />
+          <p className="text-sm text-bone-dim">{t('lead')}</p>
+        </div>
+      </header>
 
-      <div className="relative">
-        {/* Dikey eksen — kırmızıdan yeşile gradient */}
-        <div
-          className="absolute left-4 top-0 h-full w-[3px] -translate-x-1/2 rounded-full md:left-1/2"
-          style={{
-            background:
-              'linear-gradient(to bottom, #dc2626, #16a34a)',
-          }}
-        />
+      <div ref={containerRef} className="relative">
+        {/* Eksen — sönük taban çizgisi */}
+        <div className="absolute bottom-2 start-[11px] top-2 w-px bg-ink-line" />
+        {/* Eksen — ilerleme dolgusu */}
+        <motion.div
+          style={{ scaleY: fill }}
+          className="absolute bottom-2 start-[11px] top-2 w-px origin-top"
+          aria-hidden="true"
+        >
+          <div
+            className="h-full w-full"
+            style={{
+              background: 'linear-gradient(to bottom, #e4312b, #1f9e57)',
+            }}
+          />
+        </motion.div>
 
-        <div className="space-y-12 md:space-y-0">
+        <motion.ol
+          variants={staggerContainer(0.1)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: '-80px' }}
+          className="space-y-3"
+        >
           {displayEvents.map((event, index) => {
-            const isLeft = index % 2 === 0
             const time = extractTime(event, locale)
             const title = localized(event, 'title', locale)
             const body = cleanContent(event, locale)
             const image = event.image_url ?? ''
+            const isOpen = openId === event.id
 
             return (
-              <div
+              <motion.li
                 key={event.id}
-                className={`relative flex w-full md:min-h-[300px] ${
-                  isLeft ? 'md:justify-start' : 'md:justify-end'
-                }`}
+                variants={riseSettle}
+                className="relative ps-12"
               >
-                {/* Eksen düğümü — parlayan pulsing daire */}
-                <span className="timeline-node absolute left-4 top-6 z-10 h-4 w-4 -translate-x-1/2 rounded-full bg-brand-red md:left-1/2" />
+                {/* Eksen düğümü */}
+                <span
+                  aria-hidden="true"
+                  className={`absolute start-[4px] top-5 z-10 h-3.5 w-3.5 rounded-full border-2 transition-all duration-300 ${
+                    isOpen
+                      ? 'timeline-node border-flag-red bg-flag-red'
+                      : 'border-bone-dim bg-ink'
+                  }`}
+                />
 
-                {/* Kart */}
-                <motion.article
-                  initial={{ opacity: 0, x: isLeft ? -40 : 40 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: '-80px' }}
-                  transition={{ duration: 0.5, ease: 'easeOut' }}
-                  className="glass-card group ml-12 w-[calc(100%-3rem)] overflow-hidden rounded-2xl md:ml-0 md:w-[45%]"
-                >
-                  {/* Üst %55 — görsel */}
-                  <div className="relative h-44 overflow-hidden sm:h-52">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={image}
-                      alt={title}
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 to-transparent" />
-                  </div>
+                {/* Kart — tıklanabilir dosya girişi */}
+                <div className="dossier-card overflow-hidden rounded-2xl">
+                  <button
+                    type="button"
+                    onClick={() => setOpenId(isOpen ? null : event.id)}
+                    aria-expanded={isOpen}
+                    className="group flex w-full items-center gap-4 p-4 text-start transition-colors hover:bg-bone/[0.03]"
+                  >
+                    {/* İndeks numarası */}
+                    <span className="hidden shrink-0 font-black tabular-nums text-2xl leading-none text-ink-line sm:block">
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
 
-                  {/* Alt %45 — metin */}
-                  <div className="p-5">
+                    {/* Saat damgası */}
                     {time && (
-                      <span className="mb-2 inline-block rounded-md bg-brand-red/15 px-2.5 py-1 font-mono text-sm font-semibold text-brand-red">
+                      <span className="stamp shrink-0 text-flag-red text-xs tabular-nums">
                         {time}
                       </span>
                     )}
-                    <h3 className="text-lg font-bold leading-snug text-white">
+
+                    {/* Başlık */}
+                    <h3 className="flex-1 text-base font-bold leading-snug text-flag-white sm:text-lg">
                       {title}
                     </h3>
-                    {body && (
-                      <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-slate-400">
-                        {body}
-                      </p>
+
+                    {/* Aç/kapa */}
+                    <span className="flex shrink-0 items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-bone-dim">
+                      <span className="hidden sm:inline">
+                        {isOpen ? t('collapse') : t('expand')}
+                      </span>
+                      <ChevronDown
+                        className={`h-4 w-4 transition-transform duration-300 ${
+                          isOpen ? 'rotate-180 text-flag-red' : ''
+                        }`}
+                      />
+                    </span>
+                  </button>
+
+                  {/* Genişleyen içerik */}
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial={reduce ? false : { height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={reduce ? undefined : { height: 0, opacity: 0 }}
+                        transition={{ duration: 0.4, ease: [0.65, 0, 0.35, 1] }}
+                        className="overflow-hidden"
+                      >
+                        <div className="grid gap-5 border-t border-ink-line p-4 sm:grid-cols-[1.1fr_1fr] sm:p-5">
+                          {image && (
+                            <div className="relative overflow-hidden rounded-xl">
+                              {/* eslint-disable-next-line @next/next/no-img-element */}
+                              <img
+                                src={image}
+                                alt={title}
+                                className="h-48 w-full object-cover sm:h-full"
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-ink/70 to-transparent" />
+                            </div>
+                          )}
+                          <div className="flex flex-col justify-center">
+                            <p className="text-[15px] leading-relaxed text-bone-dim">
+                              {body}
+                            </p>
+                          </div>
+                        </div>
+                      </motion.div>
                     )}
-                  </div>
-                </motion.article>
-              </div>
+                  </AnimatePresence>
+                </div>
+              </motion.li>
             )
           })}
-        </div>
+        </motion.ol>
       </div>
     </section>
   )

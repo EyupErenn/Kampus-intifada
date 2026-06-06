@@ -7,6 +7,7 @@ import { Menu, X } from 'lucide-react'
 import { Link, usePathname, useRouter } from '@/i18n/navigation'
 import { routing } from '@/i18n/routing'
 import { createBrowserClient } from '@/lib/supabase'
+import { TatreezStar } from '@/components/motifs/Tatreez'
 
 const LOCALE_LABELS: Record<string, string> = {
   tr: 'TR',
@@ -49,14 +50,16 @@ export default function Navbar() {
   ] as const
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-brand-black/80 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-ink-line bg-ink/80 backdrop-blur-md">
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2.5">
-          <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true">
-            <circle cx="14" cy="14" r="12" fill="#dc2626" />
-          </svg>
-          <span className="text-lg font-semibold tracking-tight text-white">
+        <Link href="/" className="group flex items-center gap-2.5">
+          <TatreezStar
+            size={26}
+            color="var(--color-flag-red)"
+            className="transition-transform duration-300 group-hover:rotate-45"
+          />
+          <span className="text-lg font-bold tracking-tight text-flag-white">
             Campus İntifada
           </span>
         </Link>
@@ -67,7 +70,7 @@ export default function Navbar() {
             <li key={link.href}>
               <Link
                 href={link.href}
-                className="text-sm font-medium text-white/70 transition-colors hover:text-white"
+                className="text-sm font-medium text-bone-dim transition-colors hover:text-flag-white"
               >
                 {link.label}
               </Link>
@@ -78,7 +81,7 @@ export default function Navbar() {
         {/* Right side */}
         <div className="flex items-center gap-3 sm:gap-5">
           {/* Language switcher */}
-          <div className="flex items-center gap-1 rounded-full border border-white/10 p-1">
+          <div className="flex items-center gap-1 rounded-full border border-ink-line p-1">
             {routing.locales.map((loc) => {
               const isActive = loc === locale
               return (
@@ -89,8 +92,8 @@ export default function Navbar() {
                   aria-current={isActive ? 'true' : undefined}
                   className={`rounded-full px-2.5 py-1 text-xs font-semibold transition-colors ${
                     isActive
-                      ? 'bg-brand-red text-white'
-                      : 'text-white/60 hover:text-white'
+                      ? 'bg-flag-red text-flag-white'
+                      : 'text-bone-dim hover:text-flag-white'
                   }`}
                 >
                   {LOCALE_LABELS[loc] ?? loc.toUpperCase()}
@@ -101,12 +104,14 @@ export default function Navbar() {
 
           {/* Live interaction counter */}
           {count !== null && (
-            <div className="hidden items-center gap-2 text-sm text-white/80 sm:flex">
+            <div className="hidden items-center gap-2 text-sm text-bone-dim sm:flex">
               <span className="relative flex h-2.5 w-2.5">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-green opacity-75" />
-                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-brand-green" />
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-flag-green opacity-75" />
+                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-flag-green" />
               </span>
-              <span>{count} etkileşim</span>
+              <span className="tabular-nums">
+                {count} {t('interactions')}
+              </span>
             </div>
           )}
 
@@ -116,7 +121,7 @@ export default function Navbar() {
             onClick={() => setMenuOpen((o) => !o)}
             aria-label="Menu"
             aria-expanded={menuOpen}
-            className="text-white md:hidden"
+            className="text-flag-white md:hidden"
           >
             {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
@@ -131,7 +136,7 @@ export default function Navbar() {
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.25, ease: 'easeInOut' }}
-            className="overflow-hidden border-t border-white/10 bg-brand-black/95 md:hidden"
+            className="overflow-hidden border-t border-ink-line bg-ink/95 md:hidden"
           >
             <ul className="flex flex-col gap-1 px-4 py-3">
               {links.map((link) => (
@@ -139,19 +144,21 @@ export default function Navbar() {
                   <Link
                     href={link.href}
                     onClick={() => setMenuOpen(false)}
-                    className="block rounded-lg px-3 py-2 text-base font-medium text-white/80 transition-colors hover:bg-white/5 hover:text-white"
+                    className="block rounded-lg px-3 py-2 text-base font-medium text-bone-dim transition-colors hover:bg-bone/5 hover:text-flag-white"
                   >
                     {link.label}
                   </Link>
                 </li>
               ))}
               {count !== null && (
-                <li className="flex items-center gap-2 px-3 py-2 text-sm text-white/70">
+                <li className="flex items-center gap-2 px-3 py-2 text-sm text-bone-dim">
                   <span className="relative flex h-2.5 w-2.5">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-green opacity-75" />
-                    <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-brand-green" />
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-flag-green opacity-75" />
+                    <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-flag-green" />
                   </span>
-                  <span>{count} etkileşim</span>
+                  <span className="tabular-nums">
+                    {count} {t('interactions')}
+                  </span>
                 </li>
               )}
             </ul>
