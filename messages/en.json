@@ -32,7 +32,18 @@
   },
   "chat": {
     "placeholder": "Ask something...",
-    "title": "Digital Guide"
+    "title": "Digital Guide",
+    "open": "Open chat",
+    "close": "Close chat",
+    "minimize": "Minimize",
+    "send": "Send"
+  },
+  "notFound": {
+    "code": "404",
+    "title": "Page not found",
+    "message": "The tent or page you're looking for isn't here. It may have been removed, or never existed.",
+    "home": "Back to home",
+    "tents": "Browse the tents"
   },
   "pool": {
     "heading": "Resource Pool",

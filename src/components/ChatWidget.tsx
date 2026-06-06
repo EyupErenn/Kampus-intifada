@@ -263,7 +263,7 @@ export default function ChatWidget() {
               <button
                 type="button"
                 onClick={() => setIsOpen(false)}
-                aria-label="Küçült"
+                aria-label={t('minimize')}
                 className="text-bone-dim transition-colors hover:text-flag-white"
               >
                 <ChevronDown className="h-5 w-5" />
@@ -322,7 +322,7 @@ export default function ChatWidget() {
                 type="button"
                 onClick={() => void handleSend()}
                 disabled={busy || !input.trim()}
-                aria-label="Gönder"
+                aria-label={t('send')}
                 className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-green text-white transition hover:brightness-110 disabled:opacity-40"
               >
                 <Send className="h-4 w-4" />
@@ -336,7 +336,7 @@ export default function ChatWidget() {
       <button
         type="button"
         onClick={() => setIsOpen((o) => !o)}
-        aria-label={isOpen ? 'Sohbeti kapat' : 'Sohbeti aç'}
+        aria-label={isOpen ? t('close') : t('open')}
         className="glow-green flex h-14 w-14 items-center justify-center rounded-full bg-brand-green text-white shadow-lg transition-transform hover:scale-105"
       >
         {isOpen ? <ChevronDown className="h-6 w-6" /> : <MessageCircle className="h-6 w-6" />}

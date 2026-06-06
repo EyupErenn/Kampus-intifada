@@ -32,7 +32,18 @@
   },
   "chat": {
     "placeholder": "Bir şey sor...",
-    "title": "Dijital Rehber"
+    "title": "Dijital Rehber",
+    "open": "Sohbeti aç",
+    "close": "Sohbeti kapat",
+    "minimize": "Küçült",
+    "send": "Gönder"
+  },
+  "notFound": {
+    "code": "404",
+    "title": "Sayfa bulunamadı",
+    "message": "Aradığın çadır ya da sayfa burada değil. Belki kaldırıldı ya da hiç var olmadı.",
+    "home": "Ana sayfaya dön",
+    "tents": "Çadırlara göz at"
   },
   "pool": {
     "heading": "Kaynak Havuzu",

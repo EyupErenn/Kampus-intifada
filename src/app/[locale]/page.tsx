@@ -7,6 +7,7 @@ import TentGrid from '@/components/TentGrid'
 import ChatWidget from '@/components/ChatWidget'
 import { TatreezDivider } from '@/components/motifs/Tatreez'
 import { createServerClient } from '@/lib/supabase'
+import { FALLBACK_TENTS_LIST } from '@/lib/tents'
 import type { Announcement, Tent } from '@/types/database'
 
 export default async function HomePage({
@@ -68,7 +69,10 @@ export default async function HomePage({
               {t('tentsLead')}
             </p>
           </header>
-          <TentGrid tents={tents} locale={locale} />
+          <TentGrid
+            tents={tents.length > 0 ? tents : FALLBACK_TENTS_LIST}
+            locale={locale}
+          />
         </section>
       </main>
 

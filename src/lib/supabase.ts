@@ -6,8 +6,16 @@ import { createClient } from '@supabase/supabase-js'
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'http://127.0.0.1:54321'
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'anon-key-placeholder'
 
-export const createBrowserClient = () =>
-  createClient(supabaseUrl, supabaseAnonKey)
+const makeClient = () => createClient(supabaseUrl, supabaseAnonKey)
 
-export const createServerClient = () =>
-  createClient(supabaseUrl, supabaseAnonKey)
+// Tarayıcı client'ı tek örnek (singleton) — birden fazla GoTrueClient örneği
+// uyarısını ve aynı storage key üzerinde eşzamanlı kullanımı önler.
+let browserClient: ReturnType<typeof makeClient> | null = null
+
+export const createBrowserClient = () => {
+  if (!browserClient) browserClient = makeClient()
+  return browserClient
+}
+
+// Server client her çağrıda yeni — request başına izole kalmalı.
+export const createServerClient = () => makeClient()

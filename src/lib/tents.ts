@@ -93,3 +93,9 @@ export const FALLBACK_TENTS: Record<string, Tent> = {
     order_num: 6,
   },
 }
+
+// order_num'a göre sıralı fallback listesi. Supabase boş/erişilemez olduğunda
+// grid'in (anasayfa + /cadirlar) asla boş render olmaması için kullanılır.
+export const FALLBACK_TENTS_LIST: Tent[] = Object.values(FALLBACK_TENTS).sort(
+  (a, b) => (a.order_num ?? 0) - (b.order_num ?? 0),
+)
