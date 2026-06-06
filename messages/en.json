@@ -1,0 +1,42 @@
+{
+  "nav": {
+    "home": "Home",
+    "tents": "Tents",
+    "about": "About"
+  },
+  "hero": {
+    "title": "Campus Intifada",
+    "subtitle": "The Digital Twin of the Event – BTU Campus",
+    "description": "The conscience of a campus echoes in the digital realm. We gather solidarity, memory and resistance under one roof."
+  },
+  "chat": {
+    "placeholder": "Ask something...",
+    "title": "Digital Guide"
+  },
+  "tents": {
+    "sumud": {
+      "name": "Sumud Tent",
+      "desc": "Resistance memory and solidarity wall"
+    },
+    "boykot": {
+      "name": "Boycott Tent",
+      "desc": "Awareness, alternatives and consciousness"
+    },
+    "dar-agaci": {
+      "name": "Gallows Tent",
+      "desc": "The story of 12 thousand prisoners"
+    },
+    "sayilarla": {
+      "name": "Gaza in Numbers",
+      "desc": "The language of statistics"
+    },
+    "cocuk": {
+      "name": "Children's Tent",
+      "desc": "The voice of tomorrow"
+    },
+    "kutuphane": {
+      "name": "Library Tent",
+      "desc": "Education and resources"
+    }
+  }
+}

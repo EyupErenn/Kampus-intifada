@@ -1,0 +1,42 @@
+{
+  "nav": {
+    "home": "Ana Sayfa",
+    "tents": "Çadırlar",
+    "about": "Hakkında"
+  },
+  "hero": {
+    "title": "Campus İntifada",
+    "subtitle": "Etkinliğin Dijital İkizi – BTU Kampüsü",
+    "description": "Bir kampüsün vicdanı dijitalde yankılanıyor. Dayanışmayı, hafızayı ve direnişi tek bir çatı altında topluyoruz."
+  },
+  "chat": {
+    "placeholder": "Bir şey sor...",
+    "title": "Dijital Rehber"
+  },
+  "tents": {
+    "sumud": {
+      "name": "Sumud Çadırı",
+      "desc": "Direniş hafızası ve dayanışma duvarı"
+    },
+    "boykot": {
+      "name": "Boykot Çadırı",
+      "desc": "Farkındalık, alternatifler ve bilinç"
+    },
+    "dar-agaci": {
+      "name": "Dar Ağacı Çadırı",
+      "desc": "12 bin esirin hikayesi"
+    },
+    "sayilarla": {
+      "name": "Sayılarla Gazze",
+      "desc": "Rakamların dili"
+    },
+    "cocuk": {
+      "name": "Çocuk Çadırı",
+      "desc": "Yarınların sesi"
+    },
+    "kutuphane": {
+      "name": "Kütüphane Çadırı",
+      "desc": "Eğitim ve kaynaklar"
+    }
+  }
+}
