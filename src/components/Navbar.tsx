@@ -47,6 +47,7 @@ export default function Navbar() {
   const links = [
     { href: '/', label: t('home') },
     { href: '/cadirlar', label: t('tents') },
+    { href: '/etkilesim', label: t('interactionsPage') },
   ] as const
 
   return (

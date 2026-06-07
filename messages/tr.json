@@ -3,7 +3,8 @@
     "home": "Ana Sayfa",
     "tents": "Çadırlar",
     "about": "Hakkında",
-    "interactions": "etkileşim"
+    "interactions": "etkileşim",
+    "interactionsPage": "Etkileşim"
   },
   "hero": {
     "title": "Campus İntifada",
@@ -171,5 +172,133 @@
         { "title": "Gazze: Kıyıdaki Hayatlar", "author": "Belgesel", "kind": "doc", "note": "Ablukada gündelik hayatın ve direngenliğin (sumud) sinematik tanıklığı." }
       ]
     }
+  },
+  "etkilesim": {
+    "kicker": "Etkileşim",
+    "title": "Aktif Tanıklık",
+    "lead": "Pasif izleyiciden aktif tanığa. İki interaktif deneyimle Filistin'i daha derin tanı.",
+    "quiz_title": "Filistin'i Ne Kadar Tanıyoruz?",
+    "quiz_desc": "10 soruluk kültür · tarih · bugün karışımı bir deneyim. Her sorunun ardından kısa bir bilgi notu.",
+    "quiz_cta": "Yarışmayı Başlat",
+    "flotilla_title": "Sumud Filosu",
+    "flotilla_desc": "2025 gerçek olaylarına dayanan 5 aşamalı bir tanıklık simülasyonu — kazanılacak bir oyun değil.",
+    "flotilla_cta": "Gemiye Bin"
+  },
+  "quiz": {
+    "title": "Filistin'i Ne Kadar Tanıyoruz?",
+    "subtitle": "10 soruluk kültür · tarih · bugün deneyimi",
+    "question_of": "{current} / {total}",
+    "next": "Devam",
+    "retry": "Tekrar Dene",
+    "result_title": "Sonuçların",
+    "explanation_label": "Bilgi Notu",
+    "ranks": ["Tanık Adayı", "Farkındalık Sahibi", "Hafıza Bekçisi", "Sumud Elçisi"],
+    "rank_descs": [
+      "Her şey bir adımla başlar. Bu deneyim, Filistin gerçeğine yönelik merakın ilk kıvılcımı olsun.",
+      "Konuyu takip ediyorsun. Bilgi, dayanışmanın temelidir.",
+      "Hafıza senin elinde güvende. Öğrendiklerini çevrenle paylaş.",
+      "Sen artık bir sumud elçisisin. Bu bilgiyi yay, sesi güçlendir."
+    ],
+    "questions": [
+      {
+        "q": "Arapçada 'sumud' (صمود) kelimesinin en doğru anlamı hangisidir?",
+        "opts": ["Zafer", "Kurtuluş", "Sebat ve kararlılık", "Barış"],
+        "note": "Sumud, Arapçada 'sabit durmak, yılmamak, toprağa kök salmak' anlamına gelir. Filistin siyasetinde sürgün ve baskıya rağmen var olmayı sürdürmenin simgesi hâline gelmiştir."
+      },
+      {
+        "q": "Nakba (النكبة) hangi olaya verilen isimdir?",
+        "opts": ["1967 Altı Gün Savaşı", "1948'de 700.000'den fazla Filistinlinin yurtlarından edilmesi", "1948 BM bölünme planı", "1973 Yom Kippur Savaşı"],
+        "note": "Nakba, Arapçada 'felaket' demektir. 1948'de yaklaşık 700.000 Filistinli yerinden edildi. Bu tarih her yıl 15 Mayıs'ta anılır."
+      },
+      {
+        "q": "Geleneksel Filistin kufiyesinin siyah-beyaz geometrik deseninin kökeni olarak en yaygın kabul gören yorum hangisidir?",
+        "opts": ["Çöl kumları ve yıldız desenleri", "Zeytin ağacı yaprakları ve balıkçı ağları", "Filistin bayrağının renk blokları", "Osmanlı dönemi hükümet arması"],
+        "note": "Kufiyenin tarihi üzerine birden fazla yorum bulunsa da en yaygın anlatı, desenin zeytin yapraklarını ve geleneksel balıkçı ağlarını simgelediğini öne sürer."
+      },
+      {
+        "q": "Filistin şiirinin sembolü Mahmud Derviş'in yapıtları ağırlıklı olarak hangi temayı işler?",
+        "opts": ["İlahi aşk ve mistisizm", "Toprak, sürgün ve kimlik", "Savaş kahramanlıkları", "Aşk ve romantizm"],
+        "note": "Mahmud Derviş'in 'Kimlik Belgesi' (1964) şiiri toprağa bağlılığı ve direnci anlatır. Derviş, dünya genelinde en çok okunan Arap şairlerinden biridir."
+      },
+      {
+        "q": "Filistin direniş kültürünün sembolik figürü 'Handala' kimdir?",
+        "opts": ["Nakba'yı bizzat yaşayan gerçek bir çocuk", "Karikatürist Naci el-Ali'nin yarattığı, sırtı dönük mülteci çocuk figürü", "Bir Filistin folklor masalının kahramanı", "1948 direnişçilerine takılan ortak bir lakap"],
+        "note": "Handala, Filistinli karikatürist Naci el-Ali tarafından 1969'da yaratıldı. Sırtı daima izleyiciye dönük bu çocuk, yurduna dönmeden büyümeyeceğinin simgesidir."
+      },
+      {
+        "q": "Tatreez (تطريز) nedir?",
+        "opts": ["Geleneksel bir Filistin yemeği", "Filistin'e özgü bir türkü türü", "Geleneksel Filistin el nakışı sanatı", "Hac yolculuğunda okunan bir dua formu"],
+        "note": "Tatreez, Filistin'in geleneksel el nakışı sanatıdır. Geometrik motifler ve zengin renklerle bezenen kıyafetler, bölgeyi ve aileyi simgeler. UNESCO bu geleneği 2021'de Somut Olmayan Kültürel Miras listesine almıştır."
+      },
+      {
+        "q": "BM OCHA verilerine göre 2025 başı itibarıyla Gazze'de nüfusun durumu nedir?",
+        "opts": ["Yaklaşık 500.000 kişi yerinden edilmiş", "Yaklaşık 1 milyon kişi yerinden edilmiş", "2,3 milyonluk nüfusun büyük çoğunluğu yerinden edilmiş", "Yaklaşık 1,5 milyon kişi yerinden edilmiş"],
+        "note": "BM OCHA raporlarına göre Gazze'nin 2,3 milyonluk nüfusunun büyük çoğunluğu yerinden edilmiş durumda. Pek çok kişi birden fazla kez göç etmek zorunda kalmıştır."
+      },
+      {
+        "q": "Zeytin ağacı, Filistin kültüründe öncelikle neyin simgesidir?",
+        "opts": ["Ekonomik refah ve ticari güç", "Toprağa bağlılık, köklülük ve direniş", "Dini ibadet ve ritüel", "Çöl ortamında suyun değeri"],
+        "note": "Filistin'de binlerce yıllık zeytin ağaçları, süreklilik ve tarihsel köklülüğün simgesidir. Ağaçların sökülmesi sadece ekonomik değil, kültürel ve sembolik bir yıkımdır."
+      },
+      {
+        "q": "2025 yılındaki 'Sumud Filosu' seferinin birincil amacı neydi?",
+        "opts": ["Savaş suçlarını belgeleyen gazetecileri taşımak", "Uluslararası diplomatik görüşmeler yürütmek", "Sivil ablukayı delmek ve insani yardım ulaştırmak", "Bölgede balıkçılık haklarını savunmak"],
+        "note": "2025 Sumud Filosu'na 30'dan fazla ülkeden 700'ü aşkın gönüllü katıldı. Filo ilaç, gıda ve barınak malzemesi taşıdı; ancak uluslararası sularda engellendi."
+      },
+      {
+        "q": "UNESCO hangi Filistin kültürel pratiğini 2021'de Somut Olmayan Kültürel Miras listesine aldı?",
+        "opts": ["Debke (geleneksel halk dansı)", "Geleneksel Arapça hikâye anlatıcılığı", "Filistin kaftanı ve tatreez nakış sanatı", "Kudüs'teki geleneksel pazar kültürü"],
+        "note": "UNESCO, Filistin kaftanı (thobe) ve tatreez el nakışı geleneğini Kasım 2021'de İnsanlığın Somut Olmayan Kültürel Mirası listesine ekledi."
+      }
+    ]
+  },
+  "flotilla": {
+    "title": "Sumud Filosu",
+    "subtitle": "2025 gerçek olaylarına dayanan 5 aşamalı tanıklık deneyimi",
+    "kicker": "Simülasyon",
+    "ship_name_label": "Geminin adını ver",
+    "ship_name_placeholder": "Sumud, Özgürlük...",
+    "cargo_label": "Taşıyacağın insani yardım",
+    "cargo_medicine": "İlaç ve tıbbi malzeme",
+    "cargo_food": "Gıda ve içme suyu",
+    "cargo_shelter": "Çadır ve barınak malzemeleri",
+    "cargo_water": "Su arıtma ekipmanı",
+    "begin": "Limandan Ayrıl",
+    "phase_label": "Aşama {n} / 5",
+    "fact_label": "Doğrulanmış Bilgi",
+    "next": "Devam",
+    "ship_label": "Gemi",
+    "cargo_label_short": "Kargo",
+    "epilogue_title": "Tanıklık",
+    "home": "Ana sayfaya dön",
+    "tents": "Çadırları keşfet",
+    "phases": [
+      {
+        "title": "Limandan Demir Alma",
+        "desc": "Gemi limandan ayrılıyor. Mürettebat farklı ülkelerden gönüllüler — aktivistler, doktorlar, gazeteciler. Deniz sakin, ufuk açık. İçinizde kaygı değil; amaçtaki kesinlik var.",
+        "fact": "2025 Sumud Filosu'na 30'dan fazla ülkeden 700'ü aşkın gönüllü katıldı. Filo Akdeniz'in farklı limanlarından koordineli biçimde denize açıldı."
+      },
+      {
+        "title": "Açık Deniz ve Gözetleme",
+        "desc": "Artık açık denizdesiniz. İnsansız hava araçları konvoyunuzu uzaktan izliyor; radar ekranlarında nokta nokta gemiler beliriyor. Ekip sakin ama dikkatli.",
+        "fact": "Önceki filo seferlerinde gemiler uluslararası sularda insansız hava araçlarıyla gözetlenmiştir. Bu gözetleme tüm yolculuk boyunca kayıt altına alınmıştır."
+      },
+      {
+        "title": "Uluslararası Sular",
+        "desc": "Konvoy artık tam anlamıyla uluslararası sularda. Filo kaptanları BM'ye ve dünya basınına raporlar iletmeyi sürdürüyor. Hukuki çerçeveye göre hiçbir devletin yetki alanında değilsiniz.",
+        "fact": "Uluslararası hukuka göre bir gemi, başka bir devletin karasularına girmeden önce uluslararası sularda durdurulamaz. 2010 Mavi Marmara baskını bu ilkeyi çiğnedi."
+      },
+      {
+        "title": "Müdahale",
+        "desc": "İletişim aniden kesiliyor. Gemiler durduruldu ve mürettebat gözaltına alındı. Son koordinatlarınız dünya basınına ulaştı. Şimdi bekleyip tanıklık etmekten başka yapabileceğiniz bir şey yok.",
+        "fact": "2010'da Mavi Marmara baskınında 10 aktivist hayatını kaybetti, 700'den fazlası gözaltına alındı. 2025 filosu da uluslararası sularda engellendi."
+      },
+      {
+        "title": "Tanıklık",
+        "desc": "Serbest bırakıldınız. Gemi kurtarıldı ya da başka bir limana yönlendirildi. Ama Gazze ablukası hâlâ devam ediyor. Tanıklığınız kayıt altına alındı — bu belge, bir sonraki sefer için yaşıyor.",
+        "fact": "Filo seferleriyle yükselen medya baskısı ve kamu farkındalığı, ablukaya ilişkin BM raporlarını ve uluslararası kamuoyu gündemini doğrudan etkiledi."
+      }
+    ],
+    "epilogue": "Bu bir oyun değildi. Gerçek gönüllüler, gerçek gemiler, gerçek engeller. Tanıklık hafızadır; hafıza ise direnişin kendisidir. Artık sen de bu anlatının bir parçasısın."
   }
 }

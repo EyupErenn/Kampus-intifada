@@ -3,7 +3,8 @@
     "home": "Home",
     "tents": "Tents",
     "about": "About",
-    "interactions": "interactions"
+    "interactions": "interactions",
+    "interactionsPage": "Interact"
   },
   "hero": {
     "title": "Campus Intifada",
@@ -171,5 +172,133 @@
         { "title": "Gaza: Lives on the Shore", "author": "Documentary", "kind": "doc", "note": "A cinematic testimony to everyday life and steadfastness (sumud) under blockade." }
       ]
     }
+  },
+  "etkilesim": {
+    "kicker": "Interactive",
+    "title": "Active Witnessing",
+    "lead": "From passive viewer to active witness. Know Palestine more deeply through two interactive experiences.",
+    "quiz_title": "How Well Do You Know Palestine?",
+    "quiz_desc": "A 10-question journey through culture · history · today. A short fact note after every answer.",
+    "quiz_cta": "Start the Quiz",
+    "flotilla_title": "Sumud Flotilla",
+    "flotilla_desc": "A 5-phase testimony experience based on real 2025 events — not a game to be won.",
+    "flotilla_cta": "Board the Ship"
+  },
+  "quiz": {
+    "title": "How Well Do You Know Palestine?",
+    "subtitle": "A 10-question journey through culture · history · today",
+    "question_of": "{current} / {total}",
+    "next": "Continue",
+    "retry": "Try Again",
+    "result_title": "Your Results",
+    "explanation_label": "Fact Note",
+    "ranks": ["Witness Candidate", "Aware", "Memory Keeper", "Sumud Ambassador"],
+    "rank_descs": [
+      "Every journey begins with a single step. Let this experience be the first spark of curiosity about Palestinian reality.",
+      "You follow the issue. Knowledge is the foundation of solidarity.",
+      "Memory is safe in your hands. Share what you've learned with those around you.",
+      "You are now a sumud ambassador. Spread this knowledge, amplify the voice."
+    ],
+    "questions": [
+      {
+        "q": "What is the most accurate translation of the Arabic word 'sumud' (صمود)?",
+        "opts": ["Victory", "Liberation", "Steadfastness and resolve", "Peace"],
+        "note": "Sumud means 'to stand firm, to persist, to remain rooted in the land.' In Palestinian culture it has become the symbol of enduring presence despite displacement and oppression."
+      },
+      {
+        "q": "What event is known as the Nakba (النكبة)?",
+        "opts": ["The 1967 Six-Day War", "The displacement of over 700,000 Palestinians in 1948", "The 1948 UN partition plan", "The 1973 Yom Kippur War"],
+        "note": "Nakba means 'catastrophe' in Arabic. In 1948, around 700,000 Palestinians were displaced as the state of Israel was established. It is commemorated every year on 15 May."
+      },
+      {
+        "q": "What is the most widely accepted interpretation of the geometric pattern on the traditional Palestinian kufiya?",
+        "opts": ["Desert sands and star patterns", "Olive tree leaves and fishing nets", "Colour blocks of the Palestinian flag", "Ottoman government insignia"],
+        "note": "While there are multiple interpretations of the kufiya's origins, the most prevalent account holds that the pattern represents olive leaves and traditional fishing nets, combining agriculture and the sea."
+      },
+      {
+        "q": "What theme does the work of Mahmoud Darwish, symbol of Palestinian poetry, primarily explore?",
+        "opts": ["Divine love and mysticism", "Land, exile and identity", "War heroics", "Romance and love"],
+        "note": "Darwish's 'Identity Card' (1964) speaks of attachment to the land and resistance. He is among the most widely read Arab poets in the world."
+      },
+      {
+        "q": "Who is 'Handala', the symbolic figure of Palestinian resistance culture?",
+        "opts": ["A real child who lived through the Nakba", "A back-turned refugee child cartoon character created by cartoonist Naji al-Ali", "A hero from a Palestinian folk tale", "A collective nickname for 1948 resistance fighters"],
+        "note": "Handala was created in 1969 by Palestinian cartoonist Naji al-Ali. This barefoot, ragged child — always with his back to the viewer — is the symbol of a refugee child who will not grow up until he can return home."
+      },
+      {
+        "q": "What is tatreez (تطريز)?",
+        "opts": ["A traditional Palestinian dish", "A type of folk song native to Palestine", "Traditional Palestinian hand embroidery art", "A form of prayer recited during pilgrimage"],
+        "note": "Tatreez is the traditional Palestinian art of hand embroidery. Garments adorned with geometric motifs and rich colours represent the region and family. UNESCO added this tradition to the Intangible Cultural Heritage list in 2021."
+      },
+      {
+        "q": "According to UN OCHA data, what is the situation of Gaza's population as of early 2025?",
+        "opts": ["Around 500,000 people displaced", "Around 1 million people displaced", "The vast majority of 2.3 million people displaced", "Around 1.5 million people displaced"],
+        "note": "According to UN OCHA reports, the vast majority of Gaza's 2.3 million population has been displaced. Many people have been forced to move multiple times."
+      },
+      {
+        "q": "What does the olive tree primarily symbolise in Palestinian culture?",
+        "opts": ["Economic prosperity and trade", "Rootedness in the land, continuity and resistance", "Religious worship and ritual", "The value of water in a desert environment"],
+        "note": "Ancient olive trees in Palestine are symbols of continuity and historical rootedness. Uprooting them is not only an economic loss but a cultural and symbolic destruction."
+      },
+      {
+        "q": "What was the primary purpose of the 2025 'Sumud Flotilla' voyage?",
+        "opts": ["To transport journalists documenting war crimes", "To conduct international diplomatic talks", "To break the civilian blockade and deliver humanitarian aid", "To defend fishing rights in the region"],
+        "note": "Over 700 volunteers from more than 30 countries joined the 2025 Sumud Flotilla. The flotilla carried medicine, food and shelter materials, but was intercepted in international waters."
+      },
+      {
+        "q": "Which Palestinian cultural practice did UNESCO add to the Intangible Cultural Heritage list in 2021?",
+        "opts": ["Dabke (traditional folk dance)", "Traditional Arabic storytelling", "Palestinian thobe and tatreez embroidery art", "Traditional market culture in Jerusalem"],
+        "note": "UNESCO added the Palestinian thobe and the tatreez hand embroidery tradition to the List of Intangible Cultural Heritage of Humanity in November 2021."
+      }
+    ]
+  },
+  "flotilla": {
+    "title": "Sumud Flotilla",
+    "subtitle": "A 5-phase testimony experience based on real 2025 events",
+    "kicker": "Simulation",
+    "ship_name_label": "Name your ship",
+    "ship_name_placeholder": "Sumud, Freedom...",
+    "cargo_label": "Humanitarian aid you will carry",
+    "cargo_medicine": "Medicine and medical supplies",
+    "cargo_food": "Food and drinking water",
+    "cargo_shelter": "Tents and shelter materials",
+    "cargo_water": "Water purification equipment",
+    "begin": "Leave Port",
+    "phase_label": "Phase {n} / 5",
+    "fact_label": "Verified Fact",
+    "next": "Continue",
+    "ship_label": "Ship",
+    "cargo_label_short": "Cargo",
+    "epilogue_title": "Testimony",
+    "home": "Back to home",
+    "tents": "Explore the tents",
+    "phases": [
+      {
+        "title": "Leaving Port",
+        "desc": "The ship departs from port. The crew are volunteers from different countries — activists, doctors, journalists. The sea is calm, the horizon open. What fills you is not anxiety, but certainty of purpose.",
+        "fact": "Over 700 volunteers from more than 30 countries joined the 2025 Sumud Flotilla. The flotilla set sail in a coordinated way from various Mediterranean ports."
+      },
+      {
+        "title": "Open Sea and Surveillance",
+        "desc": "You are now in open waters. Drones follow the convoy from a distance; ships appear as dots on radar screens. The crew is calm but alert.",
+        "fact": "In previous flotilla missions, ships were monitored by unmanned aerial vehicles in international waters. This surveillance was recorded throughout the entire voyage."
+      },
+      {
+        "title": "International Waters",
+        "desc": "The convoy is now fully in international waters. Flotilla captains continue sending reports to the UN and world press. Under the legal framework, you are outside any state's jurisdiction.",
+        "fact": "Under international law, a ship cannot be stopped in international waters before entering another state's territorial waters. The 2010 Mavi Marmara raid violated this principle."
+      },
+      {
+        "title": "Interception",
+        "desc": "Communications suddenly cut out. Ships have been stopped and crew taken into custody. Your last coordinates reached the world press. Now there is nothing left to do but wait and bear witness.",
+        "fact": "In the 2010 Mavi Marmara raid, 10 activists were killed and over 700 taken into custody. The 2025 flotilla was also intercepted in international waters."
+      },
+      {
+        "title": "Testimony",
+        "desc": "You have been released. The ship was rescued or redirected to another port. But the Gaza blockade continues. Your testimony has been recorded — this document lives on for the next voyage.",
+        "fact": "The media pressure and public awareness raised by flotilla missions directly influenced UN reports on the blockade and the international public agenda."
+      }
+    ],
+    "epilogue": "This was not a game. Real volunteers, real ships, real obstacles. Testimony is memory; memory is resistance itself. You are now part of this narrative."
   }
 }
