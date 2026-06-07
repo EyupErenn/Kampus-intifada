@@ -31,7 +31,7 @@ export default async function EtkilesimPage() {
             <div className="halftone pointer-events-none absolute inset-0 opacity-20" />
             <Brain className="mb-5 h-10 w-10 text-flag-green" />
             <span className="stamp mb-4 inline-block bg-flag-green/10 text-flag-green">
-              {t('kicker')}
+              {t('quiz_kicker')}
             </span>
             <h2 className="mb-3 text-xl font-black text-flag-white">{t('quiz_title')}</h2>
             <p className="mb-8 text-sm leading-relaxed text-bone-dim">{t('quiz_desc')}</p>
@@ -48,7 +48,7 @@ export default async function EtkilesimPage() {
             <div className="halftone pointer-events-none absolute inset-0 opacity-20" />
             <Ship className="mb-5 h-10 w-10 text-flag-red" />
             <span className="stamp mb-4 inline-block bg-flag-red/10 text-flag-red">
-              {t('kicker')}
+              {t('flotilla_kicker')}
             </span>
             <h2 className="mb-3 text-xl font-black text-flag-white">{t('flotilla_title')}</h2>
             <p className="mb-8 text-sm leading-relaxed text-bone-dim">{t('flotilla_desc')}</p>

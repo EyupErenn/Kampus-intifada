@@ -4,7 +4,7 @@
     "tents": "Çadırlar",
     "about": "Hakkında",
     "interactions": "etkileşim",
-    "interactionsPage": "Etkileşim"
+    "interactionsPage": "Deneyim"
   },
   "hero": {
     "title": "Campus İntifada",
@@ -174,7 +174,9 @@
     }
   },
   "etkilesim": {
-    "kicker": "Etkileşim",
+    "kicker": "Deneyim",
+    "quiz_kicker": "Yarışma",
+    "flotilla_kicker": "Simülasyon",
     "title": "Aktif Tanıklık",
     "lead": "Pasif izleyiciden aktif tanığa. İki interaktif deneyimle Filistin'i daha derin tanı.",
     "quiz_title": "Filistin'i Ne Kadar Tanıyoruz?",
@@ -185,6 +187,7 @@
     "flotilla_cta": "Gemiye Bin"
   },
   "quiz": {
+    "kicker": "Yarışma",
     "title": "Filistin'i Ne Kadar Tanıyoruz?",
     "subtitle": "10 soruluk kültür · tarih · bugün deneyimi",
     "question_of": "{current} / {total}",
@@ -257,6 +260,8 @@
     "subtitle": "2025 gerçek olaylarına dayanan 5 aşamalı tanıklık deneyimi",
     "kicker": "Simülasyon",
     "ship_name_label": "Geminin adını ver",
+    "ship_name_optional": "opsiyonel",
+    "ship_name_default": "Sumud",
     "ship_name_placeholder": "Sumud, Özgürlük...",
     "cargo_label": "Taşıyacağın insani yardım",
     "cargo_medicine": "İlaç ve tıbbi malzeme",

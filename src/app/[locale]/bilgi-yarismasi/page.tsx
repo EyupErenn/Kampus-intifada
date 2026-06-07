@@ -16,7 +16,7 @@ export default async function BilgiYarismasiPage() {
 
         <header className="mb-10 text-center">
           <span className="text-xs font-bold uppercase tracking-[0.32em] text-flag-green">
-            Quiz
+            {t('kicker')}
           </span>
           <h1 className="riso-title mt-3 text-3xl font-black tracking-tight text-flag-white md:text-4xl">
             {t('title')}

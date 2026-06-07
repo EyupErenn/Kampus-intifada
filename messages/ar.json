@@ -4,7 +4,7 @@
     "tents": "الخيام",
     "about": "حول",
     "interactions": "تفاعل",
-    "interactionsPage": "تفاعل"
+    "interactionsPage": "تجربة"
   },
   "hero": {
     "title": "Campus İntifada",
@@ -174,7 +174,9 @@
     }
   },
   "etkilesim": {
-    "kicker": "تفاعلي",
+    "kicker": "تجربة",
+    "quiz_kicker": "مسابقة",
+    "flotilla_kicker": "محاكاة",
     "title": "شهادة فاعلة",
     "lead": "من مشاهد سلبي إلى شاهد فاعل. تعرّف على فلسطين بعمق أكبر من خلال تجربتين تفاعليتين.",
     "quiz_title": "كيف تعرف فلسطين؟",
@@ -185,6 +187,7 @@
     "flotilla_cta": "اركب السفينة"
   },
   "quiz": {
+    "kicker": "مسابقة",
     "title": "كيف تعرف فلسطين؟",
     "subtitle": "رحلة من عشرة أسئلة بين الثقافة والتاريخ واليوم",
     "question_of": "{current} / {total}",
@@ -257,6 +260,8 @@
     "subtitle": "تجربة شهادة من خمس مراحل مستوحاة من أحداث حقيقية عام 2025",
     "kicker": "محاكاة",
     "ship_name_label": "سمِّ سفينتك",
+    "ship_name_optional": "اختياري",
+    "ship_name_default": "صمود",
     "ship_name_placeholder": "صمود، حرية...",
     "cargo_label": "المساعدات الإنسانية التي ستحملها",
     "cargo_medicine": "الأدوية والمستلزمات الطبية",

@@ -4,7 +4,7 @@
     "tents": "Tents",
     "about": "About",
     "interactions": "interactions",
-    "interactionsPage": "Interact"
+    "interactionsPage": "Experience"
   },
   "hero": {
     "title": "Campus Intifada",
@@ -174,7 +174,9 @@
     }
   },
   "etkilesim": {
-    "kicker": "Interactive",
+    "kicker": "Experience",
+    "quiz_kicker": "Quiz",
+    "flotilla_kicker": "Simulation",
     "title": "Active Witnessing",
     "lead": "From passive viewer to active witness. Know Palestine more deeply through two interactive experiences.",
     "quiz_title": "How Well Do You Know Palestine?",
@@ -185,6 +187,7 @@
     "flotilla_cta": "Board the Ship"
   },
   "quiz": {
+    "kicker": "Quiz",
     "title": "How Well Do You Know Palestine?",
     "subtitle": "A 10-question journey through culture · history · today",
     "question_of": "{current} / {total}",
@@ -257,6 +260,8 @@
     "subtitle": "A 5-phase testimony experience based on real 2025 events",
     "kicker": "Simulation",
     "ship_name_label": "Name your ship",
+    "ship_name_optional": "optional",
+    "ship_name_default": "Sumud",
     "ship_name_placeholder": "Sumud, Freedom...",
     "cargo_label": "Humanitarian aid you will carry",
     "cargo_medicine": "Medicine and medical supplies",

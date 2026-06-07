@@ -33,7 +33,8 @@ export default function SumudFilosu() {
   ]
 
   function handleBegin() {
-    if (!shipName.trim() || !cargo) return
+    if (!cargo) return
+    if (!shipName.trim()) setShipName(t('ship_name_default'))
     setSimPhase(0)
   }
 
@@ -61,8 +62,11 @@ export default function SumudFilosu() {
       >
         <motion.div variants={riseSettle} className="dossier-card rounded-2xl p-6">
           <div className="mb-5">
-            <label className="mb-2 block text-xs font-bold uppercase tracking-[0.2em] text-bone-dim">
+            <label className="mb-2 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-bone-dim">
               {t('ship_name_label')}
+              <span className="rounded-full bg-bone/10 px-2 py-0.5 text-[10px] font-medium normal-case tracking-normal text-bone/50">
+                {t('ship_name_optional')}
+              </span>
             </label>
             <input
               type="text"
@@ -111,7 +115,7 @@ export default function SumudFilosu() {
           <button
             type="button"
             onClick={handleBegin}
-            disabled={!shipName.trim() || !cargo}
+            disabled={!cargo}
             className="flex w-full items-center justify-center gap-2 rounded-xl bg-flag-red px-6 py-4 text-sm font-bold text-flag-white transition-opacity hover:opacity-90 disabled:opacity-40"
           >
             <Ship className="h-4 w-4" />
