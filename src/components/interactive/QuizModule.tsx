@@ -2,9 +2,11 @@
 
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { CheckCircle, XCircle, ChevronRight, RotateCcw, Award } from 'lucide-react'
 import { fadeUp, riseSettle, staggerContainer } from '@/lib/motion'
+import { rankIndex } from '@/lib/quiz'
+import ShareActions from './ShareActions'
 
 // Correct answer index (0-based) for each question — matches the order in messages quiz.questions
 const CORRECT = [2, 1, 1, 1, 1, 2, 2, 1, 2, 2] as const
@@ -17,15 +19,9 @@ interface QuizQuestion {
 
 type Phase = 'question' | 'explanation' | 'result'
 
-function rankIndex(score: number): number {
-  if (score <= 4) return 0
-  if (score <= 7) return 1
-  if (score <= 9) return 2
-  return 3
-}
-
 export default function QuizModule() {
   const t = useTranslations('quiz')
+  const locale = useLocale()
   const questions = t.raw('questions') as QuizQuestion[]
   const ranks = t.raw('ranks') as string[]
   const rankDescs = t.raw('rank_descs') as string[]
@@ -86,6 +82,17 @@ export default function QuizModule() {
         <motion.div variants={riseSettle} className="dossier-card mb-8 rounded-2xl p-8">
           <h2 className="riso-title mb-2 text-2xl font-black text-flag-white">{ranks[rank]}</h2>
           <p className="text-bone-dim leading-relaxed">{rankDescs[rank]}</p>
+        </motion.div>
+
+        <motion.div variants={fadeUp} className="mb-6">
+          <ShareActions
+            sharePath={`/${locale}/sonuc?m=quiz&s=${score}`}
+            downloadUrl={`/api/og?m=quiz&s=${score}&l=${locale}`}
+            shareTitle={t('title')}
+            shareText={`${score}/${total} — ${ranks[rank]}`}
+            shareLabel={t('share')}
+            downloadLabel={t('download')}
+          />
         </motion.div>
 
         <motion.button

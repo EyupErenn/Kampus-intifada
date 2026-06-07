@@ -194,6 +194,8 @@
     "next": "Continue",
     "retry": "Try Again",
     "result_title": "Your Results",
+    "share": "Share Result",
+    "download": "Download Card",
     "explanation_label": "Fact Note",
     "ranks": ["Witness Candidate", "Aware", "Memory Keeper", "Sumud Ambassador"],
     "rank_descs": [
@@ -304,6 +306,17 @@
         "fact": "The media pressure and public awareness raised by flotilla missions directly influenced UN reports on the blockade and the international public agenda."
       }
     ],
-    "epilogue": "This was not a game. Real volunteers, real ships, real obstacles. Testimony is memory; memory is resistance itself. You are now part of this narrative."
+    "epilogue": "This was not a game. Real volunteers, real ships, real obstacles. Testimony is memory; memory is resistance itself. You are now part of this narrative.",
+    "share": "Share Testimony",
+    "download": "Download Card"
+  },
+  "sonuc": {
+    "title": "Your Result Is Ready",
+    "lead": "Share your card; invite others into this experience with the QR.",
+    "explore_cta": "Explore the Site",
+    "retry": "Try Again",
+    "qr_hint": "Scan and join",
+    "download": "Download Image",
+    "share": "Share"
   }
 }

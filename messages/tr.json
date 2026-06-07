@@ -194,6 +194,8 @@
     "next": "Devam",
     "retry": "Tekrar Dene",
     "result_title": "Sonuçların",
+    "share": "Sonucu Paylaş",
+    "download": "Kartı İndir",
     "explanation_label": "Bilgi Notu",
     "ranks": ["Tanık Adayı", "Farkındalık Sahibi", "Hafıza Bekçisi", "Sumud Elçisi"],
     "rank_descs": [
@@ -304,6 +306,17 @@
         "fact": "Filo seferleriyle yükselen medya baskısı ve kamu farkındalığı, ablukaya ilişkin BM raporlarını ve uluslararası kamuoyu gündemini doğrudan etkiledi."
       }
     ],
-    "epilogue": "Bu bir oyun değildi. Gerçek gönüllüler, gerçek gemiler, gerçek engeller. Tanıklık hafızadır; hafıza ise direnişin kendisidir. Artık sen de bu anlatının bir parçasısın."
+    "epilogue": "Bu bir oyun değildi. Gerçek gönüllüler, gerçek gemiler, gerçek engeller. Tanıklık hafızadır; hafıza ise direnişin kendisidir. Artık sen de bu anlatının bir parçasısın.",
+    "share": "Tanıklığı Paylaş",
+    "download": "Kartı İndir"
+  },
+  "sonuc": {
+    "title": "Sonucun Hazır",
+    "lead": "Kartını paylaş, QR ile başkalarını da bu deneyime davet et.",
+    "explore_cta": "Siteyi Keşfet",
+    "retry": "Tekrar Dene",
+    "qr_hint": "Tara, sen de katıl",
+    "download": "Görseli İndir",
+    "share": "Paylaş"
   }
 }

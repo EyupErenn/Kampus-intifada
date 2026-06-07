@@ -2,10 +2,11 @@
 
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { Ship, ChevronRight, Home, Compass, BookOpen } from 'lucide-react'
 import { Link } from '@/i18n/navigation'
 import { fadeUp, riseSettle, staggerContainer } from '@/lib/motion'
+import ShareActions from './ShareActions'
 
 interface Phase {
   title: string
@@ -19,6 +20,7 @@ const PHASE_ICONS = [Ship, Compass, Compass, Ship, BookOpen]
 
 export default function SumudFilosu() {
   const t = useTranslations('flotilla')
+  const locale = useLocale()
   const phases = t.raw('phases') as Phase[]
 
   const [simPhase, setSimPhase] = useState<SimPhase>('setup')
@@ -158,6 +160,17 @@ export default function SumudFilosu() {
           <span className="text-flag-white">
             {cargoOptions.find((o) => o.value === cargo)?.label}
           </span>
+        </motion.div>
+
+        <motion.div variants={fadeUp} className="mb-6">
+          <ShareActions
+            sharePath={`/${locale}/sonuc?m=flotilla&ship=${encodeURIComponent(shipName)}&cargo=${cargo}`}
+            downloadUrl={`/api/og?m=flotilla&ship=${encodeURIComponent(shipName)}&cargo=${cargo}&l=${locale}`}
+            shareTitle={t('title')}
+            shareText={`${shipName} — ${cargoOptions.find((o) => o.value === cargo)?.label}`}
+            shareLabel={t('share')}
+            downloadLabel={t('download')}
+          />
         </motion.div>
 
         <motion.div variants={fadeUp} className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center">

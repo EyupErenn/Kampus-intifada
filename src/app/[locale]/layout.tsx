@@ -1,8 +1,15 @@
 import type { ReactNode } from 'react'
+import type { Metadata } from 'next'
 import { Noto_Sans, Noto_Sans_Arabic } from 'next/font/google'
 import { NextIntlClientProvider } from 'next-intl'
 import { notFound } from 'next/navigation'
 import { routing } from '@/i18n/routing'
+
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://kampus-intifada.vercel.app'
+
+export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+}
 
 const notoSans = Noto_Sans({
   subsets: ['latin', 'latin-ext'],
