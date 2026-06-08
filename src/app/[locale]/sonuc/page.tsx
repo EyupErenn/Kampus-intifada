@@ -90,7 +90,7 @@ export default async function SonucPage({
         <TatreezDivider count={10} className="mx-auto mb-10 max-w-lg" />
 
         <header className="mb-10">
-          <h1 className="riso-title text-3xl font-black tracking-tight text-flag-white md:text-4xl">
+          <h1 className="riso-title text-3xl font-black tracking-tight text-bone md:text-4xl">
             {t('title')}
           </h1>
           <p className="mt-3 text-sm leading-relaxed text-bone-dim">{t('lead')}</p>
@@ -123,7 +123,7 @@ export default async function SonucPage({
           </Link>
           <Link
             href={retryHref}
-            className="inline-flex items-center gap-2 rounded-full border border-bone/20 px-6 py-3 text-sm font-semibold text-bone-dim transition-colors hover:border-flag-red/50 hover:text-flag-white"
+            className="inline-flex items-center gap-2 rounded-full border border-bone/20 px-6 py-3 text-sm font-semibold text-bone-dim transition-colors hover:border-flag-red/50 hover:text-bone"
           >
             <RotateCcw className="h-4 w-4" />
             {t('retry')}

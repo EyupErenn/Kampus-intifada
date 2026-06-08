@@ -243,7 +243,7 @@ VALUES
   'Saat 10:00 – BTU Kampüsü ana girişinde gerçekleşecek açılış törenine tüm öğrenciler, akademisyenler ve misafirler davetlidir. Öğrenci temsilcileri tarafından yapılacak konuşmalar, koro, ve sembolik çadır kurulumu ile etkinliğimiz resmî olarak başlayacak.',
   '10:00 – All students, academics and guests are invited to the opening ceremony at the main entrance of BTU Campus. The event will officially begin with speeches by student representatives, a choir and a symbolic tent setup.',
   'الساعة 10:00 – يُدعى جميع الطلاب والأكاديميين والضيوف لحضور حفل الافتتاح عند المدخل الرئيسي لحرم BTU. ستبدأ الفعالية رسمياً بكلمات ممثلي الطلاب والجوقة الموسيقية وإنشاء الخيمة الرمزية.',
-  'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800',
+  NULL,
   CURRENT_DATE, 'etkinlik', true
 ),
 
@@ -254,7 +254,7 @@ VALUES
   'Saat 12:30 – Kampüs meydanındaki kitlesel toplanmada öğrenci temsilcileri ve akademisyenler ortak bir basın açıklaması okuyacak. Filistin''e dayanışma mesajı ulusal ve uluslararası basına iletilecek.',
   '12:30 – At the mass gathering in the campus square, student representatives and academics will read a joint press statement. The message of solidarity with Palestine will be conveyed to national and international press.',
   'الساعة 12:30 – في التجمع الحاشد بساحة الحرم الجامعي، سيقرأ ممثلو الطلاب والأكاديميون بياناً صحفياً مشتركاً. ستُوجَّه رسالة التضامن مع فلسطين إلى الصحافة المحلية والدولية.',
-  'https://images.unsplash.com/photo-1573164713988-8665fc963095?w=800',
+  NULL,
   CURRENT_DATE, 'etkinlik', false
 ),
 
@@ -265,7 +265,7 @@ VALUES
   'Saat 14:00 – Farklı disiplinlerden akademisyenler ve öğrencilerin katılacağı bu panelde akademik boykotun önemi, tarihsel arka planı, pratik uygulamaları ve üniversitelerin bu süreçteki rolü tartışılacak. Soru-cevap bölümüne aktif katılım beklenmektedir.',
   '14:00 – In this panel with academics from different disciplines and students, the importance of academic boycott, its historical background, practical applications and the role of universities in this process will be discussed. Active participation in the Q&A session is expected.',
   'الساعة 14:00 – ستناقش هذه الندوة بمشاركة أكاديميين من تخصصات مختلفة وطلاب أهمية المقاطعة الأكاديمية وخلفيتها التاريخية وتطبيقاتها العملية ودور الجامعات. تُتوقع المشاركة الفعلية في جلسة الأسئلة والأجوبة.',
-  'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800',
+  NULL,
   CURRENT_DATE, 'etkinlik', false
 ),
 
@@ -276,7 +276,7 @@ VALUES
   'Saat 16:00 – Çocuk Çadırı''nda düzenlenecek bu atölyede çocuklar resim, şiir ve hikaye anlatımı yoluyla duygularını ifade edebilecek. Gönüllü pedagog ve eğitmenler eşliğinde barış ve dayanışma temalı yaratıcı etkinlikler yer alacak.',
   '16:00 – In this workshop at the Children''s Tent, children will be able to express their feelings through drawing, poetry and storytelling. Creative activities on peace and solidarity themes will be held with volunteer pedagogues and educators.',
   'الساعة 16:00 – في هذه الورشة بخيمة الأطفال، سيتمكن الأطفال من التعبير عن مشاعرهم من خلال الرسم والشعر ورواية القصص. ستُقام أنشطة إبداعية حول موضوعات السلام والتضامن بمصاحبة معلمين ومربين متطوعين.',
-  'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800',
+  NULL,
   CURRENT_DATE, 'etkinlik', false
 ),
 
@@ -287,6 +287,6 @@ VALUES
   'Saat 18:00 – Etkinliğimizin kapanış oturumunda tüm katılımcılar bir araya gelerek Gazzeli kardeşlerimiz için ortak bir dua gerçekleştirecek. Akabinde ertesi gün için dayanışma çağrısı ve programa dair duyurular paylaşılacak.',
   '18:00 – In the closing session of our event, all participants will come together for a collective prayer for our brothers and sisters in Gaza. Calls to solidarity and announcements regarding the next day''s programme will then be shared.',
   'الساعة 18:00 – في الجلسة الختامية، سيجتمع جميع المشاركين لأداء صلاة جماعية من أجل إخوتنا في غزة. ثم ستُشارَك نداءات التضامن والإعلانات المتعلقة برنامج اليوم التالي.',
-  'https://images.unsplash.com/photo-1609873814058-a8928924184a?w=800',
+  NULL,
   CURRENT_DATE, 'etkinlik', false
 );

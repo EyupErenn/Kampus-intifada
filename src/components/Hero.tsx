@@ -1,87 +1,61 @@
 'use client'
 
-import { useRef } from 'react'
+import { useEffect } from 'react'
 import {
   motion,
   useMotionValue,
-  useSpring,
+  useTransform,
   useReducedMotion,
-  type Variants,
 } from 'framer-motion'
 import { useTranslations } from 'next-intl'
-import { TatreezField, TatreezBand } from '@/components/motifs/Tatreez'
-import { EASE_STITCH } from '@/lib/motion'
-
-const lineMask: Variants = {
-  hidden: { y: '115%' },
-  show: (i: number) => ({
-    y: '0%',
-    transition: { duration: 0.8, ease: EASE_STITCH, delay: 0.15 + i * 0.12 },
-  }),
-}
-
-const softUp: Variants = {
-  hidden: { opacity: 0, y: 18 },
-  show: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: EASE_STITCH, delay: 0.5 + i * 0.12 },
-  }),
-}
+import { GooeyText } from '@/components/ui/gooey-text-morphing'
 
 export default function Hero() {
   const t = useTranslations('hero')
   const reduce = useReducedMotion()
-  const ref = useRef<HTMLElement>(null)
 
-  // Fare parallax'ı — arka plan nakış alanı hafifçe yaşar.
-  const mx = useMotionValue(0)
-  const my = useMotionValue(0)
-  const px = useSpring(mx, { stiffness: 60, damping: 18 })
-  const py = useSpring(my, { stiffness: 60, damping: 18 })
+  const words = (t.raw('words') as string[]) ?? []
 
-  const onMove = (e: React.MouseEvent) => {
-    if (reduce || !ref.current) return
-    const r = ref.current.getBoundingClientRect()
-    mx.set(((e.clientX - r.left) / r.width - 0.5) * 28)
-    my.set(((e.clientY - r.top) / r.height - 0.5) * 28)
-  }
+  // Metin scroll ile yumuşakça silinir; dünya (global arka plan) sahnede kalır
+  const p = useMotionValue(0)
+  useEffect(() => {
+    if (reduce) return
+    const onScroll = () => {
+      const v = window.innerHeight || 1
+      p.set(Math.min(1, Math.max(0, window.scrollY / (v * 0.7))))
+    }
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', onScroll)
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onScroll)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [reduce])
+
+  const textOpacity = useTransform(p, [0, 0.8], [1, 0])
+  const textY = useTransform(p, [0, 0.8], [0, -48])
 
   return (
-    <section
-      ref={ref}
-      onMouseMove={onMove}
-      className="grain relative flex min-h-[88vh] items-center overflow-hidden px-5 sm:px-8"
-    >
-      {/* Nakış zemini (parallax) */}
-      <motion.div
-        style={{ x: px, y: py }}
-        className="pointer-events-none absolute -inset-16"
-        aria-hidden="true"
-      >
-        <TatreezField className="h-full w-full" opacity={0.06} />
-      </motion.div>
-
-      {/* Atmosfer — kırmızı/yeşil ember glow */}
+    <section className="relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden px-5">
+      {/* Okunurluk vignette — metin dönen dünya üzerinde durur */}
       <div
+        aria-hidden="true"
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            'radial-gradient(55% 45% at 18% 8%, rgba(228,49,43,0.16), transparent 70%), radial-gradient(50% 50% at 88% 100%, rgba(31,158,87,0.13), transparent 72%)',
+            'radial-gradient(62% 56% at 50% 46%, rgba(3,5,12,0.66), rgba(3,5,12,0.28) 56%, transparent 80%)',
         }}
-        aria-hidden="true"
       />
 
-      <div className="relative z-10 mx-auto w-full max-w-6xl py-24">
-        {/* Dosya başlığı satırı */}
-        <motion.div
-          custom={0}
-          variants={softUp}
-          initial="hidden"
-          animate="show"
-          className="mb-7 flex flex-wrap items-center gap-4"
-        >
-          <span className="stamp -rotate-2 text-flag-red text-[11px]">
+      {/* Başlık katmanı */}
+      <motion.div
+        style={reduce ? undefined : { opacity: textOpacity, y: textY }}
+        className="relative z-10 mx-auto flex w-full max-w-3xl flex-col items-center text-center"
+      >
+        <div className="mb-6 flex flex-wrap items-center justify-center gap-4">
+          <span className="stamp -rotate-2 text-[11px] text-flag-red">
             № 01 — Dosya
           </span>
           <span className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.28em] text-bone-dim">
@@ -91,76 +65,56 @@ export default function Hero() {
             </span>
             {t('subtitle')}
           </span>
-        </motion.div>
+        </div>
 
-        {/* Kinetik logotype — maske ile satır açılışı */}
-        <h1 className="riso-title text-[clamp(3.5rem,13vw,11rem)] font-black leading-[0.86] tracking-tight text-flag-white">
-          {['Campus', 'İntifada'].map((line, i) => (
-            <span key={line} className="block overflow-hidden pb-[0.05em]">
-              <motion.span
-                custom={i}
-                variants={reduce ? undefined : lineMask}
-                initial={reduce ? false : 'hidden'}
-                animate={reduce ? false : 'show'}
-                className="block"
-              >
-                {line}
-              </motion.span>
-            </span>
-          ))}
+        {/* Sabit marka adı */}
+        <h1
+          className="riso-title text-[clamp(2.5rem,9vw,6rem)] font-black leading-[0.9] tracking-tight text-bone"
+          style={{ textShadow: '0 2px 36px rgba(0,0,0,0.55)' }}
+        >
+          Campus İntifada
         </h1>
 
-        {/* Tatreez şeridi + tagline */}
-        <motion.div
-          custom={1}
-          variants={softUp}
-          initial="hidden"
-          animate="show"
-          className="mt-8 flex items-center gap-5"
-        >
-          <TatreezBand count={6} className="h-4 w-40 shrink-0 sm:w-56" />
-          <span className="text-sm font-semibold uppercase tracking-[0.3em] text-bone-dim sm:text-base">
+        {/* Morphing kavramlar — dayanışma · hafıza · direniş · vicdan */}
+        {words.length > 0 &&
+          (reduce ? (
+            <p className="mt-6 text-3xl font-black uppercase tracking-tight text-flag-green md:text-5xl">
+              {words.join(' · ')}
+            </p>
+          ) : (
+            <div className="mt-4 h-[4.5rem] w-full md:h-[6rem]">
+              <GooeyText
+                texts={words}
+                morphTime={1}
+                cooldownTime={1.1}
+                className="h-full"
+                textClassName="uppercase tracking-tight text-flag-green"
+              />
+            </div>
+          ))}
+
+        {/* Tagline — ortalı, belirgin */}
+        <div className="mt-8 flex justify-center">
+          <span className="text-base font-bold uppercase tracking-[0.4em] text-bone sm:text-lg">
             {t('tagline')}
           </span>
-        </motion.div>
+        </div>
 
-        {/* Açıklama */}
-        <motion.p
-          custom={2}
-          variants={softUp}
-          initial="hidden"
-          animate="show"
-          className="mt-8 max-w-xl text-lg leading-relaxed text-bone-dim"
+        {/* Scroll ipucu */}
+        <a
+          href="#program"
+          className="group mt-12 inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-bone-dim transition-colors hover:text-flag-red"
         >
-          {t('description')}
-        </motion.p>
-
-        {/* Dosya alt cetveli + scroll ipucu */}
-        <motion.div
-          custom={3}
-          variants={softUp}
-          initial="hidden"
-          animate="show"
-          className="mt-14 flex items-center gap-4 border-t border-ink-line pt-5 text-xs uppercase tracking-[0.2em] text-bone-dim"
-        >
-          <span className="font-semibold text-bone">BTU Kampüsü</span>
-          <span className="h-1 w-1 rounded-full bg-flag-green" />
-          <span className="tabular-nums">2026</span>
-          <a
-            href="#program"
-            className="group ms-auto inline-flex items-center gap-2 text-bone transition-colors hover:text-flag-red"
+          {t('scroll')}
+          <motion.span
+            aria-hidden="true"
+            animate={reduce ? undefined : { y: [0, 4, 0] }}
+            transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
           >
-            {t('scroll')}
-            <motion.span
-              aria-hidden="true"
-              animate={reduce ? undefined : { y: [0, 4, 0] }}
-              transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
-            >
-              ↓
-            </motion.span>
-          </a>
-        </motion.div>
-      </div>
+            ↓
+          </motion.span>
+        </a>
+      </motion.div>
     </section>
   )
 }

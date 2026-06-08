@@ -8,19 +8,20 @@ import type { Tent } from '@/types/database'
 import { localized } from '@/types/database'
 import CommentWall from '@/components/CommentWall'
 import { TatreezBand } from '@/components/motifs/Tatreez'
+import { MotifPanel } from '@/components/motifs/Symbols'
 
 interface TentSumudProps {
   tent: Tent
   locale: string
 }
 
-// Çeviriye tabi olmayan veri (görsel + yıl) — metin messages'tan gelir.
+// Çeviriye tabi olmayan veri (yıl + on-brand motif) — metin messages'tan gelir.
 const MEMORY_META = [
-  { year: '2010', img: 'https://images.unsplash.com/photo-1573164713988-8665fc963095?w=400' },
-  { year: '2011–2018', img: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400' },
-  { year: '2023', img: 'https://images.unsplash.com/photo-1609873814058-a8928924184a?w=400' },
-  { year: '2024', img: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400' },
-]
+  { year: '2010', symbol: 'keffiyeh', tone: 'green' },
+  { year: '2011–2018', symbol: 'olive', tone: 'green' },
+  { year: '2023', symbol: 'flag', tone: 'red' },
+  { year: '2024', symbol: 'dove', tone: 'green' },
+] as const
 
 export default function TentSumud({ tent, locale }: TentSumudProps) {
   const t = useTranslations('tent.sumud')
@@ -41,14 +42,14 @@ export default function TentSumud({ tent, locale }: TentSumudProps) {
   return (
     <section className="mx-auto max-w-6xl px-5 py-14 sm:px-8">
       <header className="mb-10">
-        <span className="text-xs font-bold uppercase tracking-[0.3em] text-sky-400">
+        <span className="text-xs font-bold uppercase tracking-[0.3em] text-flag-green">
           {t('kicker')}
         </span>
-        <h1 className="riso-title mt-2 text-4xl font-black tracking-tight text-flag-white md:text-6xl">
+        <h1 className="riso-title mt-2 text-4xl font-black tracking-tight text-bone md:text-6xl">
           {name}
         </h1>
         <div className="mt-5 flex items-center gap-4">
-          <TatreezBand count={6} color="#38bdf8" className="h-3.5 w-40 shrink-0" />
+          <TatreezBand count={6} color="#306d29" className="h-3.5 w-40 shrink-0" />
           <p className="max-w-xl text-bone-dim">{desc}</p>
         </div>
       </header>
@@ -67,7 +68,7 @@ export default function TentSumud({ tent, locale }: TentSumudProps) {
                 <path
                   d="M0 15 Q 15 2 30 15 T 60 15 M0 27 Q 15 14 30 27 T 60 27"
                   fill="none"
-                  stroke="#38bdf8"
+                  stroke="#306d29"
                   strokeWidth="1.5"
                 />
               </pattern>
@@ -75,25 +76,24 @@ export default function TentSumud({ tent, locale }: TentSumudProps) {
             <rect width="100%" height="100%" fill="url(#sumud-wave)" />
           </svg>
 
-          <h2 className="relative mb-5 text-lg font-bold text-flag-white">
+          <h2 className="relative mb-5 text-lg font-bold text-bone">
             {t('memoryTitle')}
           </h2>
-          <ol className="relative space-y-4 before:absolute before:left-[7px] before:top-2 before:h-full before:w-px before:bg-sky-400/30 rtl:before:left-auto rtl:before:right-[7px]">
+          <ol className="relative space-y-4 before:absolute before:left-[7px] before:top-2 before:h-full before:w-px before:bg-flag-green/30 rtl:before:left-auto rtl:before:right-[7px]">
             {memory.map((m, i) => (
               <li key={i} className="relative ps-6">
-                <span className="absolute start-0 top-1.5 h-3.5 w-3.5 rounded-full border-2 border-sky-400 bg-ink" />
+                <span className="absolute start-0 top-1.5 h-3.5 w-3.5 rounded-full border-2 border-flag-green bg-ink" />
                 <div className="overflow-hidden rounded-2xl border border-ink-line bg-bone/[0.02]">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={MEMORY_META[i]?.img}
-                    alt={m.title}
-                    className="h-24 w-full object-cover"
+                  <MotifPanel
+                    symbol={MEMORY_META[i]?.symbol ?? 'olive'}
+                    tone={MEMORY_META[i]?.tone ?? 'green'}
+                    className="h-24 w-full"
                   />
                   <div className="p-3">
-                    <span className="rounded bg-sky-500/15 px-1.5 py-0.5 text-[11px] font-semibold tabular-nums text-sky-300">
+                    <span className="rounded bg-flag-green/15 px-1.5 py-0.5 text-[11px] font-semibold tabular-nums text-flag-green">
                       {MEMORY_META[i]?.year}
                     </span>
-                    <h3 className="mt-1.5 font-bold text-flag-white">{m.title}</h3>
+                    <h3 className="mt-1.5 font-bold text-bone">{m.title}</h3>
                     <p className="mt-1 line-clamp-3 text-xs leading-relaxed text-bone-dim">
                       {m.desc}
                     </p>
@@ -118,10 +118,10 @@ export default function TentSumud({ tent, locale }: TentSumudProps) {
                 transition={{ duration: 0.5 }}
                 className="relative"
               >
-                <p className="text-xl font-medium italic leading-relaxed text-flag-white md:text-2xl">
+                <p className="text-xl font-medium italic leading-relaxed text-bone md:text-2xl">
                   “{quotes[quoteIndex].text}”
                 </p>
-                <footer className="mt-4 text-sm font-semibold text-sky-300">
+                <footer className="mt-4 text-sm font-semibold text-flag-green">
                   — {quotes[quoteIndex].author}
                 </footer>
               </motion.blockquote>
@@ -135,7 +135,7 @@ export default function TentSumud({ tent, locale }: TentSumudProps) {
                   onClick={() => setQuoteIndex(i)}
                   aria-label={`${i + 1}`}
                   className={`h-1.5 rounded-full transition-all ${
-                    i === quoteIndex ? 'w-6 bg-sky-400' : 'w-1.5 bg-bone/20'
+                    i === quoteIndex ? 'w-6 bg-flag-green' : 'w-1.5 bg-bone/20'
                   }`}
                 />
               ))}
@@ -144,7 +144,7 @@ export default function TentSumud({ tent, locale }: TentSumudProps) {
 
           {/* Sumud Duvarı — canlı dayanışma */}
           <div className="dossier-card rounded-3xl p-6">
-            <h2 className="mb-1 text-lg font-bold text-flag-white">{t('wallTitle')}</h2>
+            <h2 className="mb-1 text-lg font-bold text-bone">{t('wallTitle')}</h2>
             <p className="mb-4 text-sm text-bone-dim">{t('wallDesc')}</p>
             <CommentWall
               tentId={tent.id}

@@ -36,7 +36,7 @@ function renderInline(text: string, keyPrefix: string): ReactNode[] {
     if (m.index > last) nodes.push(text.slice(last, m.index))
     if (m[1] !== undefined) {
       nodes.push(
-        <strong key={`${keyPrefix}-b-${i}`} className="font-semibold text-flag-white">
+        <strong key={`${keyPrefix}-b-${i}`} className="font-semibold text-bone">
           {m[1]}
         </strong>,
       )
@@ -90,7 +90,7 @@ function renderMarkdown(text: string): ReactNode {
               {header.map((h, hi) => (
                 <th
                   key={hi}
-                  className="border-b border-white/15 px-1.5 py-1 text-start font-semibold text-white"
+                  className="border-b border-ink-line px-1.5 py-1 text-start font-semibold text-bone"
                 >
                   {renderInline(h, `th-${key}-${hi}`)}
                 </th>
@@ -103,7 +103,7 @@ function renderMarkdown(text: string): ReactNode {
                 {row.map((c, ci) => (
                   <td
                     key={ci}
-                    className="border-b border-white/5 px-1.5 py-1 align-top text-slate-300"
+                    className="border-b border-ink-line px-1.5 py-1 align-top text-bone-dim"
                   >
                     {renderInline(c, `td-${key}-${ri}-${ci}`)}
                   </td>
@@ -258,13 +258,13 @@ export default function ChatWidget() {
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-flag-green opacity-75" />
                   <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-flag-green" />
                 </span>
-                <span className="text-sm font-semibold text-flag-white">{t('title')}</span>
+                <span className="text-sm font-semibold text-bone">{t('title')}</span>
               </div>
               <button
                 type="button"
                 onClick={() => setIsOpen(false)}
                 aria-label={t('minimize')}
-                className="text-bone-dim transition-colors hover:text-flag-white"
+                className="text-bone-dim transition-colors hover:text-bone"
               >
                 <ChevronDown className="h-5 w-5" />
               </button>
@@ -291,11 +291,11 @@ export default function ChatWidget() {
 
               {isTyping && (
                 <div className="flex justify-start">
-                  <div className="flex items-center gap-1 rounded-2xl rounded-tl-none bg-white/5 px-3 py-2.5">
+                  <div className="flex items-center gap-1 rounded-2xl rounded-tl-none bg-bone/[0.05] px-3 py-2.5">
                     {[0, 150, 300].map((delay) => (
                       <span
                         key={delay}
-                        className="h-1.5 w-1.5 rounded-full bg-white/60 [animation:dot-bounce_1.2s_infinite]"
+                        className="h-1.5 w-1.5 rounded-full bg-bone/50 [animation:dot-bounce_1.2s_infinite]"
                         style={{ animationDelay: `${delay}ms` }}
                       />
                     ))}
@@ -316,7 +316,7 @@ export default function ChatWidget() {
                   }
                 }}
                 placeholder={t('placeholder')}
-                className="min-w-0 flex-1 rounded-full border border-ink-line bg-bone/[0.04] px-3 py-2 text-sm text-flag-white placeholder:text-bone-dim focus:border-flag-green/50 focus:outline-none"
+                className="min-w-0 flex-1 rounded-full border border-ink-line bg-bone/[0.04] px-3 py-2 text-sm text-bone placeholder:text-bone-dim focus:border-flag-green/50 focus:outline-none"
               />
               <button
                 type="button"

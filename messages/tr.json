@@ -11,7 +11,12 @@
     "subtitle": "Etkinliğin Dijital İkizi – BTU Kampüsü",
     "description": "Bir kampüsün vicdanı dijitalde yankılanıyor. Dayanışmayı, hafızayı ve direnişi tek bir çatı altında topluyoruz.",
     "tagline": "vicdan · hafıza · direniş",
-    "words": ["dayanışma", "hafıza", "direniş", "vicdan"],
+    "words": [
+      "dayanışma",
+      "hafıza",
+      "direniş",
+      "vicdan"
+    ],
     "scroll": "Programa in"
   },
   "ticker": {
@@ -21,7 +26,9 @@
   "timeline": {
     "kicker": "Program",
     "title": "Gün Boyunca",
-    "lead": "Açılıştan kapanışa, kampüsteki direniş gününün akışı.",
+    "lead": "Haftanın akışı — günü seç, programı keşfet.",
+    "today": "Bugün",
+    "tomorrow": "Yarın",
     "expand": "Detayı gör",
     "collapse": "Kapat",
     "empty": "Program yakında açıklanacak."
@@ -76,12 +83,30 @@
     "message": "Mesajın..."
   },
   "tents": {
-    "sumud": { "name": "Sumud Çadırı", "desc": "Direniş hafızası ve dayanışma duvarı" },
-    "boykot": { "name": "Boykot Çadırı", "desc": "Farkındalık, alternatifler ve bilinç" },
-    "dar-agaci": { "name": "Dar Ağacı Çadırı", "desc": "12 bin esirin hikayesi" },
-    "sayilarla": { "name": "Sayılarla Gazze", "desc": "Rakamların dili" },
-    "cocuk": { "name": "Çocuk Çadırı", "desc": "Yarınların sesi" },
-    "kutuphane": { "name": "Kütüphane Çadırı", "desc": "Eğitim ve kaynaklar" }
+    "sumud": {
+      "name": "Sumud Çadırı",
+      "desc": "Direniş hafızası ve dayanışma duvarı"
+    },
+    "boykot": {
+      "name": "Boykot Çadırı",
+      "desc": "Farkındalık, alternatifler ve bilinç"
+    },
+    "dar-agaci": {
+      "name": "Dar Ağacı Çadırı",
+      "desc": "12 bin esirin hikayesi"
+    },
+    "sayilarla": {
+      "name": "Sayılarla Gazze",
+      "desc": "Rakamların dili"
+    },
+    "cocuk": {
+      "name": "Çocuk Çadırı",
+      "desc": "Yarınların sesi"
+    },
+    "kutuphane": {
+      "name": "Kütüphane Çadırı",
+      "desc": "Eğitim ve kaynaklar"
+    }
   },
   "tent": {
     "sumud": {
@@ -91,16 +116,40 @@
       "wallDesc": "Dayanışma mesajını bırak; duvar canlı olarak güncellenir.",
       "wallPlaceholder": "Dayanışma mesajın...",
       "memory": [
-        { "title": "Mavi Marmara", "desc": "Gazze ablukasını delmek için yola çıkan Özgürlük Filosu'na yapılan saldırı dünya vicdanında derin iz bıraktı. Dayanışmanın bedeli ağırdı ama hafıza kalıcı oldu." },
-        { "title": "Özgürlük Filosu", "desc": "Yıllar boyunca farklı ülkelerden gemiler ablukaya karşı denize açıldı. Her sefer, unutmamanın ve vazgeçmemenin sessiz bir ilanıydı." },
-        { "title": "Küresel İntifada", "desc": "Dünya kentlerinde milyonlar sokağa indi. Üniversiteler, meydanlar ve kampüsler dayanışmanın yeni merkezleri hâline geldi." },
-        { "title": "Uluslararası Sumud Filosu", "desc": "Sumud (direngenlik) ruhuyla yeniden denize açılan filo, ablukaya karşı sivil iradenin kararlılıkla sürdüğünü gösterdi." }
+        {
+          "title": "Mavi Marmara",
+          "desc": "Gazze ablukasını delmek için yola çıkan Özgürlük Filosu'na yapılan saldırı dünya vicdanında derin iz bıraktı. Dayanışmanın bedeli ağırdı ama hafıza kalıcı oldu."
+        },
+        {
+          "title": "Özgürlük Filosu",
+          "desc": "Yıllar boyunca farklı ülkelerden gemiler ablukaya karşı denize açıldı. Her sefer, unutmamanın ve vazgeçmemenin sessiz bir ilanıydı."
+        },
+        {
+          "title": "Küresel İntifada",
+          "desc": "Dünya kentlerinde milyonlar sokağa indi. Üniversiteler, meydanlar ve kampüsler dayanışmanın yeni merkezleri hâline geldi."
+        },
+        {
+          "title": "Uluslararası Sumud Filosu",
+          "desc": "Sumud (direngenlik) ruhuyla yeniden denize açılan filo, ablukaya karşı sivil iradenin kararlılıkla sürdüğünü gösterdi."
+        }
       ],
       "quotes": [
-        { "text": "İklim adaleti; sömürgeciliğe, işgale ve adaletsizliğe karşı mücadeleden ayrı düşünülemez. Filistin halkıyla dayanışma içindeyiz.", "author": "Greta Thunberg" },
-        { "text": "Savaşın bedelini her zaman siviller öder. Barış ve adalet için susmak değil, sesimizi yükseltmek zorundayız.", "author": "Nina Potarska" },
-        { "text": "Mavi Marmara'da öğrendik: vicdan denizlerin ötesine geçer. Dayanışma bir seçim değil, bir borçtur.", "author": "Erdinç Tekir" },
-        { "text": "Filistin meselesi her şeyden önce bir insan hakları meselesidir. Hukuk, ezilenin yanında durmadıkça anlamını yitirir.", "author": "Noura Erakat" }
+        {
+          "text": "İklim adaleti; sömürgeciliğe, işgale ve adaletsizliğe karşı mücadeleden ayrı düşünülemez. Filistin halkıyla dayanışma içindeyiz.",
+          "author": "Greta Thunberg"
+        },
+        {
+          "text": "Savaşın bedelini her zaman siviller öder. Barış ve adalet için susmak değil, sesimizi yükseltmek zorundayız.",
+          "author": "Nina Potarska"
+        },
+        {
+          "text": "Mavi Marmara'da öğrendik: vicdan denizlerin ötesine geçer. Dayanışma bir seçim değil, bir borçtur.",
+          "author": "Erdinç Tekir"
+        },
+        {
+          "text": "Filistin meselesi her şeyden önce bir insan hakları meselesidir. Hukuk, ezilenin yanında durmadıkça anlamını yitirir.",
+          "author": "Noura Erakat"
+        }
       ]
     },
     "boykot": {
@@ -114,18 +163,49 @@
       "cyberTitle": "Teknoloji ve Siber Farkındalık",
       "cyberDesc": "Dijital alanda da bilinçli ol; verin ve tercihlerin birer tutum.",
       "products": [
-        { "category": "Gazlı İçecekler", "alternative": "Çamlıca, yerli gazozlar, ayran" },
-        { "category": "Kahve Zincirleri", "alternative": "Yerel kahveciler, Türk kahvesi" },
-        { "category": "Teknoloji & Telefon", "alternative": "Cihazını yenile, ömrünü uzat" },
-        { "category": "Fast Food", "alternative": "Mahalle esnafı, ev yemeği" },
-        { "category": "Kart & Ödeme", "alternative": "Katılım / yerli bankalar" }
+        {
+          "category": "Gazlı İçecekler",
+          "alternative": "Çamlıca, yerli gazozlar, ayran"
+        },
+        {
+          "category": "Kahve Zincirleri",
+          "alternative": "Yerel kahveciler, Türk kahvesi"
+        },
+        {
+          "category": "Teknoloji & Telefon",
+          "alternative": "Cihazını yenile, ömrünü uzat"
+        },
+        {
+          "category": "Fast Food",
+          "alternative": "Mahalle esnafı, ev yemeği"
+        },
+        {
+          "category": "Kart & Ödeme",
+          "alternative": "Katılım / yerli bankalar"
+        }
       ],
-      "calories": ["Gazze (günlük ort.)", "DSÖ asgari", "Normal ihtiyaç"],
+      "calories": [
+        "Gazze (günlük ort.)",
+        "DSÖ asgari",
+        "Normal ihtiyaç"
+      ],
       "cyber": [
-        { "title": "Dijital Ayak İzi", "body": "Her tıklama veri bırakır. Hangi platformların kimi finanse ettiğini bil." },
-        { "title": "VPN & Güvenlik", "body": "Güvenli bağlantı, sansürü aşmanın ve gizliliği korumanın ilk adımıdır." },
-        { "title": "Veri Gizliliği", "body": "İzinleri kıs, takipçileri engelle; verin senin elinde kalsın." },
-        { "title": "Bilinçli Tüketim", "body": "Uygulama yüklerken sahibini ve fonlayıcısını araştır." }
+        {
+          "title": "Dijital Ayak İzi",
+          "body": "Her tıklama veri bırakır. Hangi platformların kimi finanse ettiğini bil."
+        },
+        {
+          "title": "VPN & Güvenlik",
+          "body": "Güvenli bağlantı, sansürü aşmanın ve gizliliği korumanın ilk adımıdır."
+        },
+        {
+          "title": "Veri Gizliliği",
+          "body": "İzinleri kıs, takipçileri engelle; verin senin elinde kalsın."
+        },
+        {
+          "title": "Bilinçli Tüketim",
+          "body": "Uygulama yüklerken sahibini ve fonlayıcısını araştır."
+        }
       ]
     },
     "dar-agaci": {
@@ -138,19 +218,42 @@
       "counterLabel": "Şu an cezaevinde",
       "counterUnit": "esir",
       "prisonersTitle": "Kimler Tutsak?",
-      "categories": ["Öğrenci", "Gazeteci", "Doktor & Sağlıkçı", "Öğretmen", "Avukat", "Çocuk", "Mühendis", "Çiftçi", "Sanatçı", "Sporcu", "Akademisyen", "Belgeselci"]
+      "categories": [
+        "Öğrenci",
+        "Gazeteci",
+        "Doktor & Sağlıkçı",
+        "Öğretmen",
+        "Avukat",
+        "Çocuk",
+        "Mühendis",
+        "Çiftçi",
+        "Sanatçı",
+        "Sporcu",
+        "Akademisyen",
+        "Belgeselci"
+      ]
     },
     "sayilarla": {
       "kicker": "Sayılarla Gazze",
       "ton": " ton",
-      "stats": ["Şehit", "Yaralı", "Yıkılan Bina", "Bomba Tonajı"],
+      "stats": [
+        "Şehit",
+        "Yaralı",
+        "Yıkılan Bina",
+        "Bomba Tonajı"
+      ],
       "aksaTitle": "Mescid-i Aksa",
       "aksaP1": "İslam'ın ilk kıblesi ve üç semavi din için kutsal sayılan Kudüs'ün kalbi. Tarih boyunca pek çok medeniyete tanıklık eden Mescid-i Aksa, bugün de özgürlük ve onur mücadelesinin sembolü olmayı sürdürüyor.",
       "aksaP2": "Erişim kısıtlamaları, baskınlar ve statükoyu değiştirme girişimleri karşısında; mabedin korunması, dünya çapındaki dayanışmanın ortak çağrılarından biri hâline gelmiştir."
     },
     "cocuk": {
       "kicker": "Çocuk",
-      "stats": ["Yardıma muhtaç çocuk", "Eğitimi kesintiye uğrayan", "Refakatsiz / yetim kalan", "Günlük travma vakası"],
+      "stats": [
+        "Yardıma muhtaç çocuk",
+        "Eğitimi kesintiye uğrayan",
+        "Refakatsiz / yetim kalan",
+        "Günlük travma vakası"
+      ],
       "workshopTitle": "Çocuk Atölyesi",
       "workshopBody": "Çocuk Çadırı'nda düzenlenecek bu atölyede çocuklar resim, şiir ve hikâye anlatımı yoluyla duygularını özgürce ifade edebilecek. Gönüllü pedagog ve eğitmenler eşliğinde barış ve dayanışma temalı yaratıcı etkinlikler yer alacak. Küçük eller, en büyük umudu çiziyor.",
       "wallTitle": "Çocuklara Mesajın",
@@ -165,11 +268,30 @@
       "kindDoc": "Belgesel",
       "ctaTitle": "Kaynak Havuzunu Birlikte Büyütüyoruz",
       "ctaBody": "Kütüphane topluluk küratörlüğüyle gelişir. Önerdiğin her kaynak (video, makale, kitap, infografik) önce gönüllü ekip tarafından incelenir, ardından yayına alınır. Aşağıdan kaynağını öner, en faydalı bulduklarını oyla.",
-      "steps": ["1. Öner", "2. İncele & onayla", "3. Yayınla & oyla"],
+      "steps": [
+        "1. Öner",
+        "2. İncele & onayla",
+        "3. Yayınla & oyla"
+      ],
       "featured": [
-        { "title": "The Question of Palestine", "author": "Edward Said", "kind": "book", "note": "Filistin meselesini entelektüel ve tarihsel bağlamıyla ele alan temel başvuru eseri." },
-        { "title": "The Hundred Years' War on Palestine", "author": "Rashid Khalidi", "kind": "book", "note": "Bir asırlık sömürgecilik ve direnişin belgelere dayalı kapsamlı anlatısı." },
-        { "title": "Gazze: Kıyıdaki Hayatlar", "author": "Belgesel", "kind": "doc", "note": "Ablukada gündelik hayatın ve direngenliğin (sumud) sinematik tanıklığı." }
+        {
+          "title": "The Question of Palestine",
+          "author": "Edward Said",
+          "kind": "book",
+          "note": "Filistin meselesini entelektüel ve tarihsel bağlamıyla ele alan temel başvuru eseri."
+        },
+        {
+          "title": "The Hundred Years' War on Palestine",
+          "author": "Rashid Khalidi",
+          "kind": "book",
+          "note": "Bir asırlık sömürgecilik ve direnişin belgelere dayalı kapsamlı anlatısı."
+        },
+        {
+          "title": "Gazze: Kıyıdaki Hayatlar",
+          "author": "Belgesel",
+          "kind": "doc",
+          "note": "Ablukada gündelik hayatın ve direngenliğin (sumud) sinematik tanıklığı."
+        }
       ]
     }
   },
@@ -197,7 +319,12 @@
     "share": "Sonucu Paylaş",
     "download": "Kartı İndir",
     "explanation_label": "Bilgi Notu",
-    "ranks": ["Tanık Adayı", "Farkındalık Sahibi", "Hafıza Bekçisi", "Sumud Elçisi"],
+    "ranks": [
+      "Tanık Adayı",
+      "Farkındalık Sahibi",
+      "Hafıza Bekçisi",
+      "Sumud Elçisi"
+    ],
     "rank_descs": [
       "Her şey bir adımla başlar. Bu deneyim, Filistin gerçeğine yönelik merakın ilk kıvılcımı olsun.",
       "Konuyu takip ediyorsun. Bilgi, dayanışmanın temelidir.",
@@ -207,52 +334,102 @@
     "questions": [
       {
         "q": "Arapçada 'sumud' (صمود) kelimesinin en doğru anlamı hangisidir?",
-        "opts": ["Zafer", "Kurtuluş", "Sebat ve kararlılık", "Barış"],
+        "opts": [
+          "Zafer",
+          "Kurtuluş",
+          "Sebat ve kararlılık",
+          "Barış"
+        ],
         "note": "Sumud, Arapçada 'sabit durmak, yılmamak, toprağa kök salmak' anlamına gelir. Filistin siyasetinde sürgün ve baskıya rağmen var olmayı sürdürmenin simgesi hâline gelmiştir."
       },
       {
         "q": "Nakba (النكبة) hangi olaya verilen isimdir?",
-        "opts": ["1967 Altı Gün Savaşı", "1948'de 700.000'den fazla Filistinlinin yurtlarından edilmesi", "1948 BM bölünme planı", "1973 Yom Kippur Savaşı"],
+        "opts": [
+          "1967 Altı Gün Savaşı",
+          "1948'de 700.000'den fazla Filistinlinin yurtlarından edilmesi",
+          "1948 BM bölünme planı",
+          "1973 Yom Kippur Savaşı"
+        ],
         "note": "Nakba, Arapçada 'felaket' demektir. 1948'de yaklaşık 700.000 Filistinli yerinden edildi. Bu tarih her yıl 15 Mayıs'ta anılır."
       },
       {
         "q": "Geleneksel Filistin kufiyesinin siyah-beyaz geometrik deseninin kökeni olarak en yaygın kabul gören yorum hangisidir?",
-        "opts": ["Çöl kumları ve yıldız desenleri", "Zeytin ağacı yaprakları ve balıkçı ağları", "Filistin bayrağının renk blokları", "Osmanlı dönemi hükümet arması"],
+        "opts": [
+          "Çöl kumları ve yıldız desenleri",
+          "Zeytin ağacı yaprakları ve balıkçı ağları",
+          "Filistin bayrağının renk blokları",
+          "Osmanlı dönemi hükümet arması"
+        ],
         "note": "Kufiyenin tarihi üzerine birden fazla yorum bulunsa da en yaygın anlatı, desenin zeytin yapraklarını ve geleneksel balıkçı ağlarını simgelediğini öne sürer."
       },
       {
         "q": "Filistin şiirinin sembolü Mahmud Derviş'in yapıtları ağırlıklı olarak hangi temayı işler?",
-        "opts": ["İlahi aşk ve mistisizm", "Toprak, sürgün ve kimlik", "Savaş kahramanlıkları", "Aşk ve romantizm"],
+        "opts": [
+          "İlahi aşk ve mistisizm",
+          "Toprak, sürgün ve kimlik",
+          "Savaş kahramanlıkları",
+          "Aşk ve romantizm"
+        ],
         "note": "Mahmud Derviş'in 'Kimlik Belgesi' (1964) şiiri toprağa bağlılığı ve direnci anlatır. Derviş, dünya genelinde en çok okunan Arap şairlerinden biridir."
       },
       {
         "q": "Filistin direniş kültürünün sembolik figürü 'Handala' kimdir?",
-        "opts": ["Nakba'yı bizzat yaşayan gerçek bir çocuk", "Karikatürist Naci el-Ali'nin yarattığı, sırtı dönük mülteci çocuk figürü", "Bir Filistin folklor masalının kahramanı", "1948 direnişçilerine takılan ortak bir lakap"],
+        "opts": [
+          "Nakba'yı bizzat yaşayan gerçek bir çocuk",
+          "Karikatürist Naci el-Ali'nin yarattığı, sırtı dönük mülteci çocuk figürü",
+          "Bir Filistin folklor masalının kahramanı",
+          "1948 direnişçilerine takılan ortak bir lakap"
+        ],
         "note": "Handala, Filistinli karikatürist Naci el-Ali tarafından 1969'da yaratıldı. Sırtı daima izleyiciye dönük bu çocuk, yurduna dönmeden büyümeyeceğinin simgesidir."
       },
       {
         "q": "Tatreez (تطريز) nedir?",
-        "opts": ["Geleneksel bir Filistin yemeği", "Filistin'e özgü bir türkü türü", "Geleneksel Filistin el nakışı sanatı", "Hac yolculuğunda okunan bir dua formu"],
+        "opts": [
+          "Geleneksel bir Filistin yemeği",
+          "Filistin'e özgü bir türkü türü",
+          "Geleneksel Filistin el nakışı sanatı",
+          "Hac yolculuğunda okunan bir dua formu"
+        ],
         "note": "Tatreez, Filistin'in geleneksel el nakışı sanatıdır. Geometrik motifler ve zengin renklerle bezenen kıyafetler, bölgeyi ve aileyi simgeler. UNESCO bu geleneği 2021'de Somut Olmayan Kültürel Miras listesine almıştır."
       },
       {
         "q": "BM OCHA verilerine göre 2025 başı itibarıyla Gazze'de nüfusun durumu nedir?",
-        "opts": ["Yaklaşık 500.000 kişi yerinden edilmiş", "Yaklaşık 1 milyon kişi yerinden edilmiş", "2,3 milyonluk nüfusun büyük çoğunluğu yerinden edilmiş", "Yaklaşık 1,5 milyon kişi yerinden edilmiş"],
+        "opts": [
+          "Yaklaşık 500.000 kişi yerinden edilmiş",
+          "Yaklaşık 1 milyon kişi yerinden edilmiş",
+          "2,3 milyonluk nüfusun büyük çoğunluğu yerinden edilmiş",
+          "Yaklaşık 1,5 milyon kişi yerinden edilmiş"
+        ],
         "note": "BM OCHA raporlarına göre Gazze'nin 2,3 milyonluk nüfusunun büyük çoğunluğu yerinden edilmiş durumda. Pek çok kişi birden fazla kez göç etmek zorunda kalmıştır."
       },
       {
         "q": "Zeytin ağacı, Filistin kültüründe öncelikle neyin simgesidir?",
-        "opts": ["Ekonomik refah ve ticari güç", "Toprağa bağlılık, köklülük ve direniş", "Dini ibadet ve ritüel", "Çöl ortamında suyun değeri"],
+        "opts": [
+          "Ekonomik refah ve ticari güç",
+          "Toprağa bağlılık, köklülük ve direniş",
+          "Dini ibadet ve ritüel",
+          "Çöl ortamında suyun değeri"
+        ],
         "note": "Filistin'de binlerce yıllık zeytin ağaçları, süreklilik ve tarihsel köklülüğün simgesidir. Ağaçların sökülmesi sadece ekonomik değil, kültürel ve sembolik bir yıkımdır."
       },
       {
         "q": "2025 yılındaki 'Sumud Filosu' seferinin birincil amacı neydi?",
-        "opts": ["Savaş suçlarını belgeleyen gazetecileri taşımak", "Uluslararası diplomatik görüşmeler yürütmek", "Sivil ablukayı delmek ve insani yardım ulaştırmak", "Bölgede balıkçılık haklarını savunmak"],
+        "opts": [
+          "Savaş suçlarını belgeleyen gazetecileri taşımak",
+          "Uluslararası diplomatik görüşmeler yürütmek",
+          "Sivil ablukayı delmek ve insani yardım ulaştırmak",
+          "Bölgede balıkçılık haklarını savunmak"
+        ],
         "note": "2025 Sumud Filosu'na 30'dan fazla ülkeden 700'ü aşkın gönüllü katıldı. Filo ilaç, gıda ve barınak malzemesi taşıdı; ancak uluslararası sularda engellendi."
       },
       {
         "q": "UNESCO hangi Filistin kültürel pratiğini 2021'de Somut Olmayan Kültürel Miras listesine aldı?",
-        "opts": ["Debke (geleneksel halk dansı)", "Geleneksel Arapça hikâye anlatıcılığı", "Filistin kaftanı ve tatreez nakış sanatı", "Kudüs'teki geleneksel pazar kültürü"],
+        "opts": [
+          "Debke (geleneksel halk dansı)",
+          "Geleneksel Arapça hikâye anlatıcılığı",
+          "Filistin kaftanı ve tatreez nakış sanatı",
+          "Kudüs'teki geleneksel pazar kültürü"
+        ],
         "note": "UNESCO, Filistin kaftanı (thobe) ve tatreez el nakışı geleneğini Kasım 2021'de İnsanlığın Somut Olmayan Kültürel Mirası listesine ekledi."
       }
     ]
@@ -318,5 +495,28 @@
     "qr_hint": "Tara, sen de katıl",
     "download": "Görseli İndir",
     "share": "Paylaş"
+  },
+  "featured": {
+    "kicker": "Öne Çıkanlar",
+    "title": "Deneyimle Katıl",
+    "lead": "Bilgi yarışmasından tanıklık simülasyonuna — hareketin parçası ol, öğren ve paylaş.",
+    "cta": "Deneyime git",
+    "cards": {
+      "quiz": {
+        "title": "Bilgi Yarışması",
+        "desc": "10 soruda Filistin",
+        "tag": "Etkileşimli"
+      },
+      "flotilla": {
+        "title": "Sumud Filosu",
+        "desc": "Tanıklık simülasyonu",
+        "tag": "5 aşama"
+      },
+      "archive": {
+        "title": "Çadır Arşivi",
+        "desc": "Altı cephe, tek çatı",
+        "tag": "Kaynak havuzu"
+      }
+    }
   }
 }

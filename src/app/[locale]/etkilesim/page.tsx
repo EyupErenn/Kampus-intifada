@@ -19,7 +19,7 @@ export default async function EtkilesimPage() {
           <span className="text-xs font-bold uppercase tracking-[0.32em] text-flag-green">
             {t('kicker')}
           </span>
-          <h1 className="riso-title mt-3 text-4xl font-black tracking-tight text-flag-white md:text-5xl">
+          <h1 className="riso-title mt-3 text-4xl font-black tracking-tight text-bone md:text-5xl">
             {t('title')}
           </h1>
           <p className="mt-4 text-lg leading-relaxed text-bone-dim">{t('lead')}</p>
@@ -33,7 +33,7 @@ export default async function EtkilesimPage() {
             <span className="stamp mb-4 inline-block bg-flag-green/10 text-flag-green">
               {t('quiz_kicker')}
             </span>
-            <h2 className="mb-3 text-xl font-black text-flag-white">{t('quiz_title')}</h2>
+            <h2 className="mb-3 text-xl font-black text-bone">{t('quiz_title')}</h2>
             <p className="mb-8 text-sm leading-relaxed text-bone-dim">{t('quiz_desc')}</p>
             <Link
               href="/bilgi-yarismasi"
@@ -50,7 +50,7 @@ export default async function EtkilesimPage() {
             <span className="stamp mb-4 inline-block bg-flag-red/10 text-flag-red">
               {t('flotilla_kicker')}
             </span>
-            <h2 className="mb-3 text-xl font-black text-flag-white">{t('flotilla_title')}</h2>
+            <h2 className="mb-3 text-xl font-black text-bone">{t('flotilla_title')}</h2>
             <p className="mb-8 text-sm leading-relaxed text-bone-dim">{t('flotilla_desc')}</p>
             <Link
               href="/sumud-filosu"

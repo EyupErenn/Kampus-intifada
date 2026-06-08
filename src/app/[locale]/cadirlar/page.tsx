@@ -36,7 +36,7 @@ export default async function TentsIndexPage({
           <span className="text-xs font-bold uppercase tracking-[0.32em] text-flag-green">
             {t('tentsKicker')}
           </span>
-          <h1 className="mt-3 text-4xl font-black tracking-tight text-flag-white md:text-5xl">
+          <h1 className="mt-3 text-4xl font-black tracking-tight text-bone md:text-5xl">
             {t('tentsTitle')}
           </h1>
           <p className="mt-4 text-lg leading-relaxed text-bone-dim">

@@ -56,7 +56,7 @@ export default function ShareActions({
       <a
         href={downloadUrl}
         download="campus-intifada.png"
-        className="inline-flex items-center gap-2 rounded-xl border border-bone/20 px-6 py-3 text-sm font-semibold text-bone-dim transition-colors hover:border-flag-green/40 hover:text-flag-white"
+        className="inline-flex items-center gap-2 rounded-xl border border-bone/20 px-6 py-3 text-sm font-semibold text-bone-dim transition-colors hover:border-flag-green/40 hover:text-bone"
       >
         <Download className="h-4 w-4" />
         {downloadLabel}

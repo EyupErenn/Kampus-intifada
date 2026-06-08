@@ -20,7 +20,7 @@ export default function NotFound() {
           {t('code')}
         </span>
 
-        <h1 className="mt-4 text-3xl font-black tracking-tight text-flag-white md:text-4xl">
+        <h1 className="mt-4 text-3xl font-black tracking-tight text-bone md:text-4xl">
           {t('title')}
         </h1>
         <p className="mt-4 max-w-md text-lg leading-relaxed text-bone-dim">
@@ -37,7 +37,7 @@ export default function NotFound() {
           </Link>
           <Link
             href="/cadirlar"
-            className="inline-flex items-center gap-2 rounded-full border border-ink-line px-5 py-2.5 text-sm font-semibold text-bone-dim transition hover:text-flag-white"
+            className="inline-flex items-center gap-2 rounded-full border border-ink-line px-5 py-2.5 text-sm font-semibold text-bone-dim transition hover:text-bone"
           >
             {t('tents')}
             <ArrowRight className="h-4 w-4" />

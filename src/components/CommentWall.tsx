@@ -17,11 +17,11 @@ interface CommentWallProps {
 }
 
 const POSTIT_STYLES = [
-  'bg-rose-200 text-rose-950 rotate-[-1.5deg]',
-  'bg-amber-200 text-amber-950 rotate-[1.5deg]',
-  'bg-sky-200 text-sky-950 rotate-[-1deg]',
-  'bg-emerald-200 text-emerald-950 rotate-[1deg]',
-  'bg-violet-200 text-violet-950 rotate-[-2deg]',
+  'bg-flag-red/15 text-flag-red rotate-[-1.5deg]',
+  'bg-flag-green/15 text-flag-green rotate-[1.5deg]',
+  'bg-flag-red/[0.07] text-bone rotate-[-1deg]',
+  'bg-flag-green/[0.07] text-bone rotate-[1deg]',
+  'bg-bone/[0.06] text-bone rotate-[-2deg]',
 ]
 
 export default function CommentWall({
@@ -160,7 +160,7 @@ export default function CommentWall({
                 className="rounded-xl rounded-tl-none border border-ink-line bg-bone/[0.03] px-3 py-2"
               >
                 <div className="flex items-baseline justify-between gap-2">
-                  <span className="text-sm font-semibold text-flag-white">
+                  <span className="text-sm font-semibold text-bone">
                     {c.author}
                   </span>
                   <span className="shrink-0 text-[11px] text-bone-dim">
@@ -201,7 +201,7 @@ export default function CommentWall({
           onChange={(e) => setAuthor(e.target.value.slice(0, 30))}
           placeholder={t('name')}
           maxLength={30}
-          className="rounded-lg border border-ink-line bg-bone/[0.03] px-3 py-2 text-sm text-flag-white placeholder:text-bone-dim focus:border-flag-green/50 focus:outline-none"
+          className="rounded-lg border border-ink-line bg-bone/[0.03] px-3 py-2 text-sm text-bone placeholder:text-bone-dim focus:border-flag-green/50 focus:outline-none"
         />
         <div className="relative">
           <textarea
@@ -210,7 +210,7 @@ export default function CommentWall({
             placeholder={placeholder ?? t('message')}
             rows={2}
             maxLength={maxContent}
-            className="w-full resize-none rounded-lg border border-ink-line bg-bone/[0.03] px-3 py-2 pb-6 text-sm text-flag-white placeholder:text-bone-dim focus:border-flag-green/50 focus:outline-none"
+            className="w-full resize-none rounded-lg border border-ink-line bg-bone/[0.03] px-3 py-2 pb-6 text-sm text-bone placeholder:text-bone-dim focus:border-flag-green/50 focus:outline-none"
           />
           <span className="pointer-events-none absolute bottom-2 end-3 text-[11px] text-bone-dim tabular-nums">
             {remaining}

@@ -17,9 +17,9 @@ type TabKey = 'all' | ResourceType
 
 const TYPE_STYLES: Record<ResourceType, string> = {
   video: 'bg-flag-red/15 text-flag-red',
-  makale: 'bg-sky-500/15 text-sky-300',
+  makale: 'bg-bone/10 text-bone',
   kitap: 'bg-flag-green/15 text-flag-green',
-  infografik: 'bg-amber-500/15 text-amber-300',
+  infografik: 'bg-bone/10 text-bone',
 }
 
 export default function ResourcePool({
@@ -109,7 +109,7 @@ export default function ResourcePool({
   return (
     <section className="mx-auto max-w-5xl px-5 py-16 sm:px-8">
       <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
-        <h2 className="text-2xl font-black tracking-tight text-flag-white">
+        <h2 className="text-2xl font-black tracking-tight text-bone">
           {heading ?? t('heading')}
         </h2>
         <button
@@ -130,11 +130,11 @@ export default function ResourcePool({
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder={t('search')}
-            className="w-full bg-transparent py-2.5 text-sm text-flag-white placeholder:text-bone-dim focus:outline-none"
+            className="w-full bg-transparent py-2.5 text-sm text-bone placeholder:text-bone-dim focus:outline-none"
           />
           {query && (
             <button type="button" onClick={() => setQuery('')} aria-label={t('clear')}>
-              <X className="h-4 w-4 text-bone-dim hover:text-flag-white" />
+              <X className="h-4 w-4 text-bone-dim hover:text-bone" />
             </button>
           )}
         </div>
@@ -150,7 +150,7 @@ export default function ResourcePool({
             className={`rounded-full px-4 py-1.5 text-sm font-semibold transition ${
               tab === tabItem.key
                 ? 'bg-bone text-ink'
-                : 'bg-bone/[0.05] text-bone-dim hover:text-flag-white'
+                : 'bg-bone/[0.05] text-bone-dim hover:text-bone'
             }`}
           >
             {tabItem.label}
@@ -169,18 +169,18 @@ export default function ResourcePool({
             value={form.title}
             onChange={(e) => setForm({ ...form, title: e.target.value })}
             placeholder={t('formTitle')}
-            className="rounded-lg border border-ink-line bg-bone/[0.03] px-3 py-2 text-sm text-flag-white placeholder:text-bone-dim focus:border-flag-green/50 focus:outline-none"
+            className="rounded-lg border border-ink-line bg-bone/[0.03] px-3 py-2 text-sm text-bone placeholder:text-bone-dim focus:border-flag-green/50 focus:outline-none"
           />
           <input
             value={form.url}
             onChange={(e) => setForm({ ...form, url: e.target.value })}
             placeholder={t('formUrl')}
-            className="rounded-lg border border-ink-line bg-bone/[0.03] px-3 py-2 text-sm text-flag-white placeholder:text-bone-dim focus:border-flag-green/50 focus:outline-none"
+            className="rounded-lg border border-ink-line bg-bone/[0.03] px-3 py-2 text-sm text-bone placeholder:text-bone-dim focus:border-flag-green/50 focus:outline-none"
           />
           <select
             value={form.type}
             onChange={(e) => setForm({ ...form, type: e.target.value as ResourceType })}
-            className="rounded-lg border border-ink-line bg-bone/[0.03] px-3 py-2 text-sm text-flag-white focus:border-flag-green/50 focus:outline-none"
+            className="rounded-lg border border-ink-line bg-bone/[0.03] px-3 py-2 text-sm text-bone focus:border-flag-green/50 focus:outline-none"
           >
             {(['video', 'makale', 'kitap', 'infografik'] as ResourceType[]).map(
               (typeKey) => (
@@ -194,7 +194,7 @@ export default function ResourcePool({
             value={form.submitted_by}
             onChange={(e) => setForm({ ...form, submitted_by: e.target.value })}
             placeholder={t('formName')}
-            className="rounded-lg border border-ink-line bg-bone/[0.03] px-3 py-2 text-sm text-flag-white placeholder:text-bone-dim focus:border-flag-green/50 focus:outline-none"
+            className="rounded-lg border border-ink-line bg-bone/[0.03] px-3 py-2 text-sm text-bone placeholder:text-bone-dim focus:border-flag-green/50 focus:outline-none"
           />
           <button
             type="submit"
@@ -223,7 +223,7 @@ export default function ResourcePool({
                 className={`flex h-fit shrink-0 flex-col items-center rounded-lg px-2.5 py-1.5 text-sm transition ${
                   voted.has(r.id)
                     ? 'bg-flag-green/20 text-flag-green'
-                    : 'bg-bone/[0.05] text-bone-dim hover:bg-bone/10 hover:text-flag-white'
+                    : 'bg-bone/[0.05] text-bone-dim hover:bg-bone/10 hover:text-bone'
                 }`}
               >
                 {voted.has(r.id) ? (
@@ -243,7 +243,7 @@ export default function ResourcePool({
                     {typeLabel(r.type)}
                   </span>
                 </div>
-                <h3 className="font-bold leading-snug text-flag-white">{r.title}</h3>
+                <h3 className="font-bold leading-snug text-bone">{r.title}</h3>
                 {r.description && (
                   <p className="mt-1 line-clamp-2 text-sm text-bone-dim">
                     {r.description}

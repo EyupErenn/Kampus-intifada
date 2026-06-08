@@ -11,7 +11,12 @@
     "subtitle": "The Digital Twin of the Event – BTU Campus",
     "description": "The conscience of a campus echoes in the digital realm. We gather solidarity, memory and resistance under one roof.",
     "tagline": "conscience · memory · resistance",
-    "words": ["solidarity", "memory", "resistance", "conscience"],
+    "words": [
+      "solidarity",
+      "memory",
+      "resistance",
+      "conscience"
+    ],
     "scroll": "Skip to programme"
   },
   "ticker": {
@@ -21,7 +26,9 @@
   "timeline": {
     "kicker": "Programme",
     "title": "Throughout the Day",
-    "lead": "From opening to closing, the flow of the day of resistance on campus.",
+    "lead": "The week's flow — pick a day, explore the programme.",
+    "today": "Today",
+    "tomorrow": "Tomorrow",
     "expand": "View details",
     "collapse": "Close",
     "empty": "The programme will be announced soon."
@@ -76,12 +83,30 @@
     "message": "Your message..."
   },
   "tents": {
-    "sumud": { "name": "Sumud Tent", "desc": "Resistance memory and solidarity wall" },
-    "boykot": { "name": "Boycott Tent", "desc": "Awareness, alternatives and consciousness" },
-    "dar-agaci": { "name": "Gallows Tent", "desc": "The story of 12 thousand prisoners" },
-    "sayilarla": { "name": "Gaza in Numbers", "desc": "The language of statistics" },
-    "cocuk": { "name": "Children's Tent", "desc": "The voice of tomorrow" },
-    "kutuphane": { "name": "Library Tent", "desc": "Education and resources" }
+    "sumud": {
+      "name": "Sumud Tent",
+      "desc": "Resistance memory and solidarity wall"
+    },
+    "boykot": {
+      "name": "Boycott Tent",
+      "desc": "Awareness, alternatives and consciousness"
+    },
+    "dar-agaci": {
+      "name": "Gallows Tent",
+      "desc": "The story of 12 thousand prisoners"
+    },
+    "sayilarla": {
+      "name": "Gaza in Numbers",
+      "desc": "The language of statistics"
+    },
+    "cocuk": {
+      "name": "Children's Tent",
+      "desc": "The voice of tomorrow"
+    },
+    "kutuphane": {
+      "name": "Library Tent",
+      "desc": "Education and resources"
+    }
   },
   "tent": {
     "sumud": {
@@ -91,16 +116,40 @@
       "wallDesc": "Leave a message of solidarity; the wall updates live.",
       "wallPlaceholder": "Your message of solidarity...",
       "memory": [
-        { "title": "Mavi Marmara", "desc": "The attack on the Freedom Flotilla, which set sail to break the siege of Gaza, left a deep mark on the world's conscience. The price of solidarity was heavy, but the memory endured." },
-        { "title": "Freedom Flotilla", "desc": "Over the years, ships from different countries set sail against the blockade. Each voyage was a quiet declaration of not forgetting and not giving up." },
-        { "title": "Global Intifada", "desc": "Millions took to the streets in cities around the world. Universities, squares and campuses became the new centres of solidarity." },
-        { "title": "International Sumud Flotilla", "desc": "Setting sail again in the spirit of sumud (steadfastness), the flotilla showed that civilian will against the blockade persists with determination." }
+        {
+          "title": "Mavi Marmara",
+          "desc": "The attack on the Freedom Flotilla, which set sail to break the siege of Gaza, left a deep mark on the world's conscience. The price of solidarity was heavy, but the memory endured."
+        },
+        {
+          "title": "Freedom Flotilla",
+          "desc": "Over the years, ships from different countries set sail against the blockade. Each voyage was a quiet declaration of not forgetting and not giving up."
+        },
+        {
+          "title": "Global Intifada",
+          "desc": "Millions took to the streets in cities around the world. Universities, squares and campuses became the new centres of solidarity."
+        },
+        {
+          "title": "International Sumud Flotilla",
+          "desc": "Setting sail again in the spirit of sumud (steadfastness), the flotilla showed that civilian will against the blockade persists with determination."
+        }
       ],
       "quotes": [
-        { "text": "Climate justice cannot be separated from the struggle against colonialism, occupation and injustice. We stand in solidarity with the Palestinian people.", "author": "Greta Thunberg" },
-        { "text": "Civilians always pay the price of war. For peace and justice we must not be silent, but raise our voices.", "author": "Nina Potarska" },
-        { "text": "On the Mavi Marmara we learned: conscience travels beyond the seas. Solidarity is not a choice, it is a debt.", "author": "Erdinç Tekir" },
-        { "text": "The question of Palestine is, above all, a question of human rights. Law loses its meaning unless it stands with the oppressed.", "author": "Noura Erakat" }
+        {
+          "text": "Climate justice cannot be separated from the struggle against colonialism, occupation and injustice. We stand in solidarity with the Palestinian people.",
+          "author": "Greta Thunberg"
+        },
+        {
+          "text": "Civilians always pay the price of war. For peace and justice we must not be silent, but raise our voices.",
+          "author": "Nina Potarska"
+        },
+        {
+          "text": "On the Mavi Marmara we learned: conscience travels beyond the seas. Solidarity is not a choice, it is a debt.",
+          "author": "Erdinç Tekir"
+        },
+        {
+          "text": "The question of Palestine is, above all, a question of human rights. Law loses its meaning unless it stands with the oppressed.",
+          "author": "Noura Erakat"
+        }
       ]
     },
     "boykot": {
@@ -114,18 +163,49 @@
       "cyberTitle": "Technology & Cyber Awareness",
       "cyberDesc": "Be conscious in the digital realm too; your data and choices are a stance.",
       "products": [
-        { "category": "Soft Drinks", "alternative": "Local sodas, ayran" },
-        { "category": "Coffee Chains", "alternative": "Local coffeehouses, Turkish coffee" },
-        { "category": "Technology & Phones", "alternative": "Renew your device, extend its life" },
-        { "category": "Fast Food", "alternative": "Neighbourhood eateries, home cooking" },
-        { "category": "Cards & Payment", "alternative": "Participation / local banks" }
+        {
+          "category": "Soft Drinks",
+          "alternative": "Local sodas, ayran"
+        },
+        {
+          "category": "Coffee Chains",
+          "alternative": "Local coffeehouses, Turkish coffee"
+        },
+        {
+          "category": "Technology & Phones",
+          "alternative": "Renew your device, extend its life"
+        },
+        {
+          "category": "Fast Food",
+          "alternative": "Neighbourhood eateries, home cooking"
+        },
+        {
+          "category": "Cards & Payment",
+          "alternative": "Participation / local banks"
+        }
       ],
-      "calories": ["Gaza (daily avg.)", "WHO minimum", "Normal need"],
+      "calories": [
+        "Gaza (daily avg.)",
+        "WHO minimum",
+        "Normal need"
+      ],
       "cyber": [
-        { "title": "Digital Footprint", "body": "Every click leaves data. Know which platforms fund whom." },
-        { "title": "VPN & Security", "body": "A secure connection is the first step to bypassing censorship and protecting privacy." },
-        { "title": "Data Privacy", "body": "Restrict permissions, block trackers; keep your data in your own hands." },
-        { "title": "Conscious Consumption", "body": "When installing an app, research its owner and its funders." }
+        {
+          "title": "Digital Footprint",
+          "body": "Every click leaves data. Know which platforms fund whom."
+        },
+        {
+          "title": "VPN & Security",
+          "body": "A secure connection is the first step to bypassing censorship and protecting privacy."
+        },
+        {
+          "title": "Data Privacy",
+          "body": "Restrict permissions, block trackers; keep your data in your own hands."
+        },
+        {
+          "title": "Conscious Consumption",
+          "body": "When installing an app, research its owner and its funders."
+        }
       ]
     },
     "dar-agaci": {
@@ -138,19 +218,42 @@
       "counterLabel": "Currently imprisoned",
       "counterUnit": "prisoners",
       "prisonersTitle": "Who Is Held Captive?",
-      "categories": ["Student", "Journalist", "Doctor & Medic", "Teacher", "Lawyer", "Child", "Engineer", "Farmer", "Artist", "Athlete", "Academic", "Documentarian"]
+      "categories": [
+        "Student",
+        "Journalist",
+        "Doctor & Medic",
+        "Teacher",
+        "Lawyer",
+        "Child",
+        "Engineer",
+        "Farmer",
+        "Artist",
+        "Athlete",
+        "Academic",
+        "Documentarian"
+      ]
     },
     "sayilarla": {
       "kicker": "Gaza in Numbers",
       "ton": " tons",
-      "stats": ["Killed", "Wounded", "Buildings Destroyed", "Tonnage of Bombs"],
+      "stats": [
+        "Killed",
+        "Wounded",
+        "Buildings Destroyed",
+        "Tonnage of Bombs"
+      ],
       "aksaTitle": "Al-Aqsa Mosque",
       "aksaP1": "The first qibla of Islam and the heart of Jerusalem, held sacred by the three Abrahamic faiths. Witness to many civilisations throughout history, Al-Aqsa remains a symbol of the struggle for freedom and dignity today.",
       "aksaP2": "In the face of access restrictions, raids and attempts to alter the status quo, the protection of the sanctuary has become one of the shared calls of solidarity worldwide."
     },
     "cocuk": {
       "kicker": "Children",
-      "stats": ["Children in need of aid", "Whose education was disrupted", "Unaccompanied / orphaned", "Daily trauma cases"],
+      "stats": [
+        "Children in need of aid",
+        "Whose education was disrupted",
+        "Unaccompanied / orphaned",
+        "Daily trauma cases"
+      ],
       "workshopTitle": "Children's Workshop",
       "workshopBody": "In this workshop at the Children's Tent, children will freely express their feelings through drawing, poetry and storytelling. Creative activities on themes of peace and solidarity will be held alongside volunteer pedagogues and educators. Little hands are drawing the greatest hope.",
       "wallTitle": "Your Message to the Children",
@@ -165,11 +268,30 @@
       "kindDoc": "Documentary",
       "ctaTitle": "We Grow the Resource Pool Together",
       "ctaBody": "The library grows through community curation. Every resource you suggest (video, article, book, infographic) is first reviewed by a volunteer team, then published. Suggest your resource below and vote for the ones you find most useful.",
-      "steps": ["1. Suggest", "2. Review & approve", "3. Publish & vote"],
+      "steps": [
+        "1. Suggest",
+        "2. Review & approve",
+        "3. Publish & vote"
+      ],
       "featured": [
-        { "title": "The Question of Palestine", "author": "Edward Said", "kind": "book", "note": "A foundational reference that addresses the question of Palestine in its intellectual and historical context." },
-        { "title": "The Hundred Years' War on Palestine", "author": "Rashid Khalidi", "kind": "book", "note": "A comprehensive, document-based account of a century of colonialism and resistance." },
-        { "title": "Gaza: Lives on the Shore", "author": "Documentary", "kind": "doc", "note": "A cinematic testimony to everyday life and steadfastness (sumud) under blockade." }
+        {
+          "title": "The Question of Palestine",
+          "author": "Edward Said",
+          "kind": "book",
+          "note": "A foundational reference that addresses the question of Palestine in its intellectual and historical context."
+        },
+        {
+          "title": "The Hundred Years' War on Palestine",
+          "author": "Rashid Khalidi",
+          "kind": "book",
+          "note": "A comprehensive, document-based account of a century of colonialism and resistance."
+        },
+        {
+          "title": "Gaza: Lives on the Shore",
+          "author": "Documentary",
+          "kind": "doc",
+          "note": "A cinematic testimony to everyday life and steadfastness (sumud) under blockade."
+        }
       ]
     }
   },
@@ -197,7 +319,12 @@
     "share": "Share Result",
     "download": "Download Card",
     "explanation_label": "Fact Note",
-    "ranks": ["Witness Candidate", "Aware", "Memory Keeper", "Sumud Ambassador"],
+    "ranks": [
+      "Witness Candidate",
+      "Aware",
+      "Memory Keeper",
+      "Sumud Ambassador"
+    ],
     "rank_descs": [
       "Every journey begins with a single step. Let this experience be the first spark of curiosity about Palestinian reality.",
       "You follow the issue. Knowledge is the foundation of solidarity.",
@@ -207,52 +334,102 @@
     "questions": [
       {
         "q": "What is the most accurate translation of the Arabic word 'sumud' (صمود)?",
-        "opts": ["Victory", "Liberation", "Steadfastness and resolve", "Peace"],
+        "opts": [
+          "Victory",
+          "Liberation",
+          "Steadfastness and resolve",
+          "Peace"
+        ],
         "note": "Sumud means 'to stand firm, to persist, to remain rooted in the land.' In Palestinian culture it has become the symbol of enduring presence despite displacement and oppression."
       },
       {
         "q": "What event is known as the Nakba (النكبة)?",
-        "opts": ["The 1967 Six-Day War", "The displacement of over 700,000 Palestinians in 1948", "The 1948 UN partition plan", "The 1973 Yom Kippur War"],
+        "opts": [
+          "The 1967 Six-Day War",
+          "The displacement of over 700,000 Palestinians in 1948",
+          "The 1948 UN partition plan",
+          "The 1973 Yom Kippur War"
+        ],
         "note": "Nakba means 'catastrophe' in Arabic. In 1948, around 700,000 Palestinians were displaced as the state of Israel was established. It is commemorated every year on 15 May."
       },
       {
         "q": "What is the most widely accepted interpretation of the geometric pattern on the traditional Palestinian kufiya?",
-        "opts": ["Desert sands and star patterns", "Olive tree leaves and fishing nets", "Colour blocks of the Palestinian flag", "Ottoman government insignia"],
+        "opts": [
+          "Desert sands and star patterns",
+          "Olive tree leaves and fishing nets",
+          "Colour blocks of the Palestinian flag",
+          "Ottoman government insignia"
+        ],
         "note": "While there are multiple interpretations of the kufiya's origins, the most prevalent account holds that the pattern represents olive leaves and traditional fishing nets, combining agriculture and the sea."
       },
       {
         "q": "What theme does the work of Mahmoud Darwish, symbol of Palestinian poetry, primarily explore?",
-        "opts": ["Divine love and mysticism", "Land, exile and identity", "War heroics", "Romance and love"],
+        "opts": [
+          "Divine love and mysticism",
+          "Land, exile and identity",
+          "War heroics",
+          "Romance and love"
+        ],
         "note": "Darwish's 'Identity Card' (1964) speaks of attachment to the land and resistance. He is among the most widely read Arab poets in the world."
       },
       {
         "q": "Who is 'Handala', the symbolic figure of Palestinian resistance culture?",
-        "opts": ["A real child who lived through the Nakba", "A back-turned refugee child cartoon character created by cartoonist Naji al-Ali", "A hero from a Palestinian folk tale", "A collective nickname for 1948 resistance fighters"],
+        "opts": [
+          "A real child who lived through the Nakba",
+          "A back-turned refugee child cartoon character created by cartoonist Naji al-Ali",
+          "A hero from a Palestinian folk tale",
+          "A collective nickname for 1948 resistance fighters"
+        ],
         "note": "Handala was created in 1969 by Palestinian cartoonist Naji al-Ali. This barefoot, ragged child — always with his back to the viewer — is the symbol of a refugee child who will not grow up until he can return home."
       },
       {
         "q": "What is tatreez (تطريز)?",
-        "opts": ["A traditional Palestinian dish", "A type of folk song native to Palestine", "Traditional Palestinian hand embroidery art", "A form of prayer recited during pilgrimage"],
+        "opts": [
+          "A traditional Palestinian dish",
+          "A type of folk song native to Palestine",
+          "Traditional Palestinian hand embroidery art",
+          "A form of prayer recited during pilgrimage"
+        ],
         "note": "Tatreez is the traditional Palestinian art of hand embroidery. Garments adorned with geometric motifs and rich colours represent the region and family. UNESCO added this tradition to the Intangible Cultural Heritage list in 2021."
       },
       {
         "q": "According to UN OCHA data, what is the situation of Gaza's population as of early 2025?",
-        "opts": ["Around 500,000 people displaced", "Around 1 million people displaced", "The vast majority of 2.3 million people displaced", "Around 1.5 million people displaced"],
+        "opts": [
+          "Around 500,000 people displaced",
+          "Around 1 million people displaced",
+          "The vast majority of 2.3 million people displaced",
+          "Around 1.5 million people displaced"
+        ],
         "note": "According to UN OCHA reports, the vast majority of Gaza's 2.3 million population has been displaced. Many people have been forced to move multiple times."
       },
       {
         "q": "What does the olive tree primarily symbolise in Palestinian culture?",
-        "opts": ["Economic prosperity and trade", "Rootedness in the land, continuity and resistance", "Religious worship and ritual", "The value of water in a desert environment"],
+        "opts": [
+          "Economic prosperity and trade",
+          "Rootedness in the land, continuity and resistance",
+          "Religious worship and ritual",
+          "The value of water in a desert environment"
+        ],
         "note": "Ancient olive trees in Palestine are symbols of continuity and historical rootedness. Uprooting them is not only an economic loss but a cultural and symbolic destruction."
       },
       {
         "q": "What was the primary purpose of the 2025 'Sumud Flotilla' voyage?",
-        "opts": ["To transport journalists documenting war crimes", "To conduct international diplomatic talks", "To break the civilian blockade and deliver humanitarian aid", "To defend fishing rights in the region"],
+        "opts": [
+          "To transport journalists documenting war crimes",
+          "To conduct international diplomatic talks",
+          "To break the civilian blockade and deliver humanitarian aid",
+          "To defend fishing rights in the region"
+        ],
         "note": "Over 700 volunteers from more than 30 countries joined the 2025 Sumud Flotilla. The flotilla carried medicine, food and shelter materials, but was intercepted in international waters."
       },
       {
         "q": "Which Palestinian cultural practice did UNESCO add to the Intangible Cultural Heritage list in 2021?",
-        "opts": ["Dabke (traditional folk dance)", "Traditional Arabic storytelling", "Palestinian thobe and tatreez embroidery art", "Traditional market culture in Jerusalem"],
+        "opts": [
+          "Dabke (traditional folk dance)",
+          "Traditional Arabic storytelling",
+          "Palestinian thobe and tatreez embroidery art",
+          "Traditional market culture in Jerusalem"
+        ],
         "note": "UNESCO added the Palestinian thobe and the tatreez hand embroidery tradition to the List of Intangible Cultural Heritage of Humanity in November 2021."
       }
     ]
@@ -318,5 +495,28 @@
     "qr_hint": "Scan and join",
     "download": "Download Image",
     "share": "Share"
+  },
+  "featured": {
+    "kicker": "Highlights",
+    "title": "Join by Experiencing",
+    "lead": "From the quiz to the witness simulation — become part of the movement, learn and share.",
+    "cta": "Go to experience",
+    "cards": {
+      "quiz": {
+        "title": "The Quiz",
+        "desc": "Palestine in 10 questions",
+        "tag": "Interactive"
+      },
+      "flotilla": {
+        "title": "Sumud Flotilla",
+        "desc": "Witness simulation",
+        "tag": "5 stages"
+      },
+      "archive": {
+        "title": "Tent Archive",
+        "desc": "Six fronts, one roof",
+        "tag": "Resource pool"
+      }
+    }
   }
 }

@@ -30,10 +30,10 @@ export default function TentCocuk({ tent, locale }: TentCocukProps) {
   return (
     <section className="mx-auto max-w-6xl px-5 py-14 sm:px-8">
       {/* Hero — yukarı uzanan çocuk elleri */}
-      <div className="relative mb-12 overflow-hidden rounded-3xl border border-rose-300/20 bg-gradient-to-b from-rose-500/10 to-transparent p-8 text-center">
+      <div className="relative mb-12 overflow-hidden rounded-3xl border border-flag-green/20 bg-gradient-to-b from-flag-green/10 to-transparent p-8 text-center">
         <svg viewBox="0 0 300 120" className="mx-auto mb-4 h-28 w-full max-w-md" aria-hidden="true">
           {[40, 90, 150, 210, 260].map((x, i) => (
-            <g key={x} fill="none" stroke="#fb7185" strokeWidth="3" strokeLinecap="round">
+            <g key={x} fill="none" stroke="#306d29" strokeWidth="3" strokeLinecap="round">
               <line x1={x} y1="120" x2={x} y2={70 - (i % 2) * 12} />
               <line x1={x - 8} y1={78 - (i % 2) * 12} x2={x - 8} y2={60 - (i % 2) * 12} />
               <line x1={x + 8} y1={78 - (i % 2) * 12} x2={x + 8} y2={60 - (i % 2) * 12} />
@@ -42,16 +42,16 @@ export default function TentCocuk({ tent, locale }: TentCocukProps) {
             </g>
           ))}
         </svg>
-        <span className="text-xs font-bold uppercase tracking-[0.3em] text-rose-400">
+        <span className="text-xs font-bold uppercase tracking-[0.3em] text-flag-green">
           {t('kicker')}
         </span>
-        <h1 className="riso-title mt-1 text-3xl font-black text-flag-white md:text-5xl">
+        <h1 className="riso-title mt-1 text-3xl font-black text-bone md:text-5xl">
           {name}
         </h1>
         <div className="mt-4 flex justify-center">
-          <TatreezBand count={5} color="#fb7185" className="h-3.5 w-40" />
+          <TatreezBand count={5} color="#306d29" className="h-3.5 w-40" />
         </div>
-        <p className="mx-auto mt-3 max-w-md text-rose-100/70">{desc}</p>
+        <p className="mx-auto mt-3 max-w-md text-bone-dim/70">{desc}</p>
       </div>
 
       {/* İstatistik kartları */}
@@ -62,29 +62,29 @@ export default function TentCocuk({ tent, locale }: TentCocukProps) {
           return (
             <div
               key={i}
-              className="rounded-2xl border border-rose-300/15 bg-rose-500/5 p-5 text-center"
+              className="rounded-2xl border border-flag-green/15 bg-flag-green/5 p-5 text-center"
             >
-              <Icon className="mx-auto mb-2 h-7 w-7 text-rose-400" />
+              <Icon className="mx-auto mb-2 h-7 w-7 text-flag-green" />
               <CountUp
                 target={meta.target}
                 suffix={meta.suffix}
                 locale={locale}
-                className="block text-3xl font-black tabular-nums text-flag-white"
+                className="block text-3xl font-black tabular-nums text-bone"
               />
-              <p className="mt-1 text-xs text-rose-100/60">{label}</p>
+              <p className="mt-1 text-xs text-bone-dim/60">{label}</p>
             </div>
           )
         })}
       </div>
 
       {/* Atölye bölümü */}
-      <div className="mb-12 grid gap-6 rounded-3xl border border-rose-300/15 bg-rose-500/5 p-8 md:grid-cols-[auto_1fr] md:items-center">
-        <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl bg-rose-500/20 text-2xl font-black tabular-nums text-rose-300">
+      <div className="mb-12 grid gap-6 rounded-3xl border border-flag-green/15 bg-flag-green/5 p-8 md:grid-cols-[auto_1fr] md:items-center">
+        <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl bg-flag-green/20 text-2xl font-black tabular-nums text-flag-green">
           16:00
         </div>
         <div>
-          <h2 className="text-xl font-bold text-flag-white">{t('workshopTitle')}</h2>
-          <p className="mt-2 text-sm leading-relaxed text-rose-100/70">
+          <h2 className="text-xl font-bold text-bone">{t('workshopTitle')}</h2>
+          <p className="mt-2 text-sm leading-relaxed text-bone-dim/70">
             {t('workshopBody')}
           </p>
         </div>
@@ -92,8 +92,8 @@ export default function TentCocuk({ tent, locale }: TentCocukProps) {
 
       {/* Mesaj duvarı — post-it */}
       <div className="dossier-card rounded-3xl p-6">
-        <h2 className="mb-1 text-xl font-bold text-flag-white">{t('wallTitle')}</h2>
-        <p className="mb-5 text-sm text-rose-100/60">{t('wallDesc')}</p>
+        <h2 className="mb-1 text-xl font-bold text-bone">{t('wallTitle')}</h2>
+        <p className="mb-5 text-sm text-bone-dim/60">{t('wallDesc')}</p>
         <CommentWall
           tentId={tent.id}
           locale={locale}

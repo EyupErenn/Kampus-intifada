@@ -24,7 +24,7 @@ export const FALLBACK_TENTS: Record<string, Tent> = {
     desc_en: 'Resistance memory and solidarity wall',
     desc_ar: 'ذاكرة المقاومة وجدار التضامن',
     icon: 'anchor',
-    color: '#3b82f6',
+    color: '#306d29',
     order_num: 1,
   },
   boykot: {
@@ -37,7 +37,7 @@ export const FALLBACK_TENTS: Record<string, Tent> = {
     desc_en: 'Awareness, alternatives and consciousness',
     desc_ar: 'التوعية والبدائل والوعي',
     icon: 'shield-off',
-    color: '#f59e0b',
+    color: '#9b0f06',
     order_num: 2,
   },
   'dar-agaci': {
@@ -50,7 +50,7 @@ export const FALLBACK_TENTS: Record<string, Tent> = {
     desc_en: 'The story of 12 thousand prisoners',
     desc_ar: 'قصة اثني عشر ألف أسير',
     icon: 'key',
-    color: '#8b5cf6',
+    color: '#9b0f06',
     order_num: 3,
   },
   sayilarla: {
@@ -63,7 +63,7 @@ export const FALLBACK_TENTS: Record<string, Tent> = {
     desc_en: 'The language of statistics',
     desc_ar: 'لغة الإحصاءات',
     icon: 'bar-chart-2',
-    color: '#ef4444',
+    color: '#9b0f06',
     order_num: 4,
   },
   cocuk: {
@@ -76,7 +76,7 @@ export const FALLBACK_TENTS: Record<string, Tent> = {
     desc_en: 'The voice of tomorrow',
     desc_ar: 'صوت الغد',
     icon: 'heart',
-    color: '#ec4899',
+    color: '#306d29',
     order_num: 5,
   },
   kutuphane: {
@@ -89,7 +89,7 @@ export const FALLBACK_TENTS: Record<string, Tent> = {
     desc_en: 'Education and resources',
     desc_ar: 'التعليم والمصادر',
     icon: 'book-open',
-    color: '#10b981',
+    color: '#306d29',
     order_num: 6,
   },
 }

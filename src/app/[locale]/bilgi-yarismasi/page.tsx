@@ -18,7 +18,7 @@ export default async function BilgiYarismasiPage() {
           <span className="text-xs font-bold uppercase tracking-[0.32em] text-flag-green">
             {t('kicker')}
           </span>
-          <h1 className="riso-title mt-3 text-3xl font-black tracking-tight text-flag-white md:text-4xl">
+          <h1 className="riso-title mt-3 text-3xl font-black tracking-tight text-bone md:text-4xl">
             {t('title')}
           </h1>
           <p className="mt-3 text-sm text-bone-dim">{t('subtitle')}</p>

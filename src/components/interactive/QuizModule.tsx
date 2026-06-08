@@ -74,13 +74,13 @@ export default function QuizModule() {
           <p className="stamp mb-3 inline-block bg-flag-green/10 text-flag-green">
             {t('result_title')}
           </p>
-          <p className="mt-2 text-5xl font-black text-flag-white">
+          <p className="mt-2 text-5xl font-black text-bone">
             {score} <span className="text-bone-dim text-3xl">/ {total}</span>
           </p>
         </motion.div>
 
         <motion.div variants={riseSettle} className="dossier-card mb-8 rounded-2xl p-8">
-          <h2 className="riso-title mb-2 text-2xl font-black text-flag-white">{ranks[rank]}</h2>
+          <h2 className="riso-title mb-2 text-2xl font-black text-bone">{ranks[rank]}</h2>
           <p className="text-bone-dim leading-relaxed">{rankDescs[rank]}</p>
         </motion.div>
 
@@ -98,7 +98,7 @@ export default function QuizModule() {
         <motion.button
           variants={fadeUp}
           onClick={handleRetry}
-          className="inline-flex items-center gap-2 rounded-full border border-bone/20 px-6 py-3 text-sm font-semibold text-bone-dim transition-colors hover:border-flag-red/50 hover:text-flag-white"
+          className="inline-flex items-center gap-2 rounded-full border border-bone/20 px-6 py-3 text-sm font-semibold text-bone-dim transition-colors hover:border-flag-red/50 hover:text-bone"
         >
           <RotateCcw className="h-4 w-4" />
           {t('retry')}
@@ -133,7 +133,7 @@ export default function QuizModule() {
           animate="show"
           exit={{ opacity: 0, y: -8, transition: { duration: 0.2 } }}
         >
-          <h2 className="mb-8 text-xl font-bold leading-snug text-flag-white md:text-2xl">
+          <h2 className="mb-8 text-xl font-bold leading-snug text-bone md:text-2xl">
             {current.q}
           </h2>
 
@@ -152,7 +152,7 @@ export default function QuizModule() {
                 if (isCorrect) {
                   borderClass = 'border-flag-green/60'
                   bgClass = 'bg-flag-green/10'
-                  textClass = 'text-flag-white'
+                  textClass = 'text-bone'
                 } else if (isSelected && !isCorrect) {
                   borderClass = 'border-flag-red/60'
                   bgClass = 'bg-flag-red/10'

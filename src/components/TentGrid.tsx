@@ -144,7 +144,7 @@ function TentCard({
 }) {
   const router = useRouter()
   const reduce = useReducedMotion()
-  const color = tent.color ?? '#e4312b'
+  const color = tent.color ?? '#9b0f06'
   const slug = tent.slug
   const Icon = (tent.icon && ICON_MAP[tent.icon]) || TentIcon
   const name = localized(tent, 'name', locale)
@@ -208,7 +208,7 @@ function TentCard({
           className="mb-4 transition-transform duration-300 group-hover:-translate-y-1"
           aria-hidden="true"
         />
-        <h3 className="text-lg font-bold leading-tight text-flag-white">
+        <h3 className="text-lg font-bold leading-tight text-bone">
           {name}
         </h3>
         <p className="mt-2 flex-1 text-sm leading-relaxed text-bone-dim">

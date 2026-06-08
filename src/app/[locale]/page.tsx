@@ -2,7 +2,8 @@ import { getTranslations } from 'next-intl/server'
 import Navbar from '@/components/Navbar'
 import AnnouncementTicker from '@/components/AnnouncementTicker'
 import Hero from '@/components/Hero'
-import TimelineFeed from '@/components/TimelineFeed'
+import WeekProgram from '@/components/WeekProgram'
+import FeaturedDeck from '@/components/FeaturedDeck'
 import TentGrid from '@/components/TentGrid'
 import ChatWidget from '@/components/ChatWidget'
 import { TatreezDivider } from '@/components/motifs/Tatreez'
@@ -19,19 +20,16 @@ export default async function HomePage({
   const t = await getTranslations('home')
 
   // Dayanıklı fetch: env/Supabase yoksa bile sayfa fallback'lerle render olur.
-  let events: Announcement[] = []
+  // Program artık sabit haftalık şema (src/lib/schedule.ts) — Supabase'den çekilmez.
   let acilDuyurular: Announcement[] = []
   let tents: Tent[] = []
 
   try {
     const supabase = createServerClient()
-    const [eventsRes, acilRes, tentsRes] = await Promise.all([
-      // Sıralama TimelineFeed'de saat bilgisine göre yapılır (saat content'e gömülü).
-      supabase.from('announcements').select('*').eq('category', 'etkinlik'),
+    const [acilRes, tentsRes] = await Promise.all([
       supabase.from('announcements').select('*').eq('category', 'acil'),
       supabase.from('tents').select('*').order('order_num'),
     ])
-    events = (eventsRes.data as Announcement[] | null) ?? []
     acilDuyurular = (acilRes.data as Announcement[] | null) ?? []
     tents = (tentsRes.data as Tent[] | null) ?? []
   } catch {
@@ -46,10 +44,13 @@ export default async function HomePage({
       <main>
         <Hero />
 
-        {/* Zaman çizelgesi */}
+        {/* Haftalık program */}
         <div id="program" className="scroll-mt-20">
-          <TimelineFeed events={events} locale={locale} />
+          <WeekProgram locale={locale} />
         </div>
+
+        {/* Öne çıkan deneyimler */}
+        <FeaturedDeck />
 
         <TatreezDivider count={14} className="mx-auto max-w-5xl px-6" />
 
@@ -59,7 +60,7 @@ export default async function HomePage({
             <span className="text-xs font-bold uppercase tracking-[0.32em] text-flag-green">
               {t('tentsKicker')}
             </span>
-            <h2 className="mt-3 text-4xl font-black tracking-tight text-flag-white md:text-5xl">
+            <h2 className="mt-3 text-4xl font-black tracking-tight text-bone md:text-5xl">
               {t('tentsTitle')}
             </h2>
             <p className="mt-4 text-lg leading-relaxed text-bone-dim">

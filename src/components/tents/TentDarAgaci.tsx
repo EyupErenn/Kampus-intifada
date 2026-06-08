@@ -52,21 +52,21 @@ export default function TentDarAgaci({ tent, locale }: TentDarAgaciProps) {
   return (
     <section className="mx-auto max-w-6xl px-5 py-14 sm:px-8">
       <header className="mb-8 flex items-center gap-4">
-        <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-violet-500/15">
-          <Key className="h-7 w-7 text-violet-400" />
+        <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-flag-red/15">
+          <Key className="h-7 w-7 text-flag-red" />
         </div>
         <div>
-          <span className="text-xs font-bold uppercase tracking-[0.3em] text-violet-400">
+          <span className="text-xs font-bold uppercase tracking-[0.3em] text-flag-red">
             {t('kicker')}
           </span>
-          <h1 className="riso-title text-3xl font-black text-flag-white md:text-5xl">
+          <h1 className="riso-title text-3xl font-black text-bone md:text-5xl">
             {name}
           </h1>
         </div>
       </header>
 
       <div className="mb-10 flex items-center gap-4">
-        <TatreezBand count={5} color="#8b5cf6" className="h-3.5 w-32 shrink-0" />
+        <TatreezBand count={5} color="#9b0f06" className="h-3.5 w-32 shrink-0" />
         <p className="max-w-xl text-bone-dim">{desc}</p>
       </div>
 
@@ -79,8 +79,8 @@ export default function TentDarAgaci({ tent, locale }: TentDarAgaciProps) {
             <rect x="40" y="135" width="120" height="8" rx="2" fill="#475569" />
             <rect x="48" y="143" width="6" height="40" fill="#334155" />
             <rect x="146" y="143" width="6" height="40" fill="#334155" />
-            <path d="M85 135 Q100 100 115 135 Z" fill="#7c3aed" opacity="0.8" />
-            <circle cx="100" cy="92" r="14" fill="#a78bfa" />
+            <path d="M85 135 Q100 100 115 135 Z" fill="#9b0f06" opacity="0.8" />
+            <circle cx="100" cy="92" r="14" fill="#9b0f06" />
             <path d="M78 130 L100 124 L122 130 L122 134 L100 128 L78 134 Z" fill="#e2e8f0" />
           </svg>
 
@@ -93,7 +93,7 @@ export default function TentDarAgaci({ tent, locale }: TentDarAgaciProps) {
             }}
           />
           <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-ink to-transparent p-5">
-            <p className="text-lg font-bold text-flag-white">{t('keyTitle')}</p>
+            <p className="text-lg font-bold text-bone">{t('keyTitle')}</p>
             <p className="text-sm text-bone">{t('keyDesc')}</p>
           </div>
         </div>
@@ -103,13 +103,13 @@ export default function TentDarAgaci({ tent, locale }: TentDarAgaciProps) {
           <blockquote className="dossier-card rounded-3xl p-6">
             <p className="italic leading-relaxed text-bone">{t('quoteFr')}</p>
             <p className="mt-3 text-sm leading-relaxed text-bone-dim">{t('quoteLocal')}</p>
-            <footer className="mt-3 text-sm font-semibold text-violet-300">
+            <footer className="mt-3 text-sm font-semibold text-flag-red">
               — {t('quoteAuthor')}
             </footer>
           </blockquote>
 
           {/* Sayaç */}
-          <div className="rounded-3xl border border-violet-500/20 bg-violet-500/5 p-6 text-center">
+          <div className="rounded-3xl border border-flag-red/20 bg-flag-red/5 p-6 text-center">
             <p className="text-sm uppercase tracking-wide text-bone-dim">
               {t('counterLabel')}
             </p>
@@ -117,7 +117,7 @@ export default function TentDarAgaci({ tent, locale }: TentDarAgaciProps) {
               target={12000}
               locale={locale}
               suffix="+"
-              className="my-1 block text-5xl font-black tabular-nums text-violet-300 md:text-6xl"
+              className="my-1 block text-5xl font-black tabular-nums text-flag-red md:text-6xl"
             />
             <p className="text-sm text-bone-dim">{t('counterUnit')}</p>
           </div>
@@ -125,7 +125,7 @@ export default function TentDarAgaci({ tent, locale }: TentDarAgaciProps) {
       </div>
 
       {/* 12 kategori — 3x4 grid */}
-      <h2 className="mb-5 mt-14 text-2xl font-bold text-flag-white">
+      <h2 className="mb-5 mt-14 text-2xl font-bold text-bone">
         {t('prisonersTitle')}
       </h2>
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
@@ -137,13 +137,13 @@ export default function TentDarAgaci({ tent, locale }: TentDarAgaciProps) {
               key={i}
               className="dossier-card flex flex-col items-center rounded-2xl p-4 text-center"
             >
-              <Icon className="mb-2 h-8 w-8 text-violet-400" />
+              <Icon className="mb-2 h-8 w-8 text-flag-red" />
               <span className="text-sm font-medium text-bone">{catName}</span>
               <CountUp
                 target={meta?.count ?? 0}
                 locale={locale}
                 suffix="+"
-                className="mt-1 text-2xl font-black tabular-nums text-flag-white"
+                className="mt-1 text-2xl font-black tabular-nums text-bone"
               />
             </div>
           )

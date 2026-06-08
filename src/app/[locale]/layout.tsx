@@ -4,6 +4,8 @@ import { Noto_Sans, Noto_Sans_Arabic } from 'next/font/google'
 import { NextIntlClientProvider } from 'next-intl'
 import { notFound } from 'next/navigation'
 import { routing } from '@/i18n/routing'
+import GlobeMount from '@/components/globe/GlobeMount'
+import FlagWatermark from '@/components/globe/FlagWatermark'
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://kampus-intifada.vercel.app'
 
@@ -48,9 +50,11 @@ export default async function LocaleLayout({
       <head>
         <meta charSet="utf-8" />
       </head>
-      <body className={`min-h-screen bg-slate-950 text-white ${fontClass}`}>
+      <body className={`min-h-screen text-bone ${fontClass}`}>
+        <GlobeMount />
+        <FlagWatermark />
         <NextIntlClientProvider locale={locale}>
-          {children}
+          <div className="relative z-10">{children}</div>
         </NextIntlClientProvider>
       </body>
     </html>

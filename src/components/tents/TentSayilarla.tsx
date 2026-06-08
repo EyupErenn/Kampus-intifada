@@ -5,6 +5,7 @@ import type { Tent } from '@/types/database'
 import { localized } from '@/types/database'
 import CountUp from '@/components/CountUp'
 import { TatreezBand } from '@/components/motifs/Tatreez'
+import { MotifPanel } from '@/components/motifs/Symbols'
 
 interface TentSayilarlaProps {
   tent: Tent
@@ -41,11 +42,11 @@ export default function TentSayilarla({ tent, locale }: TentSayilarlaProps) {
           <span className="text-xs font-bold uppercase tracking-[0.3em] text-flag-red">
             {t('kicker')}
           </span>
-          <h1 className="riso-title mt-2 text-4xl font-black tracking-tight text-flag-white md:text-6xl">
+          <h1 className="riso-title mt-2 text-4xl font-black tracking-tight text-bone md:text-6xl">
             {name}
           </h1>
           <div className="mt-5 flex items-center justify-center gap-4">
-            <TatreezBand count={5} color="#e4312b" className="h-3.5 w-40 shrink-0" />
+            <TatreezBand count={5} color="#9b0f06" className="h-3.5 w-40 shrink-0" />
           </div>
           <p className="mx-auto mt-4 max-w-md text-bone-dim">{desc}</p>
         </header>
@@ -74,16 +75,10 @@ export default function TentSayilarla({ tent, locale }: TentSayilarlaProps) {
         {/* Mescid-i Aksa paneli */}
         <div className="dossier-card mt-20 grid overflow-hidden rounded-3xl md:grid-cols-2">
           <div className="relative min-h-56">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="https://images.unsplash.com/photo-1564769662533-4f00a87b4056?w=1200"
-              alt={t('aksaTitle')}
-              className="h-full w-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent to-ink/60" />
+            <MotifPanel symbol="dome" tone="green" className="absolute inset-0" />
           </div>
           <div className="p-8">
-            <h2 className="text-2xl font-bold text-flag-white">{t('aksaTitle')}</h2>
+            <h2 className="text-2xl font-bold text-bone">{t('aksaTitle')}</h2>
             <p className="mt-4 text-sm leading-relaxed text-bone">{t('aksaP1')}</p>
             <p className="mt-3 text-sm leading-relaxed text-bone-dim">{t('aksaP2')}</p>
           </div>

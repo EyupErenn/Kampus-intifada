@@ -18,8 +18,8 @@ const COLORS = {
   line: 'rgba(233,225,207,0.14)',
   bone: '#e9e1cf',
   boneDim: '#9c9684',
-  red: '#e4312b',
-  green: '#1f9e57',
+  red: '#9b0f06',
+  green: '#306d29',
   white: '#f6f3ea',
 }
 

@@ -7,7 +7,7 @@ import { Menu, X } from 'lucide-react'
 import { Link, usePathname, useRouter } from '@/i18n/navigation'
 import { routing } from '@/i18n/routing'
 import { createBrowserClient } from '@/lib/supabase'
-import { TatreezStar } from '@/components/motifs/Tatreez'
+import { PalestineFlag } from '@/components/motifs/PalestineFlag'
 
 const LOCALE_LABELS: Record<string, string> = {
   tr: 'TR',
@@ -55,12 +55,11 @@ export default function Navbar() {
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6">
         {/* Logo */}
         <Link href="/" className="group flex items-center gap-2.5">
-          <TatreezStar
-            size={26}
-            color="var(--color-flag-red)"
-            className="transition-transform duration-300 group-hover:rotate-45"
+          <PalestineFlag
+            size={30}
+            className="shrink-0 drop-shadow-sm transition-transform duration-300 group-hover:-rotate-3 group-hover:scale-105"
           />
-          <span className="text-lg font-bold tracking-tight text-flag-white">
+          <span className="text-lg font-bold tracking-tight text-bone">
             Campus İntifada
           </span>
         </Link>
@@ -71,7 +70,7 @@ export default function Navbar() {
             <li key={link.href}>
               <Link
                 href={link.href}
-                className="text-sm font-medium text-bone-dim transition-colors hover:text-flag-white"
+                className="text-sm font-medium text-bone-dim transition-colors hover:text-bone"
               >
                 {link.label}
               </Link>
@@ -94,7 +93,7 @@ export default function Navbar() {
                   className={`rounded-full px-2.5 py-1 text-xs font-semibold transition-colors ${
                     isActive
                       ? 'bg-flag-red text-flag-white'
-                      : 'text-bone-dim hover:text-flag-white'
+                      : 'text-bone-dim hover:text-bone'
                   }`}
                 >
                   {LOCALE_LABELS[loc] ?? loc.toUpperCase()}
@@ -122,7 +121,7 @@ export default function Navbar() {
             onClick={() => setMenuOpen((o) => !o)}
             aria-label="Menu"
             aria-expanded={menuOpen}
-            className="text-flag-white md:hidden"
+            className="text-bone md:hidden"
           >
             {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
@@ -145,7 +144,7 @@ export default function Navbar() {
                   <Link
                     href={link.href}
                     onClick={() => setMenuOpen(false)}
-                    className="block rounded-lg px-3 py-2 text-base font-medium text-bone-dim transition-colors hover:bg-bone/5 hover:text-flag-white"
+                    className="block rounded-lg px-3 py-2 text-base font-medium text-bone-dim transition-colors hover:bg-bone/5 hover:text-bone"
                   >
                     {link.label}
                   </Link>
