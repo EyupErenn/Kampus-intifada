@@ -28,14 +28,12 @@ const notoSansArabic = Noto_Sans_Arabic({
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin', 'latin-ext'],
   variable: '--font-plus-jakarta-sans',
-  weight: ['400', '500', '600', '700', '800'],
   display: 'swap',
 })
 
 const jetBrainsMono = JetBrains_Mono({
   subsets: ['latin'],
   variable: '--font-jetbrains-mono',
-  weight: ['400', '500', '600', '700'],
   display: 'swap',
 })
 

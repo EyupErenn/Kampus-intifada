@@ -15,8 +15,16 @@ import DotMapBackground from '@/components/DotMapBackground'
    • Çift CTA butonu
    ============================================================ */
 
+type StatKey = 'statShahid' | 'statVolunteer' | 'statProject'
+
 // İstatistik kartları
-const STATS = [
+const STATS: Array<{
+  key: string
+  tKey: StatKey
+  defaultLabel: string
+  target: number
+  suffix: string
+}> = [
   { key: 'shahid',    tKey: 'statShahid',    defaultLabel: 'Şehit',    target: 57000,  suffix: '+' },
   { key: 'volunteer', tKey: 'statVolunteer', defaultLabel: 'Gönüllü',  target: 1240,   suffix: '' },
   { key: 'project',   tKey: 'statProject',   defaultLabel: 'Proje',    target: 38,     suffix: '' },
@@ -224,7 +232,7 @@ export default function Hero() {
           {STATS.map((s) => (
             <StatCard
               key={s.key}
-              label={t(s.tKey as any) || s.defaultLabel}
+              label={t(s.tKey)}
               target={s.target}
               suffix={s.suffix}
               visible={statsVisible}
