@@ -5,29 +5,31 @@ import { Canvas } from '@react-three/fiber'
 import { useReducedMotion } from 'framer-motion'
 import EarthMesh from './EarthMesh'
 
-/* ============================================================
-   GLOBE BACKGROUND — tam-sayfa sabit (fixed) sinematik 3D dünya.
-   • Layout seviyesinde mount edilir, arka planda kalır.
-   • Mouse parallaksı & Hero'dan kaydırıldığında Gazze'ye kamera dalışı.
-   • Optimizasyon: dpr clamp, tab gizliyken rAF durur, reduced-motion desteği.
-   ============================================================ */
+/* ================================================================
+   GLOBE BACKGROUND — Full-viewport fixed WebGL Canvas.
+   ────────────────────────────────────────────────────────────────
+   Mount once in layout.tsx, renders behind ALL page content.
+   • 100vw × 100vh fixed Canvas — the entire hero background
+   • Mouse tracking → parallax tilt passed to EarthMesh
+   • Scroll tracking → camera dive toward Gaza
+   • Tab-hidden → pauses rAF loop for performance
+   • prefers-reduced-motion → static single frame
+   ================================================================ */
 
 export default function GlobeBackground() {
-  const reduce = useReducedMotion()
-  const scrollRef = useRef(0)
-  const mouseRef = useRef({ x: 0, y: 0 })
-  const pausedRef = useRef(false)
+  const reduce     = useReducedMotion()
+  const scrollRef  = useRef(0)
+  const mouseRef   = useRef({ x: 0, y: 0 })
+  const pausedRef  = useRef(false)
   const [frameloop, setFrameloop] = useState<'always' | 'never'>(
-    reduce ? 'never' : 'always'
+    reduce ? 'never' : 'always',
   )
 
-  // Scroll ilerlemesi: Hero bölümünden sonraki bölüme geçiş oranını (0.0 -> 1.0) hesaplar
+  /* ── Scroll → Hero exit progress (0.0 → 1.0) ── */
   useEffect(() => {
     const onScroll = () => {
-      const heroHeight = window.innerHeight * 1.1 || 800
-      const currentScroll = window.scrollY || 0
-      // 0: Hero tepesi, 1: Hero'dan çıkıp Çadırlar/Program bölümüne giriş
-      scrollRef.current = Math.min(1, Math.max(0, currentScroll / heroHeight))
+      const heroH = window.innerHeight * 1.1 || 800
+      scrollRef.current = Math.min(1, Math.max(0, (window.scrollY || 0) / heroH))
     }
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
@@ -38,22 +40,22 @@ export default function GlobeBackground() {
     }
   }, [])
 
-  // Mouse / Pointer Parallaks Takibi
+  /* ── Mouse → normalized −1..+1 for parallax ── */
   useEffect(() => {
     if (reduce) return
-    const onMouseMove = (e: MouseEvent) => {
-      const halfW = window.innerWidth * 0.5
-      const halfH = window.innerHeight * 0.5
+    const onMove = (e: MouseEvent) => {
+      const hw = window.innerWidth  * 0.5
+      const hh = window.innerHeight * 0.5
       mouseRef.current = {
-        x: (e.clientX - halfW) / halfW,
-        y: (e.clientY - halfH) / halfH,
+        x: (e.clientX - hw) / hw,
+        y: (e.clientY - hh) / hh,
       }
     }
-    window.addEventListener('mousemove', onMouseMove, { passive: true })
-    return () => window.removeEventListener('mousemove', onMouseMove)
+    window.addEventListener('mousemove', onMove, { passive: true })
+    return () => window.removeEventListener('mousemove', onMove)
   }, [reduce])
 
-  // Tab gizliyken rAF döngüsünü durdur
+  /* ── Tab visibility → pause rAF ── */
   useEffect(() => {
     if (reduce) {
       pausedRef.current = true
@@ -73,17 +75,21 @@ export default function GlobeBackground() {
     <div
       aria-hidden="true"
       className="pointer-events-none fixed inset-0 z-0 overflow-hidden"
+      style={{ background: '#0F1923' }}
     >
+      {/* ━━ FULL-VIEWPORT WEBGL CANVAS ━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <Canvas
         dpr={[1, 1.5]}
         frameloop={frameloop}
         gl={{
           antialias: true,
-          alpha: true,
+          alpha: false,          // opaque — we own the entire background
           powerPreference: 'high-performance',
         }}
         camera={{ position: [0, 0, 3.8], fov: 36 }}
+        style={{ width: '100%', height: '100%' }}
       >
+        <color attach="background" args={['#0F1923']} />
         <Suspense fallback={null}>
           <EarthMesh
             scrollRef={scrollRef}
@@ -93,16 +99,6 @@ export default function GlobeBackground() {
           />
         </Suspense>
       </Canvas>
-
-      {/* Leyl Lacivert / Koyu Uzay Atmosfer Vignette Halesi */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            'radial-gradient(ellipse at 50% 50%, rgba(15, 25, 35, 0.25) 0%, rgba(15, 25, 35, 0.70) 65%, #0F1923 100%)',
-        }}
-      />
     </div>
   )
 }
-

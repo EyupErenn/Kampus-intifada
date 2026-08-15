@@ -4,19 +4,23 @@ import { useEffect, useRef, useState } from 'react'
 import { motion, useMotionValue, useTransform, useReducedMotion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 
-/* ============================================================
-   HERO — Kampüs İntifada UX/UI Manifestosu
-   • Leyl Lacivert (#0F1923) zemin
-   • Nokta-matris dünya haritası (canvas)
-   • Kriz bölgeleri: Nar Kırmızısı (#D94040) pulse
-   • Plus Jakarta Sans başlık, JetBrains Mono sayaçlar
-   • Glassmorphism istatistik kartları
-   • Çift CTA butonu
-   ============================================================ */
+/* ================================================================
+   HERO — Transparent UI Overlay on top of 3D Globe Canvas
+   ────────────────────────────────────────────────────────────────
+   This section is 100% TRANSPARENT background. The entire visual
+   is the WebGL globe canvas rendered by GlobeBackground (fixed
+   behind via layout.tsx). All content here sits above it using
+   position: relative + z-index.
+
+   • Title: "Kampüs İntifada" — Plus Jakarta Sans
+   • Tagline: "conscience · memory · action"
+   • 3 glassmorphism stat cards with count-up animation
+   • Dual CTA buttons (coral red primary + green outline secondary)
+   • Soft radial vignette for text readability over globe
+   ================================================================ */
 
 type StatKey = 'statShahid' | 'statVolunteer' | 'statProject'
 
-// İstatistik kartları
 const STATS: Array<{
   key: string
   tKey: StatKey
@@ -24,23 +28,23 @@ const STATS: Array<{
   target: number
   suffix: string
 }> = [
-  { key: 'shahid',    tKey: 'statShahid',    defaultLabel: 'Şehit',    target: 57000,  suffix: '+' },
-  { key: 'volunteer', tKey: 'statVolunteer', defaultLabel: 'Gönüllü',  target: 1240,   suffix: '' },
-  { key: 'project',   tKey: 'statProject',   defaultLabel: 'Proje',    target: 38,     suffix: '' },
+  { key: 'shahid',    tKey: 'statShahid',    defaultLabel: 'Martyrs',    target: 56760, suffix: '+' },
+  { key: 'volunteer', tKey: 'statVolunteer', defaultLabel: 'Volunteers', target: 1235,  suffix: ''  },
+  { key: 'project',   tKey: 'statProject',   defaultLabel: 'Projects',   target: 38,    suffix: ''  },
 ]
 
-/* Count-up hook — IntersectionObserver ile görünüme girince başlar */
+/* ── Count-up hook (easeOutCubic, IntersectionObserver triggered) ── */
 function useCountUp(target: number, duration = 2200, start = false) {
   const [value, setValue] = useState(0)
-  const startedRef = useRef(false)
+  const started = useRef(false)
 
   useEffect(() => {
-    if (!start || startedRef.current) return
-    startedRef.current = true
+    if (!start || started.current) return
+    started.current = true
     const t0 = performance.now()
     const tick = (now: number) => {
       const p = Math.min(1, (now - t0) / duration)
-      const eased = 1 - Math.pow(1 - p, 3) // easeOutCubic
+      const eased = 1 - Math.pow(1 - p, 3)
       setValue(Math.round(target * eased))
       if (p < 1) requestAnimationFrame(tick)
     }
@@ -50,7 +54,7 @@ function useCountUp(target: number, duration = 2200, start = false) {
   return value
 }
 
-/* Tek istatistik kartı */
+/* ── Single glassmorphism stat card ── */
 function StatCard({
   label,
   target,
@@ -63,8 +67,6 @@ function StatCard({
   visible: boolean
 }) {
   const count = useCountUp(target, 2200, visible)
-
-  // Sayıyı Türkçe formatla (binlik nokta ayraç)
   const formatted = count.toLocaleString('tr-TR')
 
   return (
@@ -74,37 +76,42 @@ function StatCard({
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       className="flex flex-col items-center gap-1.5 rounded-xl px-6 py-5 sm:px-8"
       style={{
-        background: 'rgba(15, 25, 35, 0.65)',
-        backdropFilter: 'blur(18px)',
-        WebkitBackdropFilter: 'blur(18px)',
-        border: '1px solid rgba(255, 255, 255, 0.10)',
-        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.40), inset 0 1px 0 rgba(255,255,255,0.06)',
+        background: 'rgba(15, 25, 35, 0.60)',
+        backdropFilter: 'blur(20px)',
+        WebkitBackdropFilter: 'blur(20px)',
+        border: '1px solid rgba(255, 255, 255, 0.08)',
+        boxShadow:
+          '0 8px 32px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255,255,255,0.05)',
       }}
     >
       <span
         className="text-[clamp(1.6rem,4.5vw,2.4rem)] font-bold leading-none tracking-tight text-white"
         style={{ fontFamily: '"JetBrains Mono", "Courier New", monospace' }}
       >
-        {formatted}{suffix}
+        {formatted}
+        {suffix}
       </span>
-      <span className="text-[11px] font-semibold uppercase tracking-[0.26em] text-white/50">
+      <span className="text-[11px] font-semibold uppercase tracking-[0.26em] text-white/45">
         {label}
       </span>
     </motion.div>
   )
 }
 
+/* ================================================================
+   HERO COMPONENT
+   ================================================================ */
 export default function Hero() {
   const t = useTranslations('hero')
   const reduce = useReducedMotion()
 
-  // Scroll-based metin solma
-  const p = useMotionValue(0)
+  /* ── Scroll-based text fade-out ── */
+  const scrollP = useMotionValue(0)
   useEffect(() => {
     if (reduce) return
     const onScroll = () => {
-      const v = window.innerHeight || 1
-      p.set(Math.min(1, Math.max(0, window.scrollY / (v * 0.7))))
+      const vh = window.innerHeight || 1
+      scrollP.set(Math.min(1, Math.max(0, window.scrollY / (vh * 0.7))))
     }
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
@@ -116,18 +123,20 @@ export default function Hero() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [reduce])
 
-  const textOpacity = useTransform(p, [0, 0.8], [1, 0])
-  const textY = useTransform(p, [0, 0.8], [0, -40])
+  const textOpacity = useTransform(scrollP, [0, 0.8], [1, 0])
+  const textY       = useTransform(scrollP, [0, 0.8], [0, -40])
 
-  // Sayaçlar için görünürlük takibi
+  /* ── Stats visibility trigger ── */
   const statsRef = useRef<HTMLDivElement>(null)
   const [statsVisible, setStatsVisible] = useState(false)
   useEffect(() => {
     const el = statsRef.current
     if (!el) return
     const obs = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setStatsVisible(true) },
-      { threshold: 0.2 }
+      ([entry]) => {
+        if (entry.isIntersecting) setStatsVisible(true)
+      },
+      { threshold: 0.2 },
     )
     obs.observe(el)
     return () => obs.disconnect()
@@ -135,38 +144,38 @@ export default function Hero() {
 
   return (
     <section className="relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden">
-      {/* ── Okunurluk Vignette — 3D Küre üzerinde metin kontrastını korur ── */}
+      {/* ━━ VIGNETTE — readability layer over 3D globe ━━━━━━━━━━━ */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 z-[1]"
         style={{
           background:
-            'radial-gradient(60% 62% at 50% 48%, rgba(15, 25, 35, 0.62) 0%, rgba(15, 25, 35, 0.32) 58%, transparent 88%)',
+            'radial-gradient(60% 60% at 50% 48%, rgba(15, 25, 35, 0.55) 0%, rgba(15, 25, 35, 0.25) 55%, transparent 90%)',
         }}
       />
 
-      {/* ── Alt yumuşak solma bandı ── */}
+      {/* ━━ BOTTOM FADE BAND ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-32"
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-36"
         style={{
-          background: 'linear-gradient(to top, rgba(15, 25, 35, 0.85) 0%, transparent 100%)',
+          background:
+            'linear-gradient(to top, rgba(15, 25, 35, 0.90) 0%, transparent 100%)',
         }}
       />
 
-      {/* ── Merkez içerik ── */}
+      {/* ━━ CENTER CONTENT ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <motion.div
         style={reduce ? undefined : { opacity: textOpacity, y: textY }}
         className="relative z-10 mx-auto flex w-full max-w-4xl flex-col items-center px-5 text-center"
       >
-        {/* Üst etiket */}
+        {/* ── Live indicator badge ── */}
         <motion.div
           initial={{ opacity: 0, y: -12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
           className="mb-7 flex items-center gap-3"
         >
-          {/* Canlı indicator */}
           <span className="relative flex h-2 w-2">
             <span
               className="absolute inline-flex h-full w-full animate-ping rounded-full opacity-75"
@@ -179,13 +188,13 @@ export default function Hero() {
           </span>
           <span
             className="text-[11px] font-bold uppercase tracking-[0.3em]"
-            style={{ color: 'rgba(255,255,255,0.48)' }}
+            style={{ color: 'rgba(255,255,255,0.42)' }}
           >
             BTU Kampüsü · Farkındalık Hareketi
           </span>
         </motion.div>
 
-        {/* Ana Başlık — Plus Jakarta Sans, mixed-case */}
+        {/* ── Title — Plus Jakarta Sans ── */}
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -194,13 +203,13 @@ export default function Hero() {
           style={{
             fontFamily: '"Plus Jakarta Sans", "Noto Sans", sans-serif',
             fontSize: 'clamp(2.8rem, 10vw, 6.5rem)',
-            textShadow: '0 2px 48px rgba(0,0,0,0.6)',
+            textShadow: '0 4px 60px rgba(0,0,0,0.7)',
           }}
         >
           Kampüs İntifada
         </motion.h1>
 
-        {/* Alt başlık — vicdan · hafıza · aksiyon */}
+        {/* ── Tagline ── */}
         <motion.p
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
@@ -208,13 +217,13 @@ export default function Hero() {
           className="mt-4 text-base font-semibold tracking-[0.22em] sm:text-lg"
           style={{
             fontFamily: '"Plus Jakarta Sans", "Noto Sans", sans-serif',
-            color: 'rgba(255,255,255,0.52)',
+            color: 'rgba(255,255,255,0.50)',
           }}
         >
           {t('tagline')}
         </motion.p>
 
-        {/* ── Glassmorphism İstatistik Kartları ── */}
+        {/* ── Glassmorphism Stat Cards ── */}
         <motion.div
           ref={statsRef}
           initial={{ opacity: 0, y: 30 }}
@@ -233,14 +242,14 @@ export default function Hero() {
           ))}
         </motion.div>
 
-        {/* ── Çift CTA Butonu ── */}
+        {/* ── Dual CTA Buttons ── */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.72, ease: [0.22, 1, 0.36, 1] }}
           className="mt-10 flex flex-wrap justify-center gap-4"
         >
-          {/* Birincil — Nar Kırmızısı */}
+          {/* Primary — Coral/Red */}
           <a
             href="#program"
             className="group relative inline-flex items-center gap-2 overflow-hidden rounded-lg px-7 py-3.5 text-sm font-bold text-white transition-all duration-300"
@@ -252,7 +261,8 @@ export default function Hero() {
             onMouseEnter={(e) => {
               const el = e.currentTarget
               el.style.transform = 'translateY(-2px)'
-              el.style.boxShadow = '0 8px 32px rgba(217,64,64,0.55), 0 0 0 1px rgba(217,64,64,0.6)'
+              el.style.boxShadow =
+                '0 8px 32px rgba(217,64,64,0.55), 0 0 0 1px rgba(217,64,64,0.6)'
               el.style.background = '#e84f4f'
             }}
             onMouseLeave={(e) => {
@@ -262,11 +272,15 @@ export default function Hero() {
               el.style.background = '#D94040'
             }}
           >
-            <span className="relative z-10 tracking-wide">{t('actCta') || 'Harekete Geç'}</span>
-            <span className="relative z-10 transition-transform duration-300 group-hover:translate-x-0.5">→</span>
+            <span className="relative z-10 tracking-wide">
+              {t('actCta') || 'Take Action'}
+            </span>
+            <span className="relative z-10 transition-transform duration-300 group-hover:translate-x-0.5">
+              →
+            </span>
           </a>
 
-          {/* İkincil — Nûr Turkuaz outline */}
+          {/* Secondary — Green outline */}
           <a
             href="#cadirlar"
             className="group inline-flex items-center gap-2 rounded-lg px-7 py-3.5 text-sm font-bold transition-all duration-300"
@@ -289,19 +303,23 @@ export default function Hero() {
               el.style.boxShadow = ''
             }}
           >
-            <span className="tracking-wide">{t('statusCta') || 'Durumu Gör'}</span>
-            <span className="transition-transform duration-300 group-hover:translate-x-0.5">↗</span>
+            <span className="tracking-wide">
+              {t('statusCta') || 'View Status'}
+            </span>
+            <span className="transition-transform duration-300 group-hover:translate-x-0.5">
+              ↗
+            </span>
           </a>
         </motion.div>
 
-        {/* Scroll ipucu */}
+        {/* ── Scroll indicator ── */}
         <motion.a
           href="#program"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.1, duration: 0.8 }}
           className="mt-16 inline-flex flex-col items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.3em] transition-colors hover:text-white"
-          style={{ color: 'rgba(255,255,255,0.28)' }}
+          style={{ color: 'rgba(255,255,255,0.24)' }}
         >
           <span>{t('scroll')}</span>
           <motion.span

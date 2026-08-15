@@ -1,218 +1,275 @@
 'use client'
 
-import { useEffect, useMemo, useRef, useState, type RefObject } from 'react'
+import { useEffect, useMemo, useRef, useState, type MutableRefObject } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import * as THREE from 'three'
 
-/* ============================================================
-   CINEMATIC EARTH MESH — v2 (Photorealistic)
-   • Real satellite imagery via CDN fallback chain
-   • MeshStandardMaterial for physical day/night shading
-   • Thin Fresnel atmosphere rim glow (scale 1.015, NOT 1.12)
-   • Slow cloud layer sphere (slightly larger, independent rotation)
-   • Directional "sun" light + dim ambient for night side
-   • 4 Crisis hotspot fire patches — surface-aligned, pulsing
-   • Mouse parallax tilt (5-8°) + scroll-linked camera dive to Gaza
-   ============================================================ */
+/* ================================================================
+   EARTH MESH — Photorealistic 3D Globe (v3)
+   ────────────────────────────────────────────────────────────────
+   ✔ NASA Blue Marble satellite texture (CDN fallback chain)
+   ✔ MeshStandardMaterial — physically correct day/night shading
+   ✔ DirectionalLight "sun" → visible terminator line
+   ✔ AmbientLight dim fill → night side not pitch-black
+   ✔ Cloud layer sphere (radius 1.01, independent faster rotation)
+   ✔ Thin Fresnel atmosphere (radius 1.015, BackSide, pow=6.0)
+     → 2-4px effective glow at silhouette edge ONLY — NO thick ring
+   ✔ 4 crisis hotspot fire markers at exact lat/lng coordinates
+     → surface-normal aligned, 2-3s pulsing glow
+   ✔ Mouse parallax tilt (5-8°)
+   ✔ Scroll-linked camera dive toward Gaza
+   ✔ prefers-reduced-motion support
+   ================================================================ */
 
-/* ── Constants ─────────────────────────────────────────────── */
-const TEXTURE_URLS = [
+/* ── Texture CDN Fallback Chain ─────────────────────────────────── */
+const EARTH_TEXTURE_URLS = [
   'https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg',
   'https://raw.githubusercontent.com/turban/webgl-earth/master/images/2_no_clouds_4k.jpg',
   'https://threejs.org/examples/textures/planets/earth_atmos_2048.jpg',
 ]
-const CLOUDS_URL = 'https://unpkg.com/three-globe/example/img/earth-clouds.png'
+const CLOUDS_TEXTURE_URL =
+  'https://unpkg.com/three-globe/example/img/earth-clouds.png'
 
-const BASE_ROTATION_SPEED = 0.032   // rad/s auto-spin
-const CLOUDS_EXTRA_SPEED  = 0.012   // clouds spin slightly faster
-// Gaza: the longitude offset that brings it front-center when group.rotation.y = GAZA_Y
-const GAZA_Y = -(34.45 + 180) * (Math.PI / 180) + Math.PI  // ≈ −1.19 rad
+/* ── Rotation speeds ────────────────────────────────────────────── */
+const EARTH_SPIN  = 0.028      // rad/s — slow cinematic auto-rotate
+const CLOUD_SPIN  = 0.015      // slightly faster than globe
 
-/* ── Coordinate conversion ──────────────────────────────────── */
-function latLng(lat: number, lng: number, r = 1): THREE.Vector3 {
+/* ── Gaza facing angle (for scroll-lock) ────────────────────────── */
+const GAZA_LAT = 31.5
+const GAZA_LNG = 34.45
+const GAZA_FACE_Y =
+  -(GAZA_LNG + 180) * (Math.PI / 180) + Math.PI // ≈ −1.19 rad
+
+/* ── Lat/Lng → 3D cartesian on unit sphere ──────────────────────── */
+function latLngToVec3(lat: number, lng: number, r = 1): THREE.Vector3 {
   const phi   = (90 - lat) * (Math.PI / 180)
   const theta = (lng + 180) * (Math.PI / 180)
   return new THREE.Vector3(
     -(r * Math.sin(phi) * Math.cos(theta)),
-     r * Math.cos(phi),
-     r * Math.sin(phi) * Math.sin(theta),
+      r * Math.cos(phi),
+      r * Math.sin(phi) * Math.sin(theta),
   )
 }
 
-/* ── Crisis hotspots ─────────────────────────────────────────── */
-const HOTSPOTS = [
-  { id: 'gaza',    lat: 31.5, lng: 34.45, primary: true  },
-  { id: 'xinjiang',lat: 41.0, lng: 85.0,  primary: false },
-  { id: 'sudan',   lat: 15.5, lng: 32.5,  primary: false },
-  { id: 'myanmar', lat: 20.8, lng: 93.0,  primary: false },
-]
+/* ── Crisis Hotspot Data ────────────────────────────────────────── */
+const CRISIS_ZONES = [
+  { id: 'gaza',      lat: 31.5,  lng: 34.45, primary: true,  label: 'Gaza'          },
+  { id: 'xinjiang',   lat: 41.0,  lng: 85.0,  primary: false, label: 'East Turkistan' },
+  { id: 'sudan',      lat: 15.5,  lng: 32.5,  primary: false, label: 'Sudan'          },
+  { id: 'myanmar',    lat: 20.8,  lng: 93.0,  primary: false, label: 'Rakhine'        },
+] as const
 
-/* ── Fire glow texture (radial orange-red) ───────────────────── */
-function makeFireTexture(size = 256): THREE.CanvasTexture {
-  const c = document.createElement('canvas')
-  c.width = c.height = size
-  const ctx = c.getContext('2d')!
-  const g = ctx.createRadialGradient(size/2, size/2, 0, size/2, size/2, size/2)
-  g.addColorStop(0.00, 'rgba(255,255,220,1.00)')   // hot white core
-  g.addColorStop(0.15, 'rgba(255,140,20,0.95)')    // bright orange
-  g.addColorStop(0.40, 'rgba(220,50,20,0.70)')     // deep red
-  g.addColorStop(0.70, 'rgba(180,20,10,0.30)')
-  g.addColorStop(1.00, 'rgba(0,0,0,0)')
-  ctx.fillStyle = g
+/* ── Procedural fire glow texture ───────────────────────────────── */
+function createFireTexture(size = 256): THREE.CanvasTexture {
+  const canvas = document.createElement('canvas')
+  canvas.width = canvas.height = size
+  const ctx = canvas.getContext('2d')!
+  const half = size / 2
+
+  const grad = ctx.createRadialGradient(half, half, 0, half, half, half)
+  grad.addColorStop(0.0,  'rgba(255, 255, 220, 1.0)')  // white-hot core
+  grad.addColorStop(0.12, 'rgba(255, 140,  20, 0.95)') // bright orange
+  grad.addColorStop(0.35, 'rgba(255,  69,   0, 0.75)') // #ff4500
+  grad.addColorStop(0.60, 'rgba(220,  30,  10, 0.40)') // deep red
+  grad.addColorStop(0.85, 'rgba(160,  10,   0, 0.15)')
+  grad.addColorStop(1.0,  'rgba(0,     0,   0, 0.0)')
+
+  ctx.fillStyle = grad
   ctx.fillRect(0, 0, size, size)
-  return new THREE.CanvasTexture(c)
+
+  const tex = new THREE.CanvasTexture(canvas)
+  tex.needsUpdate = true
+  return tex
 }
 
-/* ── Ring pulse texture ──────────────────────────────────────── */
-function makeRingTexture(size = 256): THREE.CanvasTexture {
-  const c = document.createElement('canvas')
-  c.width = c.height = size
-  const ctx = c.getContext('2d')!
+/* ── Procedural pulse-ring texture ──────────────────────────────── */
+function createRingTexture(size = 256): THREE.CanvasTexture {
+  const canvas = document.createElement('canvas')
+  canvas.width = canvas.height = size
+  const ctx = canvas.getContext('2d')!
+  const half = size / 2
+
   ctx.clearRect(0, 0, size, size)
-  for (let i = 0; i < 3; i++) {
-    const r = size * (0.28 + i * 0.06)
+  // 2 concentric pulse rings
+  for (let i = 0; i < 2; i++) {
+    const r = half * (0.55 + i * 0.16)
     ctx.beginPath()
-    ctx.arc(size/2, size/2, r, 0, Math.PI * 2)
-    ctx.strokeStyle = `rgba(255,80,20,${0.7 - i * 0.18})`
-    ctx.lineWidth = size * 0.022
-    ctx.shadowColor = 'rgba(255,60,0,0.8)'
-    ctx.shadowBlur = 8
+    ctx.arc(half, half, r, 0, Math.PI * 2)
+    ctx.strokeStyle = `rgba(255, 80, 20, ${0.8 - i * 0.25})`
+    ctx.lineWidth = size * 0.025
+    ctx.shadowColor = 'rgba(255, 60, 0, 0.9)'
+    ctx.shadowBlur = 10
     ctx.stroke()
   }
-  return new THREE.CanvasTexture(c)
+
+  const tex = new THREE.CanvasTexture(canvas)
+  tex.needsUpdate = true
+  return tex
 }
 
-/* ── Thin Fresnel Atmosphere Shader ─────────────────────────── */
-// Rendered on BackSide of a sphere scaled 1.015 — creates a
-// razor-thin rim glow ONLY at the silhouette edge, not a thick halo.
-const atmVert = /* glsl */`
-  varying vec3 vNormal;
-  varying vec3 vViewPos;
+/* ── Thin Fresnel Atmosphere Shader ─────────────────────────────── */
+// Rendered on BackSide of sphere scaled 1.015.
+// pow(fresnel, 6.0) makes it visible ONLY at the absolute silhouette edge.
+// Max alpha 0.20 — razor-thin, 2-4px effective, soft blue, NO thick ring.
+const ATM_VERT = /* glsl */ `
+  varying vec3 vWorldNormal;
+  varying vec3 vViewDir;
   void main() {
-    vNormal  = normalize(normalMatrix * normal);
-    vec4 vp  = modelViewMatrix * vec4(position, 1.0);
-    vViewPos = vp.xyz;
-    gl_Position = projectionMatrix * vp;
+    vec4 worldPos = modelMatrix * vec4(position, 1.0);
+    vWorldNormal  = normalize((modelMatrix * vec4(normal, 0.0)).xyz);
+    vViewDir      = normalize(cameraPosition - worldPos.xyz);
+    gl_Position   = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
   }
 `
-const atmFrag = /* glsl */`
-  varying vec3 vNormal;
-  varying vec3 vViewPos;
-  uniform float uScroll;
+const ATM_FRAG = /* glsl */ `
+  varying vec3 vWorldNormal;
+  varying vec3 vViewDir;
   void main() {
-    vec3  viewDir = normalize(-vViewPos);
-    float rim     = 1.0 - max(dot(vNormal, viewDir), 0.0);
-    // pow(rim, 5.5) → extremely edge-hugging, almost invisible in the center
-    float alpha   = pow(rim, 5.5) * 0.22 * (1.0 - uScroll * 0.85);
-    vec3  color   = mix(vec3(0.20, 0.52, 0.92), vec3(0.45, 0.78, 1.0), rim);
-    gl_FragColor  = vec4(color, alpha);
+    float rim   = 1.0 - max(dot(vWorldNormal, vViewDir), 0.0);
+    float alpha = pow(rim, 6.0) * 0.20;
+    vec3  col   = mix(vec3(0.29, 0.56, 0.85), vec3(0.50, 0.80, 1.0), rim);
+    gl_FragColor = vec4(col, alpha);
   }
 `
 
-/* ── Component ───────────────────────────────────────────────── */
-interface Props {
-  scrollRef: RefObject<number>
-  pausedRef: RefObject<boolean>
-  mouseRef:  RefObject<{ x: number; y: number }>
+/* ── Texture loader with CDN fallback chain ─────────────────────── */
+function loadTextureChain(
+  urls: string[],
+  onSuccess: (tex: THREE.Texture) => void,
+  onAllFail?: () => void,
+) {
+  let idx = 0
+  const loader = new THREE.TextureLoader()
+
+  function tryNext() {
+    if (idx >= urls.length) {
+      onAllFail?.()
+      return
+    }
+    const url = urls[idx++]
+    loader.load(
+      url,
+      (tex) => {
+        tex.colorSpace = THREE.SRGBColorSpace
+        tex.anisotropy = 4
+        onSuccess(tex)
+      },
+      undefined,
+      () => tryNext(), // this URL failed → try next
+    )
+  }
+  tryNext()
+}
+
+/* ── Component Props ────────────────────────────────────────────── */
+interface EarthMeshProps {
+  scrollRef: MutableRefObject<number>
+  pausedRef: MutableRefObject<boolean>
+  mouseRef:  MutableRefObject<{ x: number; y: number }>
   reduced:   boolean
 }
 
-export default function EarthMesh({ scrollRef, pausedRef, mouseRef, reduced }: Props) {
-  const groupRef    = useRef<THREE.Group>(null)
-  const cloudsRef   = useRef<THREE.Mesh>(null)
-  const atmMatRef   = useRef<THREE.ShaderMaterial>(null)
-  const ringsRef    = useRef<(THREE.Mesh | null)[]>([])
-  const autoRotY    = useRef(GAZA_Y)
-  const tilt        = useRef({ x: 0, y: 0 })
+/* ================================================================
+   EARTH MESH COMPONENT
+   ================================================================ */
+export default function EarthMesh({
+  scrollRef,
+  pausedRef,
+  mouseRef,
+  reduced,
+}: EarthMeshProps) {
+  /* ── Refs ── */
+  const groupRef  = useRef<THREE.Group>(null!)
+  const cloudsRef = useRef<THREE.Mesh>(null!)
+  const autoRotY  = useRef(GAZA_FACE_Y)
+  const tiltX     = useRef(0.1)
+  const tiltY     = useRef(0)
 
-  /* texture loading state */
+  /* ── Texture State ── */
   const [earthTex,  setEarthTex]  = useState<THREE.Texture | null>(null)
   const [cloudsTex, setCloudsTex] = useState<THREE.Texture | null>(null)
 
   const { camera, invalidate } = useThree()
 
-  /* procedural textures */
-  const fireTex = useMemo(() => typeof window !== 'undefined' ? makeFireTexture() : null, [])
-  const ringTex = useMemo(() => typeof window !== 'undefined' ? makeRingTexture() : null, [])
+  /* ── Procedural Textures (fire + ring) ── */
+  const fireTex = useMemo(
+    () => (typeof window !== 'undefined' ? createFireTexture() : null),
+    [],
+  )
+  const ringTex = useMemo(
+    () => (typeof window !== 'undefined' ? createRingTexture() : null),
+    [],
+  )
 
-  /* hotspot 3D positions */
-  const hotspots = useMemo(() => HOTSPOTS.map(h => ({
-    ...h,
-    pos:    latLng(h.lat, h.lng, 1.008),
-    normal: latLng(h.lat, h.lng, 1.0).normalize(),
-  })), [])
+  /* ── Hotspot 3D Positions ── */
+  const hotspots = useMemo(
+    () =>
+      CRISIS_ZONES.map((zone) => ({
+        ...zone,
+        pos:    latLngToVec3(zone.lat, zone.lng, 1.005),
+        normal: latLngToVec3(zone.lat, zone.lng, 1.0).normalize(),
+      })),
+    [],
+  )
 
-  /* atmo uniforms */
-  const atmUniforms = useMemo(() => ({ uScroll: { value: 0 } }), [])
+  /* ── Ring mesh refs for pulse animation ── */
+  const ringRefs = useRef<(THREE.Mesh | null)[]>([])
 
-  /* ── Load earth texture: try each CDN in order ────────────── */
+  /* ── Sprite refs for pulse opacity ── */
+  const spriteRefs = useRef<(THREE.Sprite | null)[]>([])
+
+  /* ── Load Earth Texture (CDN Fallback) ── */
   useEffect(() => {
-    const manager = new THREE.LoadingManager()
-    const loader  = new THREE.TextureLoader(manager)
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    ;(loader as any).crossOrigin = 'anonymous'
+    let disposed = false
 
-    let cancelled = false
-
-    async function loadChain() {
-      for (const url of TEXTURE_URLS) {
-        try {
-          const tex = await new Promise<THREE.Texture>((resolve, reject) => {
-            loader.load(url, resolve, undefined, reject)
-          })
-          if (cancelled) { tex.dispose(); return }
-          tex.colorSpace = THREE.SRGBColorSpace
-          tex.anisotropy = 4
-          setEarthTex(tex)
-          return
-        } catch (_err) {
-          // CDN failed — try next in chain
+    loadTextureChain(
+      EARTH_TEXTURE_URLS,
+      (tex) => { if (!disposed) setEarthTex(tex) },
+      () => {
+        // All CDNs failed → dark navy fallback so globe never renders broken
+        if (!disposed) {
+          const fb = new THREE.DataTexture(
+            new Uint8Array([14, 22, 48, 255]),
+            1, 1,
+            THREE.RGBAFormat,
+          )
+          fb.needsUpdate = true
+          setEarthTex(fb)
         }
-      }
-      // All CDNs failed — solid dark-navy fallback
-      if (!cancelled) {
-        const fallback = new THREE.DataTexture(
-          new Uint8Array([12, 20, 42, 255]),
-          1, 1, THREE.RGBAFormat
-        )
-        fallback.needsUpdate = true
-        setEarthTex(fallback)
-      }
-    }
-    loadChain()
-    return () => { cancelled = true }
+      },
+    )
+
+    return () => { disposed = true }
   }, [])
 
-  /* ── Load cloud alpha texture (optional) ─────────────────── */
+  /* ── Load Cloud Texture (optional) ── */
   useEffect(() => {
+    let disposed = false
     const loader = new THREE.TextureLoader()
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    ;(loader as any).crossOrigin = 'anonymous'
-    let cancelled = false
     loader.load(
-      CLOUDS_URL,
+      CLOUDS_TEXTURE_URL,
       (tex) => {
-        if (cancelled) { tex.dispose(); return }
+        if (disposed) { tex.dispose(); return }
         tex.colorSpace = THREE.SRGBColorSpace
         setCloudsTex(tex)
       },
       undefined,
-      (_err) => { /* clouds are optional — silently ignore CDN failure */ }
+      () => { /* clouds are optional — ignore failure */ },
     )
-    return () => { cancelled = true }
+    return () => { disposed = true }
   }, [])
 
-  /* ── Reduced-motion: static Gaza-facing pose ─────────────── */
+  /* ── Reduced-motion: static frame, Gaza facing ── */
   useEffect(() => {
     if (reduced && groupRef.current) {
-      groupRef.current.rotation.y = GAZA_Y
-      groupRef.current.rotation.x = 0.10
+      groupRef.current.rotation.set(0.1, GAZA_FACE_Y, 0)
       camera.position.set(0, 0, 3.8)
+      camera.lookAt(0, 0, 0)
       invalidate()
     }
   }, [reduced, camera, invalidate])
 
-  /* ── Per-frame animation ──────────────────────────────────── */
+  /* ── Per-Frame Animation Loop ── */
   useFrame((_, delta) => {
     if (reduced || pausedRef.current) return
     const group = groupRef.current
@@ -220,81 +277,103 @@ export default function EarthMesh({ scrollRef, pausedRef, mouseRef, reduced }: P
 
     const scroll = Math.min(1, Math.max(0, scrollRef.current ?? 0))
 
-    /* 1 — Auto-spin */
-    autoRotY.current += delta * BASE_ROTATION_SPEED
+    /* 1 — Slow auto-spin */
+    autoRotY.current += delta * EARTH_SPIN
 
-    /* 2 — Scroll-linked rotation lock toward Gaza */
-    const lockWeight = Math.min(1, scroll * 2.4)
-    group.rotation.y = THREE.MathUtils.lerp(autoRotY.current, GAZA_Y, lockWeight)
+    /* 2 — Scroll locks rotation toward Gaza */
+    const lockW = Math.min(1, scroll * 2.5)
+    group.rotation.y = THREE.MathUtils.lerp(
+      autoRotY.current,
+      GAZA_FACE_Y,
+      lockW,
+    )
 
-    /* 3 — Mouse parallax (fades out as user scrolls away) */
+    /* 3 — Mouse parallax (5-8° max, fades on scroll) */
     const mx = (mouseRef.current?.x ?? 0) * (1 - scroll)
     const my = (mouseRef.current?.y ?? 0) * (1 - scroll)
-    tilt.current.x = THREE.MathUtils.lerp(tilt.current.x, my * 0.10 + 0.10, 0.05)
-    tilt.current.y = THREE.MathUtils.lerp(tilt.current.y, mx * 0.12,        0.05)
-    group.rotation.x =  tilt.current.x
-    group.rotation.z = -tilt.current.y * 0.35
+    tiltX.current = THREE.MathUtils.lerp(tiltX.current, my * 0.10 + 0.10, 0.04)
+    tiltY.current = THREE.MathUtils.lerp(tiltY.current, mx * 0.12,         0.04)
+    group.rotation.x =  tiltX.current
+    group.rotation.z = -tiltY.current * 0.3
 
-    /* 4 — Scroll camera dive toward Gaza */
-    const ease  = Math.pow(scroll, 1.7)
-    const camZ  = THREE.MathUtils.lerp(3.8, 1.45, ease)
-    const camY  = THREE.MathUtils.lerp(0,   0.30, ease)
-    camera.position.set(0, camY, camZ)
-    camera.lookAt(0, camY * 0.4, 0)
+    /* 4 — Scroll-linked camera dive toward Gaza */
+    const ease = Math.pow(scroll, 1.6)
+    camera.position.set(
+      0,
+      THREE.MathUtils.lerp(0, 0.28, ease),
+      THREE.MathUtils.lerp(3.8, 1.5, ease),
+    )
+    camera.lookAt(0, THREE.MathUtils.lerp(0, 0.14, ease), 0)
 
-    /* 5 — Cloud slow-spin */
-    if (cloudsRef.current) cloudsRef.current.rotation.y += delta * CLOUDS_EXTRA_SPEED
+    /* 5 — Cloud spin (independent, slightly faster) */
+    if (cloudsRef.current) {
+      cloudsRef.current.rotation.y += delta * CLOUD_SPIN
+    }
 
-    /* 6 — Atmosphere uniform */
-    if (atmMatRef.current) atmMatRef.current.uniforms.uScroll.value = scroll
-
-    /* 7 — Hotspot pulse rings */
+    /* 6 — Hotspot pulse animation (2-3s cycle) */
     const t = performance.now() * 0.001
-    ringsRef.current.forEach((ring, i) => {
+    spriteRefs.current.forEach((sprite, i) => {
+      if (!sprite) return
+      // 2.5s sinusoidal pulse
+      const pulse = 0.60 + 0.40 * Math.sin(t * 2.5 + i * 1.5)
+      ;(sprite.material as THREE.SpriteMaterial).opacity = pulse
+    })
+
+    ringRefs.current.forEach((ring, i) => {
       if (!ring) return
-      const phase = ((t * 0.45 + i * 0.28) % 1)
-      const s = 0.018 + phase * 0.072
+      // Expanding ring: 0→1 over ~2.2s, repeating
+      const phase = ((t * 0.45 + i * 0.3) % 1)
+      const s = 0.02 + phase * 0.08
       ring.scale.setScalar(s)
-      ;(ring.material as THREE.MeshBasicMaterial).opacity =
-        (1 - phase) * 0.90 * (1 - scroll * 0.65)
+      const mat = ring.material as THREE.MeshBasicMaterial
+      mat.opacity = (1 - phase) * 0.85 * (1 - scroll * 0.5)
     })
   })
 
-  /* ── Render ─────────────────────────────────────────────────── */
+  /* ── JSX ─────────────────────────────────────────────────────── */
   return (
     <>
-      {/* ── Global Lights ── */}
-      {/* Sun: angled from top-left to create a clear day/night terminator */}
-      <directionalLight position={[5, 3, 5]} intensity={2.6} color="#fffce8" />
-      {/* Dim fill so night side shows faint detail, not pure black */}
-      <ambientLight intensity={0.08} color="#1a2a4a" />
+      {/* ━━ LIGHTING ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      {/* Sun — directional from top-right to carve a clear terminator */}
+      <directionalLight
+        position={[5, 3, 5]}
+        intensity={2.8}
+        color="#fffbe6"
+      />
+      {/* Dim ambient — night side shows faint surface, not pitch black */}
+      <ambientLight intensity={0.07} color="#1a2a4a" />
 
+      {/* ━━ EARTH GROUP (rotates as unit) ━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <group ref={groupRef}>
-        {/* ── Earth Globe ── */}
+
+        {/* ── Earth Sphere ── */}
         <mesh>
           <sphereGeometry args={[1, 96, 96]} />
           {earthTex ? (
             <meshStandardMaterial
               map={earthTex}
-              roughness={0.78}
-              metalness={0.04}
-              envMapIntensity={0.15}
+              roughness={0.82}
+              metalness={0.02}
             />
           ) : (
-            /* Loading placeholder — neutral dark navy */
-            <meshStandardMaterial color="#0d1a30" roughness={1} metalness={0} />
+            // Loading placeholder: dark navy (not black, not broken)
+            <meshStandardMaterial
+              color="#0e1a30"
+              roughness={1}
+              metalness={0}
+            />
           )}
         </mesh>
 
-        {/* ── Cloud Layer (slightly larger, slower independent spin) ── */}
+        {/* ── Cloud Layer (radius * 1.01, independent spin) ── */}
         {cloudsTex && (
-          <mesh ref={cloudsRef} scale={[1.012, 1.012, 1.012]}>
+          <mesh ref={cloudsRef} scale={1.01}>
             <sphereGeometry args={[1, 64, 64]} />
             <meshStandardMaterial
               map={cloudsTex}
               alphaMap={cloudsTex}
               transparent
-              opacity={0.38}
+              opacity={0.35}
               depthWrite={false}
               roughness={1}
               metalness={0}
@@ -302,56 +381,63 @@ export default function EarthMesh({ scrollRef, pausedRef, mouseRef, reduced }: P
           </mesh>
         )}
 
-        {/* ── Crisis Hotspot Fire Glow & Pulse Rings ── */}
-        {fireTex && hotspots.map((h, i) => {
-          const scale = h.primary ? 0.19 : 0.14
-          return (
-            <group key={h.id} position={h.pos}>
-              {/* Fire sprite — always faces camera (billboard), AdditiveBlending */}
-              <sprite scale={[scale, scale, scale]}>
-                <spriteMaterial
-                  map={fireTex}
-                  blending={THREE.AdditiveBlending}
-                  transparent
-                  depthWrite={false}
-                  opacity={0.92}
-                />
-              </sprite>
-
-              {/* Pulsing thermal ring — surface-aligned plane */}
-              {ringTex && (
-                <mesh
-                  ref={(el: THREE.Mesh | null) => { ringsRef.current[i] = el }}
-                  quaternion={new THREE.Quaternion().setFromUnitVectors(
-                    new THREE.Vector3(0, 0, 1),
-                    h.normal,
-                  )}
+        {/* ── Crisis Hotspot Markers ── */}
+        {fireTex &&
+          hotspots.map((h, i) => {
+            const spriteScale = h.primary ? 0.20 : 0.14
+            return (
+              <group key={h.id} position={h.pos}>
+                {/* Fire glow sprite (billboard, Additive) */}
+                <sprite
+                  ref={(el: THREE.Sprite | null) => {
+                    spriteRefs.current[i] = el
+                  }}
+                  scale={[spriteScale, spriteScale, spriteScale]}
                 >
-                  <planeGeometry args={[1, 1]} />
-                  <meshBasicMaterial
-                    map={ringTex}
-                    transparent
+                  <spriteMaterial
+                    map={fireTex}
                     blending={THREE.AdditiveBlending}
+                    transparent
                     depthWrite={false}
-                    side={THREE.DoubleSide}
                     opacity={0.9}
                   />
-                </mesh>
-              )}
-            </group>
-          )
-        })}
+                </sprite>
+
+                {/* Expanding thermal ring — surface-normal aligned */}
+                {ringTex && (
+                  <mesh
+                    ref={(el: THREE.Mesh | null) => {
+                      ringRefs.current[i] = el
+                    }}
+                    quaternion={new THREE.Quaternion().setFromUnitVectors(
+                      new THREE.Vector3(0, 0, 1),
+                      h.normal,
+                    )}
+                  >
+                    <planeGeometry args={[1, 1]} />
+                    <meshBasicMaterial
+                      map={ringTex}
+                      transparent
+                      blending={THREE.AdditiveBlending}
+                      depthWrite={false}
+                      side={THREE.DoubleSide}
+                      opacity={0.85}
+                    />
+                  </mesh>
+                )}
+              </group>
+            )
+          })}
       </group>
 
-      {/* ── Thin Fresnel Atmosphere Rim — scale 1.015, BackSide ── */}
-      {/* This renders ONLY at silhouette edges, NOT as a thick halo ring */}
-      <mesh scale={[1.015, 1.015, 1.015]}>
+      {/* ━━ THIN FRESNEL ATMOSPHERE (radius * 1.015, BackSide) ━━━ */}
+      {/* pow(fresnel, 6.0) → visible ONLY at silhouette edge      */}
+      {/* max alpha 0.20 → razor-thin soft blue glow, NOT a ring   */}
+      <mesh scale={1.015}>
         <sphereGeometry args={[1, 64, 64]} />
         <shaderMaterial
-          ref={atmMatRef}
-          vertexShader={atmVert}
-          fragmentShader={atmFrag}
-          uniforms={atmUniforms}
+          vertexShader={ATM_VERT}
+          fragmentShader={ATM_FRAG}
           transparent
           blending={THREE.AdditiveBlending}
           side={THREE.BackSide}
