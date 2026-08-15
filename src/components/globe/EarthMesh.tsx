@@ -21,14 +21,16 @@ import * as THREE from 'three'
    ✔ prefers-reduced-motion support
    ================================================================ */
 
-/* ── Texture CDN Fallback Chain ─────────────────────────────────── */
+/* ── Texture Paths — local first (no CORS), CDN fallback ────────── */
 const EARTH_TEXTURE_URLS = [
-  'https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg',
-  'https://raw.githubusercontent.com/turban/webgl-earth/master/images/2_no_clouds_4k.jpg',
-  'https://threejs.org/examples/textures/planets/earth_atmos_2048.jpg',
+  '/textures/earth-blue-marble.jpg',                                        // local (public/)
+  'https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg',        // CDN fallback 1
+  'https://raw.githubusercontent.com/turban/webgl-earth/master/images/2_no_clouds_4k.jpg', // CDN fallback 2
+  '/textures/earth-2k.jpg',                                                 // local low-res fallback
 ]
+// Cloud texture is optional — no local copy needed
 const CLOUDS_TEXTURE_URL =
-  'https://unpkg.com/three-globe/example/img/earth-clouds.png'
+  'https://unpkg.com/three-globe@2.31.0/example/img/earth-clouds.png'
 
 /* ── Rotation speeds ────────────────────────────────────────────── */
 const EARTH_SPIN  = 0.028      // rad/s — slow cinematic auto-rotate
