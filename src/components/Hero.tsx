@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion, useMotionValue, useTransform, useReducedMotion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
-import DotMapBackground from '@/components/DotMapBackground'
 
 /* ============================================================
    HERO — Kampüs İntifada UX/UI Manifestosu
@@ -135,29 +134,23 @@ export default function Hero() {
   }, [])
 
   return (
-    <section
-      className="relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden"
-      style={{ background: '#0F1923' }}
-    >
-      {/* ── Nokta-Matris Dünya Haritası ── */}
-      <DotMapBackground className="opacity-90" />
-
-      {/* ── Radyal vignette — okunurluk için merkez karartma ── */}
+    <section className="relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden">
+      {/* ── Okunurluk Vignette — 3D Küre üzerinde metin kontrastını korur ── */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 z-[1]"
         style={{
           background:
-            'radial-gradient(55% 60% at 50% 50%, rgba(15,25,35,0.72) 0%, rgba(15,25,35,0.45) 55%, transparent 85%)',
+            'radial-gradient(60% 62% at 50% 48%, rgba(15, 25, 35, 0.62) 0%, rgba(15, 25, 35, 0.32) 58%, transparent 88%)',
         }}
       />
 
-      {/* ── Alt soluk gradient bant ── */}
+      {/* ── Alt yumuşak solma bandı ── */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-40"
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-32"
         style={{
-          background: 'linear-gradient(to top, #0F1923 0%, transparent 100%)',
+          background: 'linear-gradient(to top, rgba(15, 25, 35, 0.85) 0%, transparent 100%)',
         }}
       />
 

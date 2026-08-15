@@ -6,27 +6,28 @@ import { useReducedMotion } from 'framer-motion'
 import EarthMesh from './EarthMesh'
 
 /* ============================================================
-   GLOBE BACKGROUND — tam-sayfa sabit (fixed) dönen dünya.
-   Layout'ta tek sefer mount edilir; tüm sayfa boyunca arkada kalır.
-   Scroll küreyi ekseni etrafında döndürür (ZOOM YOK).
-   Optimizasyon: dpr clamp, tab gizliyken loop durur, reduced-motion
-   tek statik kare.
+   GLOBE BACKGROUND — tam-sayfa sabit (fixed) sinematik 3D dünya.
+   • Layout seviyesinde mount edilir, arka planda kalır.
+   • Mouse parallaksı & Hero'dan kaydırıldığında Gazze'ye kamera dalışı.
+   • Optimizasyon: dpr clamp, tab gizliyken rAF durur, reduced-motion desteği.
    ============================================================ */
 
 export default function GlobeBackground() {
   const reduce = useReducedMotion()
   const scrollRef = useRef(0)
+  const mouseRef = useRef({ x: 0, y: 0 })
   const pausedRef = useRef(false)
   const [frameloop, setFrameloop] = useState<'always' | 'never'>(
     reduce ? 'never' : 'always'
   )
 
-  // Tüm doküman scroll ilerlemesi → ref (React state yok, re-render yok)
+  // Scroll ilerlemesi: Hero bölümünden sonraki bölüme geçiş oranını (0.0 -> 1.0) hesaplar
   useEffect(() => {
     const onScroll = () => {
-      const max =
-        document.documentElement.scrollHeight - window.innerHeight
-      scrollRef.current = max > 0 ? window.scrollY / max : 0
+      const heroHeight = window.innerHeight * 1.1 || 800
+      const currentScroll = window.scrollY || 0
+      // 0: Hero tepesi, 1: Hero'dan çıkıp Çadırlar/Program bölümüne giriş
+      scrollRef.current = Math.min(1, Math.max(0, currentScroll / heroHeight))
     }
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
@@ -37,7 +38,22 @@ export default function GlobeBackground() {
     }
   }, [])
 
-  // Tab gizliyken rAF loop'u durdur; reduced-motion'da hiç sürme
+  // Mouse / Pointer Parallaks Takibi
+  useEffect(() => {
+    if (reduce) return
+    const onMouseMove = (e: MouseEvent) => {
+      const halfW = window.innerWidth * 0.5
+      const halfH = window.innerHeight * 0.5
+      mouseRef.current = {
+        x: (e.clientX - halfW) / halfW,
+        y: (e.clientY - halfH) / halfH,
+      }
+    }
+    window.addEventListener('mousemove', onMouseMove, { passive: true })
+    return () => window.removeEventListener('mousemove', onMouseMove)
+  }, [reduce])
+
+  // Tab gizliyken rAF döngüsünü durdur
   useEffect(() => {
     if (reduce) {
       pausedRef.current = true
@@ -56,7 +72,7 @@ export default function GlobeBackground() {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none fixed inset-0 z-0"
+      className="pointer-events-none fixed inset-0 z-0 overflow-hidden"
     >
       <Canvas
         dpr={[1, 1.5]}
@@ -66,25 +82,27 @@ export default function GlobeBackground() {
           alpha: true,
           powerPreference: 'high-performance',
         }}
-        camera={{ position: [0, 0, 4.0], fov: 35 }}
+        camera={{ position: [0, 0, 3.8], fov: 36 }}
       >
         <Suspense fallback={null}>
           <EarthMesh
             scrollRef={scrollRef}
             pausedRef={pausedRef}
+            mouseRef={mouseRef}
             reduced={!!reduce}
           />
         </Suspense>
       </Canvas>
 
-      {/* Atmosfer halesi — ikinci mesh yerine bedava CSS radial */}
+      {/* Leyl Lacivert / Koyu Uzay Atmosfer Vignette Halesi */}
       <div
         className="absolute inset-0"
         style={{
           background:
-            'radial-gradient(closest-side at 50% 50%, rgba(46,92,150,0.16), transparent 72%)',
+            'radial-gradient(ellipse at 50% 50%, rgba(15, 25, 35, 0.25) 0%, rgba(15, 25, 35, 0.70) 65%, #0F1923 100%)',
         }}
       />
     </div>
   )
 }
+
