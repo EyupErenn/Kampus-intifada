@@ -10,14 +10,19 @@
     "title": "Campus İntifada",
     "subtitle": "Etkinliğin Dijital İkizi – BTU Kampüsü",
     "description": "Bir kampüsün vicdanı dijitalde yankılanıyor. Dayanışmayı, hafızayı ve direnişi tek bir çatı altında topluyoruz.",
-    "tagline": "vicdan · hafıza · direniş",
+    "tagline": "vicdan · hafıza · aksiyon",
     "words": [
       "dayanışma",
       "hafıza",
       "direniş",
       "vicdan"
     ],
-    "scroll": "Programa in"
+    "scroll": "Programa in",
+    "actCta": "Harekete Geç",
+    "statusCta": "Durumu Gör",
+    "statShahid": "Şehit",
+    "statVolunteer": "Gönüllü",
+    "statProject": "Proje"
   },
   "ticker": {
     "label": "Acil",

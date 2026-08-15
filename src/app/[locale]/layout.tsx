@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import type { Metadata } from 'next'
-import { Noto_Sans, Noto_Sans_Arabic } from 'next/font/google'
+import { Noto_Sans, Noto_Sans_Arabic, Plus_Jakarta_Sans, JetBrains_Mono } from 'next/font/google'
 import { NextIntlClientProvider } from 'next-intl'
 import { notFound } from 'next/navigation'
 import { routing } from '@/i18n/routing'
@@ -25,6 +25,20 @@ const notoSansArabic = Noto_Sans_Arabic({
   display: 'swap',
 })
 
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ['latin', 'latin-ext'],
+  variable: '--font-plus-jakarta-sans',
+  weight: ['400', '500', '600', '700', '800'],
+  display: 'swap',
+})
+
+const jetBrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-jetbrains-mono',
+  weight: ['400', '500', '600', '700'],
+  display: 'swap',
+})
+
 export default async function LocaleLayout({
   children,
   params,
@@ -38,7 +52,7 @@ export default async function LocaleLayout({
     notFound()
   }
 
-  const fontVars = `${notoSans.variable} ${notoSansArabic.variable}`
+  const fontVars = `${notoSans.variable} ${notoSansArabic.variable} ${plusJakartaSans.variable} ${jetBrainsMono.variable}`
   const fontClass = locale === 'ar' ? notoSansArabic.className : notoSans.className
 
   return (

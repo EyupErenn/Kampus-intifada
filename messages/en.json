@@ -10,14 +10,19 @@
     "title": "Campus Intifada",
     "subtitle": "The Digital Twin of the Event – BTU Campus",
     "description": "The conscience of a campus echoes in the digital realm. We gather solidarity, memory and resistance under one roof.",
-    "tagline": "conscience · memory · resistance",
+    "tagline": "conscience · memory · action",
     "words": [
       "solidarity",
       "memory",
       "resistance",
       "conscience"
     ],
-    "scroll": "Skip to programme"
+    "scroll": "Skip to programme",
+    "actCta": "Take Action",
+    "statusCta": "View Status",
+    "statShahid": "Martyrs",
+    "statVolunteer": "Volunteers",
+    "statProject": "Projects"
   },
   "ticker": {
     "label": "Urgent",

@@ -55,7 +55,7 @@ export default async function HomePage({
         <TatreezDivider count={14} className="mx-auto max-w-5xl px-6" />
 
         {/* Çadırlar */}
-        <section className="mx-auto max-w-6xl px-5 py-24 sm:px-8">
+        <section id="cadirlar" className="mx-auto max-w-6xl scroll-mt-20 px-5 py-24 sm:px-8">
           <header className="mb-14 max-w-2xl">
             <span className="text-xs font-bold uppercase tracking-[0.32em] text-flag-green">
               {t('tentsKicker')}

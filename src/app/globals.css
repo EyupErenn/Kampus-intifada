@@ -29,6 +29,13 @@
   --color-foreground: #f4f5f7;
 
   --font-noto-sans: var(--font-noto-sans);
+  --font-plus-jakarta-sans: var(--font-plus-jakarta-sans);
+  --font-jetbrains-mono: var(--font-jetbrains-mono);
+
+  /* Manifesto renk paleti */
+  --color-leyl: #0F1923;             /* Leyl Lacivert — Hero zemini */
+  --color-nar: #D94040;              /* Nar Kırmızısı — kriz / CTA */
+  --color-nur: #16C79A;              /* Nûr Turkuaz — outline CTA */
 }
 
 :root {
