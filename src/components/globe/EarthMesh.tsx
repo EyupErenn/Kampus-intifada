@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useMemo, useRef, useState, type MutableRefObject } from 'react'
+import { useEffect, useMemo, useRef, useState, type RefObject } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import * as THREE from 'three'
 
@@ -163,9 +163,9 @@ function loadTextureChain(
 
 /* ── Component Props ────────────────────────────────────────────── */
 interface EarthMeshProps {
-  scrollRef: MutableRefObject<number>
-  pausedRef: MutableRefObject<boolean>
-  mouseRef:  MutableRefObject<{ x: number; y: number }>
+  scrollRef: RefObject<number>
+  pausedRef: RefObject<boolean>
+  mouseRef:  RefObject<{ x: number; y: number }>
   reduced:   boolean
 }
 
@@ -179,8 +179,8 @@ export default function EarthMesh({
   reduced,
 }: EarthMeshProps) {
   /* ── Refs ── */
-  const groupRef  = useRef<THREE.Group>(null!)
-  const cloudsRef = useRef<THREE.Mesh>(null!)
+  const groupRef  = useRef<THREE.Group>(null)
+  const cloudsRef = useRef<THREE.Mesh>(null)
   const autoRotY  = useRef(GAZA_FACE_Y)
   const tiltX     = useRef(0.1)
   const tiltY     = useRef(0)
@@ -389,7 +389,7 @@ export default function EarthMesh({
               <group key={h.id} position={h.pos}>
                 {/* Fire glow sprite (billboard, Additive) */}
                 <sprite
-                  ref={(el: THREE.Sprite | null) => {
+                  ref={(el) => {
                     spriteRefs.current[i] = el
                   }}
                   scale={[spriteScale, spriteScale, spriteScale]}
@@ -406,7 +406,7 @@ export default function EarthMesh({
                 {/* Expanding thermal ring — surface-normal aligned */}
                 {ringTex && (
                   <mesh
-                    ref={(el: THREE.Mesh | null) => {
+                    ref={(el) => {
                       ringRefs.current[i] = el
                     }}
                     quaternion={new THREE.Quaternion().setFromUnitVectors(
