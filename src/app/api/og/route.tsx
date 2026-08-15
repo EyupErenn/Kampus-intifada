@@ -23,7 +23,7 @@ const COLORS = {
   white: '#f6f3ea',
 }
 
-const SITE = 'kampus-intifada.vercel.app'
+const SITE = 'kampus-intifada-rosy.vercel.app'
 
 function pickLocale(raw: string | null): Loc {
   return raw === 'en' || raw === 'ar' ? raw : 'tr'

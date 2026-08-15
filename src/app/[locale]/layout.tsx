@@ -7,7 +7,7 @@ import { routing } from '@/i18n/routing'
 import GlobeMount from '@/components/globe/GlobeMount'
 import FlagWatermark from '@/components/globe/FlagWatermark'
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://kampus-intifada.vercel.app'
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://kampus-intifada-rosy.vercel.app'
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
